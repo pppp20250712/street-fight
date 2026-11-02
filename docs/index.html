@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>街頭格鬥 Street Fight</title>
+<meta name="description" content="街頭格鬥 Street Fight — 一款 Android 2D 街頭格鬥遊戲。An Android 2D street-fighting game built with Kotlin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@400;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#120b1e; --bg2:#1c1230; --panel:#221638; --line:#3a2a58;
+  --text:#f3eefc; --muted:#b4a6cf; --gold:#ffd040; --red:#ff4a3a; --cyan:#3fe8ff; --pink:#ff3fa4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--cyan)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;background:rgba(18,11,30,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:20px;height:56px;overflow-x:auto;white-space:nowrap}
+nav .brand{font-family:"Bebas Neue",sans-serif;font-size:26px;letter-spacing:1px;color:var(--gold);text-decoration:none;margin-right:auto}
+nav a.l{color:var(--muted);text-decoration:none;font-size:14px}
+nav a.l:hover{color:var(--text)}
+header{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#stage{display:block;width:100%;height:auto;aspect-ratio:16/9;max-height:78vh;object-fit:cover;background:#1b1035}
+.hero-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:4.5%;pointer-events:none;text-align:center}
+.hero-text h1{margin:0;font-family:"Bebas Neue",sans-serif;font-size:clamp(48px,10vw,128px);line-height:.9;color:var(--gold);letter-spacing:3px;text-shadow:4px 4px 0 #000,0 0 30px rgba(255,120,60,.45)}
+.hero-text .zh{font-weight:900;font-size:clamp(20px,3.6vw,40px);color:var(--red);letter-spacing:.4em;text-shadow:3px 3px 0 #000;margin-left:.4em}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:22px 0 30px}
+.btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid var(--gold);color:var(--bg);background:var(--gold)}
+.btn.ghost{background:transparent;color:var(--gold)}
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+h2{font-size:clamp(26px,4vw,36px);margin:0 0 6px;font-weight:900}
+h2 small{display:block;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:.62em;letter-spacing:2px;color:var(--gold)}
+.lead{color:var(--muted);max-width:720px;margin:0 0 28px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.ico{font-size:26px;margin-bottom:6px}
+.fighter{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+.fighter canvas{width:150px;height:180px;background:linear-gradient(#2e1650,#8a2d5e);border-radius:12px;border:1px solid var(--line)}
+.fighter .tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:99px;border:1px solid var(--gold);color:var(--gold);margin-bottom:6px}
+.stat{display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;font-size:13px;color:var(--muted);margin-top:4px}
+.bar{height:8px;background:#0d0817;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red))}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--gold);font-weight:700;font-size:13px}
+td code,p code,li code{overflow-wrap:anywhere;font-family:"JetBrains Mono",monospace;font-size:.88em;background:#0d0817;padding:2px 6px;border-radius:6px;color:#ffd9a0}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+kbd{font-family:"JetBrains Mono",monospace;font-size:12px;padding:2px 7px;border-radius:6px;border:1px solid #5a4a7a;border-bottom-width:3px;background:#1a1028;color:var(--text)}
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 18px 52px}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--bg);font-weight:900;display:grid;place-items:center}
+pre{background:#0d0817;border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:13px;color:#e8dcff;margin:0}
+.en{color:var(--muted);font-size:.92em}
+footer{padding:36px 0;color:var(--muted);font-size:13px;text-align:center}
+@media (max-width:560px){.fighter{grid-template-columns:1fr}.fighter canvas{width:100%;height:200px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#">STREET FIGHT</a>
+  <a class="l" href="#features">特色 Features</a>
+  <a class="l" href="#fighters">角色 Fighters</a>
+  <a class="l" href="#controls">操作 Controls</a>
+  <a class="l" href="#moves">招式 Moves</a>
+  <a class="l" href="#build">安裝 Build</a>
+  <a class="l" href="#code">程式 Code</a>
+</div></nav>
+
+<header>
+  <canvas id="stage" width="1536" height="864" aria-label="遊戲畫面動畫 Animated game scene"></canvas>
+  <div class="hero-text">
+    <h1>STREET FIGHT</h1>
+    <div class="zh">街頭格鬥</div>
+  </div>
+</header>
+<div class="wrap hero-cta">
+  <a class="btn" href="#build">開始建置 Build &amp; Run</a>
+  <a class="btn ghost" href="#controls">怎麼玩 How to play</a>
+</div>
+
+<section id="features"><div class="wrap">
+  <h2><small>FEATURES</small>遊戲特色</h2>
+  <p class="lead">一款以 Kotlin 寫成、不需任何圖檔或音檔的 Android 2D 格鬥遊戲。<span class="en">A 2D Android fighting game written in pure Kotlin — no image or audio assets required.</span></p>
+  <div class="grid g3">
+    <div class="card"><div class="ico">🥋</div><h3>兩位格鬥家 · 2 Fighters</h3><p>力量型 RYO 與速度型 MEI，各有獨特必殺技。<br><span class="en">Power-type RYO and speed-type MEI, each with a unique special.</span></p></div>
+    <div class="card"><div class="ico">🤖</div><h3>電腦對手 · CPU AI</h3><p>三種難度，會防禦、閃避氣功彈、找機會反擊。<br><span class="en">3 difficulty levels; the CPU blocks, jumps projectiles and punishes.</span></p></div>
+    <div class="card"><div class="ico">🏆</div><h3>三戰兩勝 · Best of 3</h3><p>每回合 60 秒，K.O. 慢動作、連段計數、打擊停頓與畫面震動。<br><span class="en">60s rounds, slow-mo K.O., combo counter, hit-stop and screen shake.</span></p></div>
+    <div class="card"><div class="ico">🌆</div><h3>原生高解析 · Native HD</h3><p>依螢幕解析度即時繪製夕陽街景、霓虹招牌與燈籠。<br><span class="en">Sunset street, neon signs and lanterns drawn at native screen resolution.</span></p></div>
+    <div class="card"><div class="ico">🔊</div><h3>合成音效 · Synth SFX</h3><p>打擊、防禦、必殺、K.O. 音效皆由程式即時合成。<br><span class="en">Hit, block, special and K.O. sounds are synthesized at launch.</span></p></div>
+    <div class="card"><div class="ico">🎮</div><h3>觸控 + 鍵盤 · Touch + Keys</h3><p>虛擬搖桿與按鈕；模擬器可直接用鍵盤玩。<br><span class="en">Virtual joystick and buttons; play with a keyboard on the emulator.</span></p></div>
+  </div>
+</div></section>
+
+<section id="fighters"><div class="wrap">
+  <h2><small>FIGHTERS</small>角色介紹</h2>
+  <p class="lead">選角畫面點選角色即開始，另一位由電腦操控。<span class="en">Tap a fighter on the title screen to start; the CPU plays the other one.</span></p>
+  <div class="grid g2">
+    <div class="card fighter">
+      <canvas id="pRyo" width="300" height="360"></canvas>
+      <div>
+        <span class="tag">力量型 POWER</span>
+        <h3>RYO 龍</h3>
+        <p>白色空手道服、黑帶、紅拳套。拳擊傷害 +15%。<br><span class="en">White karate gi, black belt, red gloves. +15% punch damage.</span></p>
+        <p style="margin-top:8px"><b>必殺 Special：</b>氣功彈 KI BLAST — 直線飛行的能量彈。<span class="en">A straight-flying energy projectile.</span></p>
+        <div class="stat">力量 Power<div class="bar"><i style="width:85%"></i></div></div>
+        <div class="stat">速度 Speed<div class="bar"><i style="width:55%"></i></div></div>
+        <div class="stat">射程 Range<div class="bar"><i style="width:90%"></i></div></div>
+      </div>
+    </div>
+    <div class="card fighter">
+      <canvas id="pMei" width="300" height="360"></canvas>
+      <div>
+        <span class="tag">速度型 SPEED</span>
+        <h3>MEI 美玲</h3>
+        <p>紅色旗袍、玉簪單髻、黑色功夫靴。腳技傷害 +15%，移動較快。<br><span class="en">Red qipao, jade-pinned top bun, black kung-fu boots. +15% kick damage, faster walk.</span></p>
+        <p style="margin-top:8px"><b>必殺 Special：</b>鳳凰連腳 PHOENIX KICKS — 向前衝刺的四段連踢。<span class="en">A dashing four-hit kick flurry.</span></p>
+        <div class="stat">力量 Power<div class="bar"><i style="width:60%"></i></div></div>
+        <div class="stat">速度 Speed<div class="bar"><i style="width:88%"></i></div></div>
+        <div class="stat">射程 Range<div class="bar"><i style="width:60%"></i></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="controls"><div class="wrap">
+  <h2><small>CONTROLS</small>操作方式</h2>
+  <p class="lead">按住「遠離對手」的方向即可防禦；掃腿屬下段攻擊，必須蹲著防禦；跳躍攻擊屬上段，必須站著防禦。<span class="en">Hold <i>away</i> from the opponent to block. Sweeps are low (crouch-block); jump attacks are overheads (stand-block).</span></p>
+  <div class="tbl"><table>
+    <tr><th>動作 Action</th><th>觸控 Touch</th><th>鍵盤 Keyboard</th></tr>
+    <tr><td>移動 Move</td><td>左側搖桿 左 / 右<br><span class="en">Left joystick left / right</span></td><td><kbd>←</kbd> <kbd>→</kbd> 或 <kbd>A</kbd> <kbd>D</kbd></td></tr>
+    <tr><td>跳 Jump</td><td>搖桿往上 <span class="en">Joystick up</span></td><td><kbd>↑</kbd> <kbd>W</kbd> <kbd>Space</kbd></td></tr>
+    <tr><td>蹲 Crouch</td><td>搖桿往下 <span class="en">Joystick down</span></td><td><kbd>↓</kbd> <kbd>S</kbd></td></tr>
+    <tr><td>拳 Punch</td><td>橘色「拳」鈕 <span class="en">Orange button</span></td><td><kbd>J</kbd> <kbd>Z</kbd></td></tr>
+    <tr><td>腳 Kick</td><td>藍色「腳」鈕 <span class="en">Blue button</span></td><td><kbd>K</kbd> <kbd>X</kbd></td></tr>
+    <tr><td>必殺 Special</td><td>紫色「必殺」鈕 <span class="en">Purple button</span></td><td><kbd>L</kbd> <kbd>C</kbd></td></tr>
+    <tr><td>防禦 Block</td><td>按住後方 <span class="en">Hold back</span></td><td>按住後方鍵 <span class="en">Hold back key</span></td></tr>
+    <tr><td>確認 / 選單 Confirm</td><td>點擊 <span class="en">Tap</span></td><td><kbd>Enter</kbd> <kbd>J</kbd></td></tr>
+  </table></div>
+</div></section>
+
+<section id="moves"><div class="wrap">
+  <h2><small>MOVE LIST</small>招式表</h2>
+  <p class="lead">遊戲以每秒 60 格運算；下表為 <code>Data.kt</code> 中的實際數值。<span class="en">The game runs at 60 frames per second; values below come straight from <code>Data.kt</code>.</span></p>
+  <div class="tbl"><table>
+    <tr><th>招式 Move</th><th>指令 Input</th><th>發動 Startup</th><th>持續 Active</th><th>硬直 Recovery</th><th>傷害 Damage</th><th>段位 Height</th></tr>
+    <tr><td>直拳 Punch</td><td>拳 P</td><td>4</td><td>3</td><td>9</td><td>6</td><td>中 Mid</td></tr>
+    <tr><td>踢擊 Kick</td><td>腳 K</td><td>8</td><td>4</td><td>14</td><td>9</td><td>中 Mid</td></tr>
+    <tr><td>蹲拳 Crouch Punch</td><td>↓ + P</td><td>4</td><td>3</td><td>9</td><td>5</td><td>中 Mid</td></tr>
+    <tr><td>掃腿 Sweep</td><td>↓ + K</td><td>9</td><td>4</td><td>20</td><td>8 · 擊倒 knockdown</td><td>下 Low</td></tr>
+    <tr><td>跳拳 Jump Punch</td><td>空中 P</td><td>5</td><td>8</td><td>6</td><td>7</td><td>上 Overhead</td></tr>
+    <tr><td>跳踢 Jump Kick</td><td>空中 K</td><td>6</td><td>10</td><td>6</td><td>9</td><td>上 Overhead</td></tr>
+    <tr><td>氣功彈 Ki Blast <span class="en">(RYO)</span></td><td>必殺 S</td><td>14</td><td>—</td><td>24</td><td>11 · 削血 chip 2</td><td>中 Mid</td></tr>
+    <tr><td>鳳凰連腳 Phoenix Kicks <span class="en">(MEI)</span></td><td>必殺 S</td><td>8</td><td>28</td><td>18</td><td>4.5 × 4</td><td>中 Mid</td></tr>
+  </table></div>
+  <p class="lead" style="margin-top:16px">連段傷害每多一擊遞減 12%（最低 50%）。空中被打中一律擊倒。<span class="en">Combo damage scales down 12% per extra hit (min 50%). Any hit on an airborne fighter is a knockdown.</span></p>
+</div></section>
+
+<section id="build"><div class="wrap">
+  <h2><small>BUILD &amp; RUN</small>建置與執行</h2>
+  <p class="lead">需要 Android Studio（含 Android SDK 37）。最低支援 Android 14（API 34）。<span class="en">Requires Android Studio with Android SDK 37. Minimum Android 14 (API 34).</span></p>
+  <ol class="steps">
+    <li><b>下載專案 Clone</b><br><code>git clone https://github.com/pppp20250712/street-fight.git</code></li>
+    <li><b>開啟 Open</b> — Android Studio → <i>File → Open</i> → 選擇專案資料夾。<span class="en">Choose the project folder.</span></li>
+    <li><b>同步 Sync</b> — 按 <i>Sync Project with Gradle Files</i>，等待下載完成。<span class="en">Wait for Gradle sync to finish.</span></li>
+    <li><b>執行 Run</b> — 選擇模擬器或連接手機，Run 設定選 <code>app</code>，按 ▶。<span class="en">Pick an emulator or device, select the <code>app</code> configuration, press ▶.</span></li>
+  </ol>
+  <pre># 命令列建置 Command-line build
+./gradlew assembleDebug
+# APK 位置 Output
+app/build/outputs/apk/debug/app-debug.apk</pre>
+</div></section>
+
+<section id="code"><div class="wrap">
+  <h2><small>SOURCE CODE</small>程式架構</h2>
+  <p class="lead">全部遊戲程式位於 <code>app/src/main/java/streetfight/</code>，套件名稱 <code>com.example.myapplication20261102streetfighter.game</code>。<span class="en">All game code lives in <code>app/src/main/java/streetfight/</code>.</span></p>
+  <div class="tbl"><table>
+    <tr><th>檔案 File</th><th>內容 Purpose</th></tr>
+    <tr><td><code>FightActivity.kt</code></td><td>啟動畫面、全螢幕、暫停／恢復。<span class="en">Launcher activity, fullscreen, pause/resume.</span></td></tr>
+    <tr><td><code>GameView.kt</code></td><td>60 FPS 遊戲迴圈、場景、回合流程、碰撞判定、HUD、觸控與鍵盤。<span class="en">60 FPS loop, scenes, round flow, hit detection, HUD, touch &amp; keys.</span></td></tr>
+    <tr><td><code>Fighter.kt</code></td><td>角色狀態機（走、跳、蹲、攻擊、防禦、受擊、倒地）與物理。<span class="en">Fighter state machine and physics.</span></td></tr>
+    <tr><td><code>Data.kt</code></td><td>姿勢、骨架、招式數值、角色設定。<span class="en">Poses, skeleton, move frame data, fighter styles.</span></td></tr>
+    <tr><td><code>Art.kt</code></td><td>以向量繪製角色與街景背景。<span class="en">Vector drawing of fighters and the street stage.</span></td></tr>
+    <tr><td><code>AI.kt</code></td><td>電腦對手的決策與反應。<span class="en">CPU opponent decisions and reactions.</span></td></tr>
+    <tr><td><code>Sfx.kt</code></td><td>合成 WAV 音效並以 SoundPool 播放。<span class="en">Synthesized WAV effects played with SoundPool.</span></td></tr>
+  </table></div>
+  <p class="lead" style="margin-top:18px">世界座標固定為 384 × 216，繪製時依螢幕等比放大；角色由 12 個關節角度組成的姿勢驅動，攻擊判定點即為拳頭或腳尖位置。<span class="en">The world is a fixed 384 × 216 space scaled to the screen; fighters are driven by 12-angle poses, and each attack's hitbox sits on the actual fist or foot.</span></p>
+</div></section>
+
+<footer>街頭格鬥 Street Fight · Android · Kotlin — 本頁動畫使用與遊戲相同的骨架與姿勢資料繪製。<br>The animation above is drawn with the same skeleton &amp; pose data as the game.</footer>
+
+<script>
+/* ---- JS port of Data.kt / Art.kt for the animated preview ---- */
+const W=384,H=216,FLOOR=196, D={T:13,S:13,TORSO:19,UA:10,FA:10,HR:5.5};
+const rad=d=>d*Math.PI/180;
+const P=(o={})=>Object.assign({lean:6,bU:35,bL:155,fU:55,fL:150,blU:-22,blL:-8,flU:22,flL:6,head:0,rot:0,lift:0},o);
+const mix=(a,b,t)=>{t=Math.max(0,Math.min(1,t));const r={};for(const k in a)r[k]=a[k]+(b[k]-a[k])*t;return r};
+const PO={
+ RYO:P(), MEI:P({lean:3,bU:40,bL:150,fU:72,fL:100,blU:-14,blL:-4,flU:18,flL:-6}),
+ P_WIND:P({lean:0,bU:30,bL:150,fU:40,fL:165}),
+ P_STRIKE:P({lean:14,bU:-25,bL:110,fU:90,fL:90,blU:-26,blL:-10,flU:26,flL:8}),
+ K_WIND:P({lean:-6,flU:80,flL:-5,blU:-8,blL:-4}),
+ K_STRIKE:P({lean:-18,bU:20,bL:150,fU:30,fL:140,blU:-8,blL:-4,flU:100,flL:95}),
+ KB_WIND:P({lean:-10,bU:-40,bL:15,fU:-35,fL:20,blU:-35,blL:-20,flU:32,flL:15}),
+ KB_STRIKE:P({lean:10,bU:82,bL:88,fU:88,fL:90,blU:-35,blL:-20,flU:32,flL:15}),
+ MEI_WIND:P({lean:-10,bU:40,bL:150,fU:70,fL:110,blU:-10,blL:-6,flU:60,flL:-10}),
+ HIT:P({lean:-22,bU:-40,bL:-10,fU:20,fL:100,head:-20}),
+ BLOCK:P({lean:-6,bU:15,bL:165,fU:25,fL:172}),
+ WIN:P({lean:0,bU:20,bL:150,fU:175,fL:178,blU:-12,blL:-6,flU:12,flL:4}),
+ MEI_WIN:P({lean:-4,bU:40,bL:150,fU:150,fL:120,blU:-10,blL:-4,flU:60,flL:-20}),
+};
+function moveAt(t,base,su,ac,re,w,s){
+  if(t<=su*.6)return mix(base,w,t/(su*.6)); if(t<=su)return mix(w,s,(t-su*.6)/(su*.4));
+  if(t<=su+ac)return s; return mix(s,base,(t-su-ac)/re);
+}
+function phoenix(t,base){const a=t-8;
+  if(a<0)return mix(base,PO.MEI_WIND,t/8);
+  if(a<28){const ph=Math.floor(a/7)%2,e=Math.sin((a%7)/7*Math.PI);
+    return ph===0?P({lean:-16,bU:30,bL:150,fU:60,fL:110,blU:-10,blL:-6,flU:40+65*e,flL:20+75*e,lift:2})
+                 :P({lean:-16,bU:30,bL:150,fU:60,fL:110,blU:40+65*e,blL:20+75*e,flU:-10,flL:-5,lift:2});}
+  return mix(PO.K_STRIKE,base,(a-28)/18);
+}
+function skel(x,y,f,p){
+  const dx=(a,l)=>Math.sin(rad(a))*l*f, dy=(a,l)=>Math.cos(rad(a))*l, s={};
+  const hF=dy(p.flU,D.T)+dy(p.flL,D.S), hB=dy(p.blU,D.T)+dy(p.blL,D.S);
+  const hh=Math.max(hF,hB,3)+p.lift; s.hipX=x; s.hipY=y-hh;
+  s.fKX=s.hipX+dx(p.flU,D.T); s.fKY=s.hipY+dy(p.flU,D.T); s.fFX=s.fKX+dx(p.flL,D.S); s.fFY=s.fKY+dy(p.flL,D.S);
+  s.bKX=s.hipX+dx(p.blU,D.T); s.bKY=s.hipY+dy(p.blU,D.T); s.bFX=s.bKX+dx(p.blL,D.S); s.bFY=s.bKY+dy(p.blL,D.S);
+  s.shX=s.hipX+dx(p.lean,D.TORSO); s.shY=s.hipY-dy(p.lean,D.TORSO);
+  s.headX=s.shX+dx(p.lean+p.head,D.HR+2.5); s.headY=s.shY-dy(p.lean+p.head,D.HR+2.5);
+  s.fsX=s.shX+1.5*f; s.fsY=s.shY+1; s.bsX=s.shX-2*f; s.bsY=s.shY+1;
+  s.fElX=s.fsX+dx(p.fU,D.UA); s.fElY=s.fsY+dy(p.fU,D.UA); s.fHX=s.fElX+dx(p.fL,D.FA); s.fHY=s.fElY+dy(p.fL,D.FA);
+  s.bElX=s.bsX+dx(p.bU,D.UA); s.bElY=s.bsY+dy(p.bU,D.UA); s.bHX=s.bElX+dx(p.bL,D.FA); s.bHY=s.bElY+dy(p.bL,D.FA);
+  return s;
+}
+const ST={
+ ryo:{mei:false,skin:"#E8A878",top:"#F4F4F6",pants:"#E6E6EC",glove:"#D42A2A",hair:"#15141A",foot:"#E8A878",trim:"#101010"},
+ mei:{mei:true,skin:"#F0B888",top:"#C81E28",pants:"#1A1418",glove:"#C81E28",hair:"#2A1A14",foot:"#221A1E",trim:"#F0C040"}
+};
+const OUT="#140C10";
+function dark(h){const n=parseInt(h.slice(1),16);const r=(n>>16)*.72|0,g=(n>>8&255)*.72|0,b=(n&255)*.72|0;return`rgb(${r},${g},${b})`}
+function drawFighter(c,x,y,f,p,st){
+  const s=skel(x,y,f,p), fc=f;
+  const ln=(x1,y1,x2,y2,w,col)=>{c.lineCap="round";c.strokeStyle=OUT;c.lineWidth=w+2;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke();c.strokeStyle=col;c.lineWidth=w;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke()};
+  const thin=(x1,y1,x2,y2,w,col)=>{c.strokeStyle=col;c.lineWidth=w;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke()};
+  const ball=(x,y,r,col)=>{c.fillStyle=OUT;c.beginPath();c.arc(x,y,r+1,0,7);c.fill();c.fillStyle=col;c.beginPath();c.arc(x,y,r,0,7);c.fill()};
+  const circ=(x,y,r,col)=>{c.fillStyle=col;c.beginPath();c.arc(x,y,r,0,7);c.fill()};
+  const tri=(hx,hy,a,b,cc,d,e,g,col)=>{c.fillStyle=col;c.beginPath();c.moveTo(hx+a*fc,hy+b);c.lineTo(hx+cc*fc,hy+d);c.lineTo(hx+e*fc,hy+g);c.closePath();c.fill()};
+  const quad=(pts,fill)=>{c.beginPath();c.moveTo(pts[0],pts[1]);for(let i=2;i<8;i+=2)c.lineTo(pts[i],pts[i+1]);c.closePath();c.fillStyle=fill;c.fill();c.strokeStyle=OUT;c.lineWidth=1.2;c.stroke()};
+  const tdx=s.shX-s.hipX,tdy=s.shY-s.hipY,tl=Math.hypot(tdx,tdy)||.01,nx=-tdy/tl,ny=tdx/tl;
+  const foot=(kx,ky,fx,fy,w,col)=>{const dx=fx-kx,dy=fy-ky,l=Math.hypot(dx,dy)||.01;ln(fx,fy,fx+fc*dy/l*4,fy-fc*dx/l*4,w,col)};
+  const leg=front=>{const kx=front?s.fKX:s.bKX,ky=front?s.fKY:s.bKY,fx=front?s.fFX:s.bFX,fy=front?s.fFY:s.bFY,d=!front,C=h=>d?dark(h):h;
+    if(!st.mei){ln(s.hipX,s.hipY,kx,ky,6.5,C(st.pants));ln(kx,ky,fx,fy,5.5,C(st.pants));foot(kx,ky,fx,fy,2.5,C(st.skin))}
+    else{ln(s.hipX,s.hipY,kx,ky,4.5,C(st.skin));ln(s.hipX,s.hipY,s.hipX+(kx-s.hipX)*.45,s.hipY+(ky-s.hipY)*.45,6,C(st.pants));
+      const mx=kx+(fx-kx)*.35,my=ky+(fy-ky)*.35;ln(kx,ky,mx,my,4,C(st.skin));ln(mx,my,fx,fy,5,C(st.foot));foot(kx,ky,fx,fy,3,C(st.foot))}};
+  const arm=front=>{const sx=front?s.fsX:s.bsX,sy=front?s.fsY:s.bsY,ex=front?s.fElX:s.bElX,ey=front?s.fElY:s.bElY,hx=front?s.fHX:s.bHX,hy=front?s.fHY:s.bHY,C=h=>front?h:dark(h),w=st.mei?3.5:4.5;
+    if(st.mei)ln(sx,sy,ex,ey,w,C(st.skin));else ln(sx,sy,ex,ey,5.5,C(st.top));
+    ln(ex,ey,hx,hy,w-.5,C(st.skin));
+    if(!st.mei)ball(hx,hy,3.2,C(st.glove));else{ln(ex+(hx-ex)*.7,ey+(hy-ey)*.7,hx,hy,4,C(st.glove));ball(hx,hy,2.2,C(st.skin))}};
+  const torso=()=>{ln(s.shX,s.shY,s.headX,s.headY,st.mei?3.5:4.5,st.skin);const hw=st.mei?5:5.5,sw=st.mei?6:7.5;
+    quad([s.hipX+nx*hw,s.hipY+ny*hw,s.shX+nx*sw,s.shY+ny*sw,s.shX-nx*sw,s.shY-ny*sw,s.hipX-nx*hw,s.hipY-ny*hw],st.top);
+    if(!st.mei){const lx=s.shX+(s.hipX-s.shX)*.45,ly=s.shY+(s.hipY-s.shY)*.45;ln(s.shX-fc,s.shY-1,lx+fc*1.5,ly,1.2,"#C8C8D2");thin(s.shX,s.shY-1,s.shX+(lx-s.shX)*.4,s.shY+(ly-s.shY)*.4,1.5,st.skin)}
+    else{const cx=s.shX+(s.headX-s.shX)*.45,cy=s.shY+(s.headY-s.shY)*.45;ln(s.shX,s.shY,cx,cy,4.5,st.top);thin(cx,cy,s.shX+fc*4,s.shY+4,1.2,st.trim);thin(s.shX+fc*4,s.shY+4,s.shX+fc*2,s.shY+9,1.2,st.trim)}};
+  const belt=()=>{ln(s.hipX+nx*6,s.hipY+ny*6,s.hipX-nx*6,s.hipY-ny*6,2.5,st.trim);ln(s.hipX+fc*2,s.hipY,s.hipX+fc*4,s.hipY+9,1.8,st.trim);ln(s.hipX+fc,s.hipY,s.hipX-fc,s.hipY+8,1.8,st.trim)};
+  const skirt=()=>{const bx=s.hipX+((s.fKX+s.bKX)/2-s.hipX)*.8,by=s.hipY+((s.fKY+s.bKY)/2-s.hipY)*.8,dx=bx-s.hipX,dy=by-s.hipY,l=Math.hypot(dx,dy)||.01,px=-dy/l,py=dx/l;
+    quad([s.hipX+px*5.5,s.hipY+py*5.5,bx+px*7,by+py*7,bx-px*7,by-py*7,s.hipX-px*5.5,s.hipY-py*5.5],dark(st.top));thin(bx+px*6,by+py*6,bx-px*6,by-py*6,1,st.trim)};
+  const head=()=>{const hx=s.headX,hy=s.headY,r=D.HR;ball(hx,hy,r,st.skin);
+    if(!st.mei){tri(hx,hy,-2,-5,-10,-4,-4,-1,st.hair);tri(hx,hy,-4,-3,-9,1,-3,1,st.hair);tri(hx,hy,0,-6,-3,-10,3,-5,st.hair)}else ball(hx-fc,hy-7,3.2,st.hair);
+    circ(hx-fc*1.2,hy-1.6,r,st.hair);circ(hx+fc*1.6,hy+1.2,r-1.7,st.skin);
+    if(!st.mei)tri(hx,hy,2,-5,7,-3,3,-2,st.hair);else thin(hx-fc*5,hy-8.5,hx+fc*3,hy-6,1.2,"#3CC08A");
+    const ex=hx+fc*2.6;c.fillStyle=OUT;c.fillRect(ex-.7,hy,1.4,1.8)};
+  c.fillStyle="rgba(0,0,0,.33)";c.beginPath();c.ellipse(x,FLOOR,14,2,0,0,7);c.fill();
+  if(st.mei){leg(false);arm(false);skirt();leg(true);torso();head();arm(true)}
+  else{leg(false);arm(false);leg(true);ball(s.hipX,s.hipY,6,st.pants);torso();belt();head();arm(true)}
+  return s;
+}
+/* stage background (port of Stage.build) */
+function rng(seed){return()=>((seed=Math.imul(seed^seed>>>15,1|seed)+0x6D2B79F5|0)>>>0)/4294967296}
+function buildStage(res){
+  const cv=document.createElement("canvas");cv.width=W*res;cv.height=H*res;const c=cv.getContext("2d");c.scale(res,res);const r=rng(2026);
+  const sky=["#1B1035","#2E1650","#55205E","#8A2D5E","#C4485A","#E87A4E","#F5B060"];
+  sky.forEach((col,i)=>{c.fillStyle=col;c.fillRect(0,i*15,W,15);if(i){c.fillStyle=sky[i-1];for(let x=0;x<W;x+=2)c.fillRect(x,i*15,1,1);for(let x=1;x<W;x+=4)c.fillRect(x,i*15+2,1,1)}});
+  c.fillStyle=sky[6];c.fillRect(0,105,W,45);
+  c.fillStyle="#FFD27A";c.beginPath();c.arc(300,92,24,0,7);c.fill();c.fillStyle="#F5B060";for(let i=0;i<5;i++)c.fillRect(270,96+i*5,60,1.5+i*.4);
+  c.fillStyle="#3A1E4E";for(let x=0;x<W;){const bw=14+(r()*20|0),bh=30+(r()*45|0);c.fillRect(x,120-bh,bw,30+bh);x+=bw+(r()*4|0)}
+  let shade=0;for(let x=-6;x<W;){const bw=34+(r()*30|0),top=54+(r()*40|0);c.fillStyle=shade%2?"#26163A":"#1E1230";c.fillRect(x,top,bw,150-top);c.fillStyle="#120A1E";c.fillRect(x,top,bw,2);
+    for(let wy=top+6;wy<140;wy+=9)for(let wx=x+4;wx<x+bw-5;wx+=7){const lit=r()<.38;c.fillStyle=lit?(r()<.5?"#FFC85A":"#FF9A4A"):"#2E2244";c.fillRect(wx,wy,3,4)}
+    x+=bw+2;shade++}
+  const neon=(x,y,w,h,col)=>{c.fillStyle="#0C0814";c.fillRect(x-1,y-1,w+2,h+2);c.fillStyle=col;c.fillRect(x,y,w,h);c.fillStyle="#0C0814";c.fillRect(x+2,y+2,w-4,h-4);c.fillStyle=col;for(let i=x+4;i<x+w-4;i+=6)c.fillRect(i,y+4,3,h-8)};
+  neon(40,78,18,34,"#FF3FA4");neon(150,70,40,14,"#3FE8FF");neon(232,84,16,30,"#FFE04A");neon(340,74,30,12,"#FF5A3A");
+  const ly=x=>{const s=Math.sin(x/W*Math.PI*2);return 34+10*s*s};
+  c.fillStyle="#120A1E";for(let x=0;x<W;x++)c.fillRect(x,ly(x),1,1);
+  for(let x=12;x<W;x+=28){const y=ly(x)+2;c.fillStyle="#120A1E";c.fillRect(x-4,y+1,8,10);c.fillStyle="#E02828";c.fillRect(x-3,y+2,6,8);c.fillStyle="#FF7A4A";c.fillRect(x-1,y+3,2,6);c.fillStyle="#F0C040";c.fillRect(x-3,y+1,6,1);c.fillRect(x-3,y+10,6,1)}
+  c.fillStyle="#4A3A4A";c.fillRect(0,150,W,12);c.fillStyle="#5E4C5C";for(let x=0;x<W;x+=24)c.fillRect(x,150,1,12);
+  c.fillStyle="#231A26";c.fillRect(0,162,W,3);c.fillStyle="#3A3040";c.fillRect(0,165,W,H-165);
+  for(let i=0;i<700;i++){c.fillStyle=r()<.5?"#332A38":"#443A4A";c.fillRect(r()*W|0,165+(r()*(H-165)|0),1,1)}
+  c.fillStyle="#B89A50";for(let x=6;x<W;x+=30)c.fillRect(x,208,14,2);
+  c.fillStyle="rgba(255,122,74,.13)";c.fillRect(0,168,W,8);
+  return cv;
+}
+/* hero animation: a short scripted exchange */
+const hero=document.getElementById("stage"),hc=hero.getContext("2d"),bg=buildStage(4);
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let t=0, proj=null, sparks=[];
+function ryoPose(t){const k=t%300;
+  if(k<60)return{p:mix(PO.RYO,PO.RYO,0),dx:0};
+  if(k<76)return{p:moveAt(k-60,PO.RYO,4,3,9,PO.P_WIND,PO.P_STRIKE),dx:0};
+  if(k<120)return{p:PO.RYO,dx:0};
+  if(k<160)return{p:moveAt(k-120,PO.RYO,14,2,24,PO.KB_WIND,PO.KB_STRIKE),dx:0,fire:k===135};
+  if(k<200)return{p:PO.RYO,dx:0};
+  if(k<226)return{p:moveAt(k-200,PO.RYO,8,4,14,PO.K_WIND,PO.K_STRIKE),dx:0};
+  return{p:PO.RYO,dx:0};
+}
+function meiPose(t){const k=t%300;
+  if(k>=62&&k<76)return mix(PO.MEI,PO.BLOCK,Math.min(1,(k-62)/4));
+  if(k>=150&&k<170)return PO.HIT;
+  if(k>=236&&k<290)return phoenix(k-236,PO.MEI);
+  if(k>=202&&k<224)return mix(PO.MEI,PO.BLOCK,1);
+  const b=Math.sin(t*.1);return Object.assign({},PO.MEI,{lift:b*.7,fL:PO.MEI.fL+b*4});
+}
+function frame(){
+  t++;
+  hc.setTransform(1,0,0,1,0,0);
+  const s=hero.width/W;hc.setTransform(s,0,0,s,0,0);
+  hc.drawImage(bg,0,0,W,H);
+  const r=ryoPose(t);const b=Math.sin(t*.1);
+  const rp=(t%300<60||(t%300>=120&&t%300<120)||(t%300>=200&&t%300<200))?r.p:r.p;
+  const ridle=Object.assign({},r.p);if(r.p===PO.RYO){ridle.lift=b*.7;ridle.fL=PO.RYO.fL+b*4}
+  const k=t%300; let meiX=230; if(k>=244&&k<264)meiX=230-(k-244)*2; else if(k>=264&&k<290)meiX=190+(k-264)*(40/26);
+  const rs=drawFighter(hc,165,FLOOR,1,ridle,ST.ryo);
+  drawFighter(hc,meiX,FLOOR,-1,meiPose(t),ST.mei);
+  if(r.fire)proj={x:rs.fHX+4,y:rs.fHY,a:0};
+  if(proj){proj.x+=3.4;proj.a++;const w=Math.sin(proj.a*.6);
+    for(let i=1;i<=3;i++){hc.fillStyle="rgba(58,123,255,.33)";hc.beginPath();hc.arc(proj.x-7.5*i,proj.y,5-i,0,7);hc.fill()}
+    hc.fillStyle="#2A5BE0";hc.beginPath();hc.arc(proj.x,proj.y,8+w,0,7);hc.fill();hc.fillStyle="#6FB8FF";hc.beginPath();hc.arc(proj.x,proj.y,6+w*.5,0,7);hc.fill();hc.fillStyle="#D8F0FF";hc.beginPath();hc.arc(proj.x+1.4,proj.y,3.5,0,7);hc.fill();
+    if(proj.x>meiX-10){for(let i=0;i<12;i++){const a=Math.random()*6.28,v=1+Math.random()*2.4;sparks.push({x:proj.x,y:proj.y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:16})}proj=null}}
+  sparks=sparks.filter(p=>p.l-->0);for(const p of sparks){p.x+=p.vx;p.y+=p.vy;p.vy+=.1;hc.fillStyle=p.l>8?"#fff":"#FFE04A";hc.fillRect(p.x,p.y,1.6,1.6)}
+  if(!reduce)requestAnimationFrame(frame);
+}
+frame();
+/* portraits */
+function portrait(id,st,f,poses){const cv=document.getElementById(id),c=cv.getContext("2d");let q=0;
+  (function loop(){q++;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,cv.width,cv.height);c.setTransform(4.2,0,0,4.2,cv.width/2-36*4.2/1,-118*4.2);
+    const k=q%180,p=k<120?Object.assign({},poses[0],{lift:Math.sin(q*.1)*.7}):poses[1](k-120);
+    drawFighter(c,36,FLOOR,f,p,st); if(!reduce)requestAnimationFrame(loop)})();}
+portrait("pRyo",ST.ryo,1,[PO.RYO,k=>moveAt(k,PO.RYO,8,4,14,PO.K_WIND,PO.K_STRIKE)]);
+portrait("pMei",ST.mei,1,[PO.MEI,k=>phoenix(Math.min(k,53),PO.MEI)]);
+</script>
+</body>
+</html>
