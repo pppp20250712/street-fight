@@ -1,12 +1,13 @@
 package com.example.myapplication20261102streetfighter.game
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.LinearGradient
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PointF
 import android.graphics.RectF
+import android.graphics.Shader
 import android.graphics.Typeface
 import android.view.Choreographer
 import android.view.KeyEvent
@@ -19,22 +20,19 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sin
 
-class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
+/**
+ * Game logic, HUD and input. The 3D scene is drawn behind this transparent view by [Renderer3D];
+ * after every update the view publishes a [Snapshot] for the GL thread.
+ */
+class GameView(ctx: Context, private val renderer: Renderer3D, private val requestRender: () -> Unit) : View(ctx), Choreographer.FrameCallback {
 
     enum class Scene { TITLE, FIGHT }
     enum class Phase { INTRO, PLAY, KO, END }
 
-    private class Part(var x: Float, var y: Float, var vx: Float, var vy: Float, var life: Int, val color: Int, val size: Float, val grav: Float)
+    private class Part(var x: Float, var y: Float, var z: Float, var vx: Float, var vy: Float, var vz: Float, var life: Int, val color: Int, val size: Float, val grav: Float)
     private class Burst(val x: Float, val y: Float, var t: Int, val block: Boolean)
 
     val sfx = Sfx(ctx)
-    // World is drawn straight onto the screen canvas, scaled to native resolution (HD).
-    private var lc: Canvas = Canvas()
-    private var bg: Bitmap = Stage.build(2f)
-    private var bgScale = 2f
-    private val world = RectF(0f, 0f, G.W.toFloat(), G.H.toFloat())
-    private val blit = Paint().apply { isFilterBitmap = true; isAntiAlias = true; isDither = true }
-    private val fx = Paint().apply { isAntiAlias = true }
     private val txt = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         typeface = Typeface.DEFAULT_BOLD; strokeJoin = Paint.Join.ROUND
     }
@@ -75,10 +73,10 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
 
     private val prevA = Fighter(Styles.RYO, 120f, 1)
     private val prevB = Fighter(Styles.MEI, 264f, -1)
+    private val cam = CamRig()
 
     // layout (screen coordinates)
     private var scale = 1f; private var ox = 0f; private var oy = 0f
-    private val dst = RectF()
     private val cardA = RectF(); private val cardB = RectF(); private val diffBtn = RectF()
     private var joyX = 0f; private var joyY = 0f; private var joyR = 1f
     private var knobX = 0f; private var knobY = 0f
@@ -127,6 +125,8 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
         if (acc > 0.25) acc = 0.25
         val dt = 1.0 / 60.0
         while (acc >= dt) { step(); acc -= dt }
+        publish()
+        requestRender()
         invalidate()
         Choreographer.getInstance().postFrameCallback(this)
     }
@@ -149,6 +149,37 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
             Scene.FIGHT -> fightStep()
         }
         tapped = false; keyNav = 0; keyConfirm = false
+        val fight = scene == Scene.FIGHT
+        cam.update(!fight, frame, if (fight) p1.x else prevA.x, if (fight) p2.x else prevB.x, fight && phase == Phase.KO)
+    }
+
+    /** Copy everything the 3D renderer needs into its pending snapshot (UI thread -> GL thread). */
+    private fun publish() {
+        val fight = scene == Scene.FIGHT
+        renderer.publish { s ->
+            s.title = !fight; s.frame = frame; s.shake = if (fight) shakeAmt else 0f; s.ko = fight && phase == Phase.KO
+            s.camX = cam.x; s.camY = cam.y; s.camZ = cam.z; s.camTX = cam.tx; s.camTY = cam.ty
+            s.setFighter(0, if (fight) p1 else prevA); s.setFighter(1, if (fight) p2 else prevB)
+            s.nProj = 0
+            if (fight) for (pr in projs) {
+                if (s.nProj >= Snapshot.MAX_PROJ) break
+                val o = s.nProj++ * 4
+                s.proj[o] = pr.x; s.proj[o + 1] = pr.y; s.proj[o + 2] = pr.vx; s.proj[o + 3] = pr.anim.toFloat()
+            }
+            s.nPart = 0
+            if (fight) for (p in parts) {
+                if (s.nPart >= Snapshot.MAX_PART) break
+                val i = s.nPart++; val o = i * 6
+                s.part[o] = p.x; s.part[o + 1] = p.y; s.part[o + 2] = p.z; s.part[o + 3] = p.size; s.part[o + 4] = p.life.toFloat(); s.part[o + 5] = p.grav
+                s.partCol[i] = p.color
+            }
+            s.nBurst = 0
+            if (fight) for (b in bursts) {
+                if (s.nBurst >= Snapshot.MAX_BURST) break
+                val o = s.nBurst++ * 4
+                s.burst[o] = b.x; s.burst[o + 1] = b.y; s.burst[o + 2] = b.t.toFloat(); s.burst[o + 3] = if (b.block) 1f else 0f
+            }
+        }
     }
 
     // ---------------------------------------------------------------- title
@@ -378,8 +409,8 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
 
     fun dust(x: Float, n: Int) {
         repeat(n) {
-            parts.add(Part(x + rnd.nextFloat() * 20f - 10f, G.FLOOR - 1f, rnd.nextFloat() * 1.6f - 0.8f,
-                -rnd.nextFloat() * 0.8f, 18 + rnd.nextInt(10), 0xFFB8A8B8.toInt(), 1.5f, 0.02f))
+            parts.add(Part(x + rnd.nextFloat() * 20f - 10f, G.FLOOR - 1f, (rnd.nextFloat() - 0.5f) * 0.6f, rnd.nextFloat() * 1.6f - 0.8f,
+                -rnd.nextFloat() * 0.8f, 0f, 18 + rnd.nextInt(10), 0xFFB8A8B8.toInt(), 1.5f, 0.02f))
         }
     }
 
@@ -389,12 +420,12 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
         else intArrayOf(0xFFFFF070.toInt(), Color.WHITE, 0xFFFF8A2A.toInt())
         repeat(if (block) 6 else 12) {
             val a = rnd.nextFloat() * 6.283f; val sp = 1f + rnd.nextFloat() * 2.4f
-            parts.add(Part(x, y, cos(a) * sp, sin(a) * sp, 10 + rnd.nextInt(10), cols[rnd.nextInt(cols.size)], 1.5f, 0.1f))
+            parts.add(Part(x, y, 0.35f, cos(a) * sp, sin(a) * sp, (rnd.nextFloat() - 0.3f) * 0.05f, 10 + rnd.nextInt(10), cols[rnd.nextInt(cols.size)], 1.5f, 0.1f))
         }
     }
 
     private fun updateFx() {
-        for (p in parts) { p.x += p.vx; p.y += p.vy; p.vy += p.grav; p.vx *= 0.94f; p.life-- }
+        for (p in parts) { p.x += p.vx; p.y += p.vy; p.z += p.vz; p.vy += p.grav; p.vx *= 0.94f; p.life-- }
         parts.removeAll { it.life <= 0 }
         for (b in bursts) b.t++
         bursts.removeAll { it.t > 7 }
@@ -485,9 +516,6 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
         super.onSizeChanged(w, h, oldw, oldh)
         scale = min(w / G.W.toFloat(), h / G.H.toFloat())
         ox = (w - G.W * scale) / 2f; oy = (h - G.H * scale) / 2f
-        // rebuild the background at the screen's native resolution (capped for memory)
-        val r = scale.coerceIn(1f, 6f)
-        if (abs(r - bgScale) > 0.01f) { bg = Stage.build(r); bgScale = r }
         joyR = h * 0.15f
         joyX = max(joyR * 1.35f, w * 0.12f); joyY = h - joyR * 1.35f
         knobX = joyX; knobY = joyY
@@ -505,61 +533,8 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
     private fun Y(v: Float) = oy + v * scale
 
     override fun onDraw(canvas: Canvas) {
-        canvas.drawColor(Color.BLACK)
-        var sx = 0f; var sy = 0f
-        if (shakeAmt > 0f) {
-            sx = (rnd.nextFloat() - 0.5f) * 2f * shakeAmt * scale
-            sy = (rnd.nextFloat() - 0.5f) * 2f * shakeAmt * scale
-        }
-        canvas.save()
-        canvas.translate(ox + sx, oy + sy)
-        canvas.scale(scale, scale)
-        canvas.clipRect(world)
-        lc = canvas
-        lc.drawBitmap(bg, null, world, blit)
-        if (scene == Scene.TITLE) {
-            FighterArt.shadow(lc, prevA); FighterArt.shadow(lc, prevB)
-            FighterArt.draw(lc, prevA); FighterArt.draw(lc, prevB)
-        } else {
-            FighterArt.shadow(lc, p1); FighterArt.shadow(lc, p2)
-            if (p1.state == St.ATTACK) { FighterArt.draw(lc, p2); FighterArt.draw(lc, p1) }
-            else { FighterArt.draw(lc, p1); FighterArt.draw(lc, p2) }
-            drawProjs()
-            drawFx()
-        }
-        canvas.restore()
+        // the 3D scene is rendered by Renderer3D underneath; this view only draws the HUD and touch controls
         if (scene == Scene.TITLE) drawTitle(canvas) else { drawHud(canvas); drawControls(canvas) }
-    }
-
-    private fun drawProjs() {
-        for (pr in projs) {
-            val wob = sin(pr.anim * 0.6f)
-            for (i in 1..3) {
-                fx.color = 0x553A7BFF
-                lc.drawCircle(pr.x - pr.vx * 2.2f * i, pr.y + sin((pr.anim + i * 3) * 0.7f) * 1.5f, 5f - i, fx)
-            }
-            fx.color = 0xFF2A5BE0.toInt(); lc.drawCircle(pr.x, pr.y, 8f + wob, fx)
-            fx.color = 0xFF6FB8FF.toInt(); lc.drawCircle(pr.x, pr.y, 6f + wob * 0.5f, fx)
-            fx.color = 0xFFD8F0FF.toInt(); lc.drawCircle(pr.x + pr.vx * 0.4f, pr.y, 3.5f, fx)
-        }
-    }
-
-    private fun drawFx() {
-        for (b in bursts) {
-            val len = 4f + b.t * 2.2f
-            fx.color = if (b.block) 0xFF8FE0FF.toInt() else if (b.t < 3) Color.WHITE else 0xFFFFE04A.toInt()
-            fx.strokeWidth = 1.5f
-            for (k in 0 until 8) {
-                val a = k * 0.785f + 0.39f
-                val r0 = len * 0.35f
-                lc.drawLine(b.x + cos(a) * r0, b.y + sin(a) * r0, b.x + cos(a) * len, b.y + sin(a) * len, fx)
-            }
-            if (b.t < 2) { fx.color = Color.WHITE; lc.drawCircle(b.x, b.y, 4f, fx) }
-        }
-        for (p in parts) {
-            fx.color = p.color
-            lc.drawRect(p.x, p.y, p.x + p.size, p.y + p.size, fx)
-        }
     }
 
     private fun label(c: Canvas, s: String, x: Float, y: Float, size: Float, color: Int,
@@ -574,11 +549,12 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
     private fun drawTitle(c: Canvas) {
         val s = scale
         ui.style = Paint.Style.FILL
-        ui.color = 0x99000000.toInt()
-        c.drawRect(0f, 0f, width.toFloat(), Y(94f), ui)
+        ui.shader = LinearGradient(0f, 0f, 0f, Y(100f), 0xBF000000.toInt(), 0x00000000, Shader.TileMode.CLAMP)
+        c.drawRect(0f, 0f, width.toFloat(), Y(100f), ui)
+        ui.shader = null
         val pulse = (sin(frame * 0.12f) + 1f) / 2f
         label(c, "STREET FIGHT", width / 2f, Y(36f), 30f * s, 0xFFFFD040.toInt())
-        label(c, "街 頭 格 鬥", width / 2f, Y(58f), 15f * s, 0xFFFF5A3A.toInt())
+        label(c, "街 頭 格 鬥  3D", width / 2f, Y(58f), 15f * s, 0xFFFF5A3A.toInt())
         label(c, "選擇你的格鬥家   CHOOSE YOUR FIGHTER", width / 2f, Y(84f), 8f * s, Color.WHITE)
 
         for (i in 0..1) {
@@ -586,7 +562,7 @@ class GameView(ctx: Context) : View(ctx), Choreographer.FrameCallback {
             val st = Styles.ALL[i]
             val sel = selected == i
             ui.style = Paint.Style.FILL
-            ui.color = if (sel) 0x33FFD040 else 0x22000000
+            ui.color = if (sel) 0x29FFD040 else 0x1F000000
             c.drawRoundRect(r, 6f * s, 6f * s, ui)
             ui.style = Paint.Style.STROKE
             ui.strokeWidth = if (sel) 2.5f * s else 1.2f * s

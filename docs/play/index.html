@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#120b1e">
+<title>Street Fight 3D</title>
+<meta name="description" content="街頭格鬥 3D 高畫質版 — 在瀏覽器裡直接玩。Street Fight 3D HD, playable in the browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #120b1e; --text: #f3eefc; --gold: #ffd040; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); overflow: hidden;
+    font-family: "Noto Sans TC", system-ui, sans-serif; -webkit-user-select: none; user-select: none;
+    -webkit-touch-callout: none; touch-action: none; overscroll-behavior: none; }
+  canvas { position: fixed; inset: 0; display: block; }
+  #hud { z-index: 2; touch-action: none; }
+  #back { position: fixed; z-index: 3; top: max(8px, env(safe-area-inset-top)); left: max(10px, env(safe-area-inset-left));
+    color: #cbbfe0; font: 700 12px/1 "Noto Sans TC", sans-serif; text-decoration: none; background: rgba(0,0,0,.45);
+    padding: 7px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,.18); }
+  #err { display: none; position: fixed; inset: 0; z-index: 5; align-items: center; justify-content: center; text-align: center; padding: 24px; background: var(--bg); }
+  #err h1 { color: var(--gold); margin: 0 0 8px; font-size: 22px; }
+  #err p { color: #b4a6cf; margin: 0; }
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<canvas id="hud"></canvas>
+<a id="back" href="../">← 說明 Docs</a>
+<div id="err"><div><h1>無法啟動 3D 畫面 · 3D could not start</h1><p>這個瀏覽器不支援 WebGL2，請改用新版 Chrome、Edge、Safari 或 Firefox。<br>This browser does not support WebGL2 — please use a recent Chrome, Edge, Safari or Firefox.</p><p id="errmsg" style="margin-top:10px;font-size:12px;opacity:.7"></p></div></div>
+<script src="logic.js"></script>
+<script src="render3d.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

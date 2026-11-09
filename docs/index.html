@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>街頭格鬥 Street Fight</title>
-<meta name="description" content="街頭格鬥 Street Fight — 一款 Android 2D 街頭格鬥遊戲。An Android 2D street-fighting game built with Kotlin.">
+<meta name="description" content="街頭格鬥 Street Fight 3D — 一款 Android 3D 高畫質街頭格鬥遊戲，也能在瀏覽器直接玩。A 3D HD Android street-fighting game built with Kotlin, also playable in the browser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@400;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -60,12 +60,14 @@ ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:36px
 pre{background:#0d0817;border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:13px;color:#e8dcff;margin:0}
 .en{color:var(--muted);font-size:.92em}
 footer{padding:36px 0;color:var(--muted);font-size:13px;text-align:center}
+.shots img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
 @media (max-width:560px){.fighter{grid-template-columns:1fr}.fighter canvas{width:100%;height:200px}}
 </style>
 </head>
 <body>
 <nav><div class="wrap">
   <a class="brand" href="#">STREET FIGHT</a>
+  <a class="l" href="play/">▶ 試玩 Play 3D</a>
   <a class="l" href="#features">特色 Features</a>
   <a class="l" href="#fighters">角色 Fighters</a>
   <a class="l" href="#controls">操作 Controls</a>
@@ -82,18 +84,29 @@ footer{padding:36px 0;color:var(--muted);font-size:13px;text-align:center}
   </div>
 </header>
 <div class="wrap hero-cta">
-  <a class="btn" href="#build">開始建置 Build &amp; Run</a>
+  <a class="btn" href="play/">▶ 瀏覽器試玩 3D · Play in browser</a>
+  <a class="btn ghost" href="#build">開始建置 Build &amp; Run</a>
   <a class="btn ghost" href="#controls">怎麼玩 How to play</a>
 </div>
 
+<section id="hd3d"><div class="wrap">
+  <h2><small>NEW · 3D HD</small>全新 3D 高畫質版</h2>
+  <p class="lead">角色與街景全部改為即時 3D 繪製：立體角色模型、即時陰影、霓虹與路燈光源、夕陽輪廓光、4 倍抗鋸齒與電影級色調映射。遊戲規則、招式數值與操作完全不變。<span class="en">Fighters and the street are now rendered in real-time 3D — modelled characters, shadow mapping, neon and street-lamp lights, sunset rim light, 4× MSAA and filmic tone mapping. Rules, frame data and controls are unchanged.</span></p>
+  <div class="grid g2 shots">
+    <a href="play/"><img src="img/3d-kiblast.jpg" alt="RYO 的氣功彈飛向 MEI · RYO's Ki Blast flying toward MEI" loading="lazy"></a>
+    <a href="play/"><img src="img/3d-phoenix.jpg" alt="MEI 的鳳凰連腳踢中 RYO · MEI's Phoenix Kicks landing on RYO" loading="lazy"></a>
+  </div>
+  <p class="lead" style="margin-top:14px">Android 版使用 OpenGL ES 3.0；網頁版使用 WebGL2，兩者共用同一套著色器與模型資料。<span class="en">Android uses OpenGL ES 3.0 and the web version uses WebGL2 — both share the same shaders and model data.</span></p>
+</div></section>
+
 <section id="features"><div class="wrap">
   <h2><small>FEATURES</small>遊戲特色</h2>
-  <p class="lead">一款以 Kotlin 寫成、不需任何圖檔或音檔的 Android 2D 格鬥遊戲。<span class="en">A 2D Android fighting game written in pure Kotlin — no image or audio assets required.</span></p>
+  <p class="lead">一款以 Kotlin 寫成、不需任何圖檔或音檔的 Android 3D 格鬥遊戲——模型、貼圖與音效全部由程式產生。<span class="en">A 3D Android fighting game written in pure Kotlin — every model, texture and sound is generated in code; no asset files.</span></p>
   <div class="grid g3">
     <div class="card"><div class="ico">🥋</div><h3>兩位格鬥家 · 2 Fighters</h3><p>力量型 RYO 與速度型 MEI，各有獨特必殺技。<br><span class="en">Power-type RYO and speed-type MEI, each with a unique special.</span></p></div>
     <div class="card"><div class="ico">🤖</div><h3>電腦對手 · CPU AI</h3><p>三種難度，會防禦、閃避氣功彈、找機會反擊。<br><span class="en">3 difficulty levels; the CPU blocks, jumps projectiles and punishes.</span></p></div>
     <div class="card"><div class="ico">🏆</div><h3>三戰兩勝 · Best of 3</h3><p>每回合 60 秒，K.O. 慢動作、連段計數、打擊停頓與畫面震動。<br><span class="en">60s rounds, slow-mo K.O., combo counter, hit-stop and screen shake.</span></p></div>
-    <div class="card"><div class="ico">🌆</div><h3>原生高解析 · Native HD</h3><p>依螢幕解析度即時繪製夕陽街景、霓虹招牌與燈籠。<br><span class="en">Sunset street, neon signs and lanterns drawn at native screen resolution.</span></p></div>
+    <div class="card"><div class="ico">🌆</div><h3>3D 高畫質 · 3D HD</h3><p>即時陰影、霓虹與路燈光源、4 倍抗鋸齒，以螢幕原生解析度繪製夕陽街景。<br><span class="en">Real-time shadows, neon and street-lamp lights and 4× MSAA, rendered at native screen resolution.</span></p></div>
     <div class="card"><div class="ico">🔊</div><h3>合成音效 · Synth SFX</h3><p>打擊、防禦、必殺、K.O. 音效皆由程式即時合成。<br><span class="en">Hit, block, special and K.O. sounds are synthesized at launch.</span></p></div>
     <div class="card"><div class="ico">🎮</div><h3>觸控 + 鍵盤 · Touch + Keys</h3><p>虛擬搖桿與按鈕；模擬器可直接用鍵盤玩。<br><span class="en">Virtual joystick and buttons; play with a keyboard on the emulator.</span></p></div>
   </div>
@@ -187,14 +200,17 @@ app/build/outputs/apk/debug/app-debug.apk</pre>
     <tr><td><code>GameView.kt</code></td><td>60 FPS 遊戲迴圈、場景、回合流程、碰撞判定、HUD、觸控與鍵盤。<span class="en">60 FPS loop, scenes, round flow, hit detection, HUD, touch &amp; keys.</span></td></tr>
     <tr><td><code>Fighter.kt</code></td><td>角色狀態機（走、跳、蹲、攻擊、防禦、受擊、倒地）與物理。<span class="en">Fighter state machine and physics.</span></td></tr>
     <tr><td><code>Data.kt</code></td><td>姿勢、骨架、招式數值、角色設定。<span class="en">Poses, skeleton, move frame data, fighter styles.</span></td></tr>
-    <tr><td><code>Art.kt</code></td><td>以向量繪製角色與街景背景。<span class="en">Vector drawing of fighters and the street stage.</span></td></tr>
+    <tr><td><code>Renderer3D.kt</code></td><td>OpenGL ES 3 繪製器：陰影貼圖、燈光、角色 3D 模型組裝、特效與 HUD 底下的整個場景。<span class="en">OpenGL ES 3 renderer: shadow map, lighting, 3D fighter rig, effects and the whole street scene.</span></td></tr>
+    <tr><td><code>Gfx.kt</code></td><td>矩陣運算、旋轉體／方塊幾何、跟隨攝影機。<span class="en">Matrix math, lathe / box geometry, follow camera.</span></td></tr>
+    <tr><td><code>StageTex.kt</code></td><td>程式產生的柏油路、建築立面、天空、霓虹招牌與光暈貼圖。<span class="en">Procedural asphalt, facades, sky, neon-sign and glow textures.</span></td></tr>
     <tr><td><code>AI.kt</code></td><td>電腦對手的決策與反應。<span class="en">CPU opponent decisions and reactions.</span></td></tr>
     <tr><td><code>Sfx.kt</code></td><td>合成 WAV 音效並以 SoundPool 播放。<span class="en">Synthesized WAV effects played with SoundPool.</span></td></tr>
+    <tr><td><code>docs/play/</code></td><td>網頁 3D 版（WebGL2），與 Android 版同一套規則與著色器。<span class="en">Browser 3D version (WebGL2) with the same rules and shaders.</span></td></tr>
   </table></div>
-  <p class="lead" style="margin-top:18px">世界座標固定為 384 × 216，繪製時依螢幕等比放大；角色由 12 個關節角度組成的姿勢驅動，攻擊判定點即為拳頭或腳尖位置。<span class="en">The world is a fixed 384 × 216 space scaled to the screen; fighters are driven by 12-angle poses, and each attack's hitbox sits on the actual fist or foot.</span></p>
+  <p class="lead" style="margin-top:18px">遊戲邏輯仍在固定的 384 × 216 平面上運算（1 單位 = 1/30 公尺）；角色由 12 個關節角度組成的姿勢驅動，3D 模型直接套在同一副骨架上，所以攻擊判定點仍是拳頭或腳尖的位置。<span class="en">Game logic still runs on a fixed 384 × 216 plane (1 unit = 1/30 m). Fighters are driven by 12-angle poses and the 3D models are built on that same skeleton, so each hitbox still sits on the actual fist or foot.</span></p>
 </div></section>
 
-<footer>街頭格鬥 Street Fight · Android · Kotlin — 本頁動畫使用與遊戲相同的骨架與姿勢資料繪製。<br>The animation above is drawn with the same skeleton &amp; pose data as the game.</footer>
+<footer>街頭格鬥 Street Fight 3D · Android · Kotlin · WebGL2 — 頁首動畫為原始 2D 版風格，使用與遊戲相同的骨架與姿勢資料繪製。<br>The header animation shows the original 2D style, drawn with the same skeleton &amp; pose data as the game.</footer>
 
 <script>
 /* ---- JS port of Data.kt / Art.kt for the animated preview ---- */
