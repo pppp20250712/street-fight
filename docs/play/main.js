@@ -4,6 +4,317 @@
 const Scene = { TITLE: 0, FIGHT: 1 };
 const Phase = { INTRO: 0, PLAY: 1, KO: 2, END: 3 };
 
+const I18N_3D = {
+  'en': {
+    titleSub: '3D HD ACTION FIGHTING',
+    chooseFighter: 'CHOOSE YOUR FIGHTER',
+    ryoCn: 'DRAGON',
+    ryoTag: 'HADOU KARATE',
+    ryoSpecial: 'KI BURST HADOU',
+    meiCn: 'MEILING',
+    meiTag: 'TAEKWONDO KICKS',
+    meiSpecial: 'LIGHTNING KICKS',
+    levelLabel: 'DIFFICULTY',
+    diffNames: ['EASY', 'NORMAL', 'HARD', '🥋 TRAINING'],
+    tapToStart: 'TAP A FIGHTER TO START',
+    keysHint: 'Keys: ← → Move  ↑ Jump  ↓ Crouch  J Punch  K Kick  L Special  (Hold BACK to Block)',
+    btnMain: ['PUNCH', 'KICK', 'SPECIAL'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'YOU',
+    cpu: 'CPU',
+    dummy: 'DUMMY',
+    round: 'ROUND',
+    fight: 'FIGHT!',
+    trainingDojo: 'TRAINING DOJO',
+    practice: 'PRACTICE!',
+    wins: 'WINS VICTORY!',
+    draw: 'DOUBLE KO / DRAW',
+    tapContinue: 'TAP TO CONTINUE',
+    navDocs: '← Game Docs',
+    nav2d: '🕹️ 2D Arcade Mode'
+  },
+  'zh-Hant': {
+    titleSub: '街 頭 格 鬥  3D',
+    chooseFighter: '選擇你的格鬥家   CHOOSE YOUR FIGHTER',
+    ryoCn: '龍',
+    ryoTag: '波動流空手道',
+    ryoSpecial: '真空波動拳 KI BURST',
+    meiCn: '美玲',
+    meiTag: '少林腿法·疾風',
+    meiSpecial: '百裂腳 LIGHTNING',
+    levelLabel: '難度 LEVEL',
+    diffNames: ['簡單 EASY', '普通 NORMAL', '困難 HARD', '🥋 練習 TRAINING'],
+    tapToStart: '點選角色開始  TAP A FIGHTER',
+    keysHint: '鍵盤 Keys: ← → 移動  ↑ 跳  ↓ 蹲  J 拳  K 腳  L 必殺   (按住「後」防禦 hold BACK to block)',
+    btnMain: ['拳', '腳', '必殺'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'YOU',
+    cpu: 'CPU',
+    dummy: '練習木人',
+    round: '回合 ROUND',
+    fight: '開打 FIGHT!',
+    trainingDojo: '道場練習 TRAINING DOJO',
+    practice: '自由練習 PRACTICE!',
+    wins: '勝！ WINS',
+    draw: '雙方平手 DRAW',
+    tapContinue: '點擊返回選單  TAP TO CONTINUE',
+    navDocs: '← 說明 Docs',
+    nav2d: '🕹️ 切換 2D 街機版 (2D Arcade)'
+  },
+  'zh-Hans': {
+    titleSub: '街 头 格 斗  3D',
+    chooseFighter: '选择你的格斗家   CHOOSE YOUR FIGHTER',
+    ryoCn: '龙',
+    ryoTag: '波动流空手道',
+    ryoSpecial: '真空波动拳 KI BURST',
+    meiCn: '美玲',
+    meiTag: '少林腿法·疾风',
+    meiSpecial: '百裂脚 LIGHTNING',
+    levelLabel: '难度 LEVEL',
+    diffNames: ['简单 EASY', '普通 NORMAL', '困难 HARD', '🥋 练习 TRAINING'],
+    tapToStart: '点击角色开始  TAP A FIGHTER',
+    keysHint: '键盘 Keys: ← → 移动  ↑ 跳  ↓ 蹲  J 拳  K 脚  L 必杀   (按住“后”防御 hold BACK to block)',
+    btnMain: ['拳', '脚', '必杀'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'YOU',
+    cpu: '电脑',
+    dummy: '练习假人',
+    round: '回合 ROUND',
+    fight: '开打 FIGHT!',
+    trainingDojo: '道场练习 TRAINING DOJO',
+    practice: '自由练习 PRACTICE!',
+    wins: '胜！ WINS',
+    draw: '平手 DRAW',
+    tapContinue: '点击返回主菜单  TAP TO CONTINUE',
+    navDocs: '← 说明 Docs',
+    nav2d: '🕹️ 切换 2D 街机版 (2D Arcade)'
+  },
+  'ja': {
+    titleSub: 'ストリートファイト 3D',
+    chooseFighter: 'ファイターを選択   CHOOSE FIGHTER',
+    ryoCn: '龍',
+    ryoTag: '波動流空手',
+    ryoSpecial: '真空波動拳 KI BURST',
+    meiCn: 'メイリン',
+    meiTag: '華麗なる足技',
+    meiSpecial: '百裂脚 LIGHTNING',
+    levelLabel: '難易度 LEVEL',
+    diffNames: ['イージー EASY', 'ノーマル NORMAL', 'ハード HARD', '🥋 練習 TRAINING'],
+    tapToStart: 'ファイターをタップして開始',
+    keysHint: 'キー: ← → 移動  ↑ ジャンプ  ↓ しゃがみ  J パンチ  K キック  L 必殺技 (後退でガード)',
+    btnMain: ['拳', '蹴', '必殺'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'YOU',
+    cpu: 'CPU',
+    dummy: '木人 DUMMY',
+    round: 'ラウンド ROUND',
+    fight: 'ファイト FIGHT!',
+    trainingDojo: '道場練習 TRAINING DOJO',
+    practice: '自由練習 PRACTICE!',
+    wins: '勝利！ WINS',
+    draw: '引き分け DRAW',
+    tapContinue: 'タップして続ける  TAP TO CONTINUE',
+    navDocs: '← 説明 Docs',
+    nav2d: '🕹️ 2D アーケード版へ'
+  },
+  'ko': {
+    titleSub: '스트리트 파이트 3D',
+    chooseFighter: '파이터를 선택하세요   CHOOSE FIGHTER',
+    ryoCn: '료',
+    ryoTag: '파동류 가라테',
+    ryoSpecial: '진공 파동권 KI BURST',
+    meiCn: '메이린',
+    meiTag: '화려한 발차기',
+    meiSpecial: '백열각 LIGHTNING',
+    levelLabel: '난이도 LEVEL',
+    diffNames: ['쉬움 EASY', '보통 NORMAL', '어려움 HARD', '🥋 연습 TRAINING'],
+    tapToStart: '파이터를 탭하여 시작',
+    keysHint: '조작: ← → 이동  ↑ 점프  ↓ 숙이기  J 펀치  K 킥  L 필살기 (뒤로 누르면 가드)',
+    btnMain: ['펀치', '킥', '필살'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'YOU',
+    cpu: 'CPU',
+    dummy: '연습 인형',
+    round: '라운드 ROUND',
+    fight: '파이트 FIGHT!',
+    trainingDojo: '도장 연습 TRAINING DOJO',
+    practice: '자유 연습 PRACTICE!',
+    wins: '승리! WINS',
+    draw: '무승부 DRAW',
+    tapContinue: '계속하려면 탭하세요',
+    navDocs: '← 게임 설명 Docs',
+    nav2d: '🕹️ 2D 아케이드 버전'
+  },
+  'th': {
+    titleSub: 'สตรีทไฟต์ 3D',
+    chooseFighter: 'เลือกนักสู้ของคุณ   CHOOSE FIGHTER',
+    ryoCn: 'เรียว',
+    ryoTag: 'คาราเต้พลังคลื่น',
+    ryoSpecial: 'หมัดคลื่นสุญญากาศ',
+    meiCn: 'เหมยหลิง',
+    meiTag: 'เพลงเตะเส้าหลิน',
+    meiSpecial: 'เตะรัวร้อยครั้ง',
+    levelLabel: 'ระดับความยาก',
+    diffNames: ['ง่าย EASY', 'ปานกลาง NORMAL', 'ยาก HARD', '🥋 ฝึกซ้อม TRAINING'],
+    tapToStart: 'แตะที่นักสู้เพื่อเริ่มสู้',
+    keysHint: 'ปุ่ม: ← → เดิน  ↑ กระโดด  ↓ นั่ง  J ต่อย  K เตะ  L ท่าไม้ตาย (กดถอยหลังเพื่อป้องกัน)',
+    btnMain: ['หมัด', 'เตะ', 'ไม้ตาย'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'คุณ',
+    cpu: 'บอท',
+    dummy: 'หุ่นฝึก',
+    round: 'ยกที่ ROUND',
+    fight: 'เริ่มสู้ FIGHT!',
+    trainingDojo: 'โรงฝึกซ้อม DOJO',
+    practice: 'ฝึกซ้อมอิสระ PRACTICE!',
+    wins: 'ชนะ! WINS',
+    draw: 'เสมอ DRAW',
+    tapContinue: 'แตะเพื่อดำเนินการต่อ',
+    navDocs: '← คู่มือ Docs',
+    nav2d: '🕹️ สลับไป 2D อาร์เคด'
+  },
+  'vi': {
+    titleSub: 'CHIẾN ĐẤU ĐƯỜNG PHỐ 3D',
+    chooseFighter: 'CHỌN ĐẤU SĨ CỦA BẠN   CHOOSE FIGHTER',
+    ryoCn: 'Long',
+    ryoTag: 'Karate Khí Công',
+    ryoSpecial: 'Chân Không Sóng',
+    meiCn: 'Mỹ Linh',
+    meiTag: 'Thiếu Lâm Cước',
+    meiSpecial: 'Bách Liệt Cước',
+    levelLabel: 'ĐỘ KHÓ',
+    diffNames: ['DỄ EASY', 'BÌNH THƯỜNG', 'KHÓ HARD', '🥋 LUYỆN TẬP'],
+    tapToStart: 'CHẠM VÀO ĐẤU SĨ ĐỂ BẮT ĐẦU',
+    keysHint: 'Phím: ← → Di chuyển  ↑ Nhảy  ↓ Ngồi  J Đấm  K Đá  L Tuyệt kỹ (Giữ lùi để đỡ)',
+    btnMain: ['ĐẤM', 'ĐÁ', 'TUYỆT KỸ'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'BẠN',
+    cpu: 'MÁY',
+    dummy: 'BỘ ĐỘI TẬP',
+    round: 'HIỆP ROUND',
+    fight: 'CHIẾN FIGHT!',
+    trainingDojo: 'VÕ ĐƯỜNG TẬP LUYỆN',
+    practice: 'LUYỆN TẬP TỰ DO',
+    wins: 'THẮNG! WINS',
+    draw: 'HÒA DRAW',
+    tapContinue: 'CHẠM ĐỂ TIẾP TỤC',
+    navDocs: '← Hướng dẫn Docs',
+    nav2d: '🕹️ Chuyển sang bản 2D'
+  },
+  'id': {
+    titleSub: 'PERTARUNGAN JALANAN 3D',
+    chooseFighter: 'PILIH PETARUNG ANDA   CHOOSE FIGHTER',
+    ryoCn: 'Ryo',
+    ryoTag: 'Karate Gelombang Chi',
+    ryoSpecial: 'Ledakan Ki Shinku',
+    meiCn: 'Meiling',
+    meiTag: 'Tendangan Shaolin',
+    meiSpecial: 'Tendangan Kilat',
+    levelLabel: 'TINGKAT KESULITAN',
+    diffNames: ['MUDAH EASY', 'NORMAL', 'SULIT HARD', '🥋 LATIHAN'],
+    tapToStart: 'SENTUH PETARUNG UNTUK MULAI',
+    keysHint: 'Tombol: ← → Gerak  ↑ Lompat  ↓ Jongkok  J Tinju  K Tendang  L Jurus (Tahan Mundur untuk Menangkis)',
+    btnMain: ['TINJU', 'TENDANG', 'JURUS'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'ANDA',
+    cpu: 'KOMPUTER',
+    dummy: 'BONEKA LATIHAN',
+    round: 'RONDE ROUND',
+    fight: 'MULAI FIGHT!',
+    trainingDojo: 'DOJO LATIHAN',
+    practice: 'LATIHAN BEBAS',
+    wins: 'MENANG! WINS',
+    draw: 'SERI DRAW',
+    tapContinue: 'SENTUH UNTUK MELANJUTKAN',
+    navDocs: '← Panduan Docs',
+    nav2d: '🕹️ Beralih ke 2D Arcade'
+  },
+  'ms': {
+    titleSub: 'PERTEMPURAN JALANAN 3D',
+    chooseFighter: 'PILIH PENDEKAR ANDA   CHOOSE FIGHTER',
+    ryoCn: 'Ryo',
+    ryoTag: 'Karate Gelombang Tenaga',
+    ryoSpecial: 'Letusan Ki Shinku',
+    meiCn: 'Meiling',
+    meiTag: 'Tendangan Shaolin',
+    meiSpecial: 'Tendangan Kilat',
+    levelLabel: 'TAHAP KESUKARAN',
+    diffNames: ['MUDAH EASY', 'BIASA NORMAL', 'SUKAR HARD', '🥋 LATIHAN'],
+    tapToStart: 'SENTUH PENDEKAR UNTUK MULA',
+    keysHint: 'Kekunci: ← → Gerak  ↑ Lompat  ↓ Cangkung  J Tumbuk  K Tendang  L Jurus (Tahan Undur untuk Hadang)',
+    btnMain: ['TUMBUK', 'TENDANG', 'JURUS'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'ANDA',
+    cpu: 'KOMPUTER',
+    dummy: 'PATUNG LATIHAN',
+    round: 'PUSINGAN ROUND',
+    fight: 'BERMULA FIGHT!',
+    trainingDojo: 'DOJO LATIHAN',
+    practice: 'LATIHAN BEBAS',
+    wins: 'MENANG! WINS',
+    draw: 'SERI DRAW',
+    tapContinue: 'SENTUH UNTUK TERUSKAN',
+    navDocs: '← Panduan Docs',
+    nav2d: '🕹️ Tukar ke 2D Arked'
+  },
+  'fil': {
+    titleSub: 'LABANANG KALYE 3D',
+    chooseFighter: 'PUMILI NG IYONG MANDIRIGMA',
+    ryoCn: 'Ryo',
+    ryoTag: 'Hadou Karate',
+    ryoSpecial: 'Shinku Ki Blast',
+    meiCn: 'Meiling',
+    meiTag: 'Sipa ng Shaolin',
+    meiSpecial: 'Kidlat na Sipa',
+    levelLabel: 'ANTAS NG HIRAP',
+    diffNames: ['MADALI EASY', 'KATAMTAMAN', 'MAHIRAP HARD', '🥋 PAGSASANAY'],
+    tapToStart: 'I-TAP ANG MANDIRIGMA UPANG MAGSIMULA',
+    keysHint: 'Pindutan: ← → Galaw  ↑ Talon  ↓ Yuko  J Suntok  K Sipa  L Espesyal (Pindutin Pabalik para Dumepensa)',
+    btnMain: ['SUNTOK', 'SIPA', 'ESPESYAL'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'IKAW',
+    cpu: 'CPU',
+    dummy: 'DUMMY SA ENSAYO',
+    round: 'ROUND',
+    fight: 'LABAN FIGHT!',
+    trainingDojo: 'DOJO NG PAGSASANAY',
+    practice: 'MALAYANG ENSAYO',
+    wins: 'NANALO! WINS',
+    draw: 'PATAS DRAW',
+    tapContinue: 'I-TAP PARA MAGPATULOY',
+    navDocs: '← Gabay Docs',
+    nav2d: '🕹️ Lumipat sa 2D Arcade'
+  },
+  'hi': {
+    titleSub: 'स्ट्रीट फाइट 3D',
+    chooseFighter: 'अपने योद्धा का चयन करें   CHOOSE FIGHTER',
+    ryoCn: 'रियो',
+    ryoTag: 'हादो कराटे',
+    ryoSpecial: 'कि ब्लास्ट शिनकू',
+    meiCn: 'मेई-लिंग',
+    meiTag: 'शाओलिन किक्स',
+    meiSpecial: 'लाइटनिंग किक्स',
+    levelLabel: 'कठिनाई स्तर',
+    diffNames: ['सरल EASY', 'सामान्य NORMAL', 'कठिन HARD', '🥋 अभ्यास TRAINING'],
+    tapToStart: 'शुरू करने के लिए योद्धा पर टैप करें',
+    keysHint: 'कुंजियाँ: ← → चलना  ↑ कूदना  ↓ झुकना  J घूंसा  K लात  L विशेष (बचने के लिए पीछे दबाएं)',
+    btnMain: ['घूंसा', 'लात', 'विशेष'],
+    btnSub: ['PUNCH', 'KICK', 'SPECIAL'],
+    you: 'आप',
+    cpu: 'सीपीयू',
+    dummy: 'अभ्यास डमी',
+    round: 'दौर ROUND',
+    fight: 'लड़ाई शुरू FIGHT!',
+    trainingDojo: 'अभ्यास डोजो TRAINING',
+    practice: 'मुक्त अभ्यास PRACTICE!',
+    wins: 'जीते! WINS',
+    draw: 'बराबरी DRAW',
+    tapContinue: 'जारी रखने के लिए टैप करें',
+    navDocs: '← निर्देश Docs',
+    nav2d: '🕹️ 2D आर्केड मोड'
+  }
+};
+
 class Game {
   constructor(glCanvas, hudCanvas) {
     this.hud = hudCanvas; this.c = hudCanvas.getContext('2d');
@@ -23,6 +334,7 @@ class Game {
     this.btnX = [0, 0, 0]; this.btnY = [0, 0, 0]; this.btnR = 1;
     this.btnMain = ['拳', '腳', '必殺']; this.btnSub = ['PUNCH', 'KICK', 'SPECIAL']; this.btnColor = ['#ff8a2a', '#3a9bff', '#c04aff'];
     this.diffNames = ['簡單 EASY', '普通 NORMAL', '困難 HARD', '🥋 練習 TRAINING'];
+    this.lang = 'zh-Hant';
     this.joyId = -1; this.btnId = [-1, -1, -1];
     this.kLeft = false; this.kRight = false; this.kUp = false; this.kDown = false;
     this.latchP = false; this.latchK = false; this.latchS = false;
@@ -30,9 +342,36 @@ class Game {
     this.acc = 0; this.last = 0;
     this.cam = new CamRig();
     this.view = { title: true, fighters: [this.prevA, this.prevB], projs: this.projs, parts: this.parts, bursts: this.bursts, shake: 0, frame: 0, ko: false, cam: this.cam };
+
+    let savedLang = 'zh-Hant';
+    try { savedLang = localStorage.getItem('sf_lang') || 'zh-Hant'; } catch (_) {}
+    this.setLanguage(savedLang);
+
+    const langSel = document.getElementById('langSelect3D');
+    if (langSel) {
+      langSel.value = this.lang;
+      langSel.addEventListener('change', (e) => this.setLanguage(e.target.value));
+    }
+
     this.bindInput();
     this.resize(); window.addEventListener('resize', () => this.resize());
     requestAnimationFrame(t => this.loop(t));
+  }
+
+  setLanguage(lang) {
+    if (!I18N_3D[lang]) lang = 'zh-Hant';
+    this.lang = lang;
+    const t = I18N_3D[lang];
+    this.btnMain = t.btnMain;
+    this.btnSub = t.btnSub;
+    this.diffNames = t.diffNames;
+    try { localStorage.setItem('sf_lang', lang); } catch (_) {}
+    const sel = document.getElementById('langSelect3D');
+    if (sel && sel.value !== lang) sel.value = lang;
+    const navDocs = document.getElementById('navDocsBtn');
+    if (navDocs) navDocs.textContent = t.navDocs;
+    const nav2d = document.getElementById('nav2dBtn');
+    if (nav2d) nav2d.textContent = t.nav2d;
   }
 
   // ---------------------------------------------------------------- loop
@@ -126,9 +465,10 @@ class Game {
         if (this.phaseT >= 170) {
           if (p1.wins >= 2 || p2.wins >= 2 || this.round >= 5) {
             this.phase = Phase.END; this.phaseT = 0;
-            if (p1.wins > p2.wins) { this.endTitle = 'YOU WIN!  你贏了！'; this.endSub = `${p1.style.name} 勝利 PERFECT FIGHTER`; }
-            else if (p2.wins > p1.wins) { this.endTitle = 'YOU LOSE  你輸了'; this.endSub = `${p2.style.name} 勝利 — 再挑戰一次！ TRY AGAIN`; }
-            else { this.endTitle = 'DRAW GAME  平手'; this.endSub = ''; }
+            const t = I18N_3D[this.lang] || I18N_3D['zh-Hant'];
+            if (p1.wins > p2.wins) { this.endTitle = `YOU WIN!  ${t.wins}`; this.endSub = `${p1.style.name} — PERFECT FIGHTER`; }
+            else if (p2.wins > p1.wins) { this.endTitle = `YOU LOSE!  ${t.cpu} ${t.wins}`; this.endSub = `TRY AGAIN`; }
+            else { this.endTitle = t.draw; this.endSub = ''; }
             this.sfx.play('fight');
           } else { this.round++; this.startRound(); }
         }
@@ -337,40 +677,47 @@ class Game {
   }
   roundRect(c, r, rad) { c.beginPath(); c.roundRect(r.l, r.t, r.r - r.l, r.b - r.t, rad); }
   drawTitle(c) {
+    const t = I18N_3D[this.lang] || I18N_3D['zh-Hant'];
     const s = this.scale, w = this.W, X = v => this.X(v), Y = v => this.Y(v);
     const grd = c.createLinearGradient(0, 0, 0, Y(100));
     grd.addColorStop(0, 'rgba(0,0,0,0.75)'); grd.addColorStop(1, 'rgba(0,0,0,0)');
     c.fillStyle = grd; c.fillRect(0, 0, w, Y(100));
     const pulse = (Math.sin(this.frame * 0.12) + 1) / 2;
     this.label(c, 'STREET FIGHT', w / 2, Y(36), 30 * s, '#ffd040');
-    this.label(c, '街 頭 格 鬥  3D', w / 2, Y(58), 15 * s, '#ff5a3a');
-    this.label(c, '選擇你的格鬥家   CHOOSE YOUR FIGHTER', w / 2, Y(84), 8 * s, '#fff');
+    this.label(c, t.titleSub, w / 2, Y(58), 15 * s, '#ff5a3a');
+    this.label(c, t.chooseFighter, w / 2, Y(84), 8 * s, '#fff');
     for (let i = 0; i < 2; i++) {
       const r = i === 0 ? this.cardA : this.cardB, st = Styles.ALL[i], sel = this.selected === i;
       c.fillStyle = sel ? 'rgba(255,208,64,0.16)' : 'rgba(0,0,0,0.12)'; this.roundRect(c, r, 6 * s); c.fill();
       c.lineWidth = sel ? 2.5 * s : 1.2 * s; c.strokeStyle = sel ? `rgb(255,${Math.round(180 + 70 * pulse)},60)` : 'rgba(255,255,255,0.6)'; c.stroke();
       const cx = (r.l + r.r) / 2;
-      this.label(c, `${st.name}  ${st.cn}`, cx, r.t + 13 * s, 11 * s, '#fff');
-      this.label(c, st.tag, cx, r.t + 23 * s, 6.5 * s, '#ffd040');
-      this.label(c, st.specialName, cx, r.b + 9 * s, 6 * s, '#ffb0a0');
+      const cnName = i === 0 ? (t.ryoCn || st.cn) : (t.meiCn || st.cn);
+      const tagText = i === 0 ? (t.ryoTag || st.tag) : (t.meiTag || st.tag);
+      const spText = i === 0 ? (t.ryoSpecial || st.specialName) : (t.meiSpecial || st.specialName);
+      this.label(c, `${st.name}  ${cnName}`, cx, r.t + 13 * s, 11 * s, '#fff');
+      this.label(c, tagText, cx, r.t + 23 * s, 6.5 * s, '#ffd040');
+      this.label(c, spText, cx, r.b + 9 * s, 6 * s, '#ffb0a0');
     }
     const d = this.diffBtn;
     c.fillStyle = 'rgba(26,16,40,0.8)'; this.roundRect(c, d, 5 * s); c.fill();
     c.lineWidth = 1.2 * s; c.strokeStyle = '#3fe8ff'; c.stroke();
     const dcx = (d.l + d.r) / 2;
-    this.label(c, '難度 LEVEL', dcx, d.t + 11 * s, 6.5 * s, '#3fe8ff');
+    this.label(c, t.levelLabel, dcx, d.t + 11 * s, 6.5 * s, '#3fe8ff');
     this.label(c, this.diffNames[this.difficulty], dcx, d.t + 23 * s, 7 * s, '#fff');
-    if (Math.floor(this.frame / 30) % 2 === 0) this.label(c, '點選角色開始  TAP A FIGHTER', w / 2, Y(126), 6.5 * s, '#fff');
-    this.label(c, '鍵盤 Keys: ← → 移動  ↑ 跳  ↓ 蹲  J 拳  K 腳  L 必殺   (按住「後」防禦 hold BACK to block)', w / 2, Y(214), 5.5 * s, '#ddd');
+    if (Math.floor(this.frame / 30) % 2 === 0) this.label(c, t.tapToStart, w / 2, Y(126), 6.5 * s, '#fff');
+    this.label(c, t.keysHint, w / 2, Y(214), 5.5 * s, '#ddd');
   }
   drawHud(c) {
+    const t = I18N_3D[this.lang] || I18N_3D['zh-Hant'];
     const s = this.scale, X = v => this.X(v), Y = v => this.Y(v), p1 = this.p1, p2 = this.p2;
     this.drawBar(c, p1, 14, true); this.drawBar(c, p2, 214, false);
-    this.label(c, `${p1.style.name} ${p1.style.cn}`, X(14), Y(31), 9 * s, '#fff', 'left');
-    this.label(c, `${p2.style.name} ${p2.style.cn}`, X(370), Y(31), 9 * s, '#fff', 'right');
+    const p1Cn = p1.style.mei ? (t.meiCn || p1.style.cn) : (t.ryoCn || p1.style.cn);
+    const p2Cn = p2.style.mei ? (t.meiCn || p2.style.cn) : (t.ryoCn || p2.style.cn);
+    this.label(c, `${p1.style.name} ${p1Cn}`, X(14), Y(31), 9 * s, '#fff', 'left');
+    this.label(c, `${p2.style.name} ${p2Cn}`, X(370), Y(31), 9 * s, '#fff', 'right');
     const isTraining = this.difficulty === 3;
-    this.label(c, 'YOU', X(14), Y(41), 6 * s, '#7cff7c', 'left');
-    this.label(c, isTraining ? 'DUMMY' : 'CPU', X(370), Y(41), 6 * s, isTraining ? '#3fe8ff' : '#ff7c7c', 'right');
+    this.label(c, t.you, X(14), Y(41), 6 * s, '#7cff7c', 'left');
+    this.label(c, isTraining ? t.dummy : t.cpu, X(370), Y(41), 6 * s, isTraining ? '#3fe8ff' : '#ff7c7c', 'right');
     for (let i = 0; i < 2; i++) {
       c.fillStyle = p1.wins > i ? '#ffd040' : 'rgba(0,0,0,0.4)'; c.beginPath(); c.arc(X(166 - i * 9), Y(27), 3 * s, 0, 7); c.fill();
       c.fillStyle = p2.wins > i ? '#ffd040' : 'rgba(0,0,0,0.4)'; c.beginPath(); c.arc(X(218 + i * 9), Y(27), 3 * s, 0, 7); c.fill();
@@ -382,20 +729,20 @@ class Game {
     const cx = this.W / 2;
     if (this.phase === Phase.INTRO) {
       if (isTraining) {
-        if (this.phaseT < 80) this.label(c, 'TRAINING DOJO  道場練習', cx, Y(100), 24 * s, '#ffd040');
-        else this.label(c, 'PRACTICE!  自由練習！', cx, Y(100), 28 * s, '#3fe8ff');
+        if (this.phaseT < 80) this.label(c, t.trainingDojo, cx, Y(100), 24 * s, '#ffd040');
+        else this.label(c, t.practice, cx, Y(100), 28 * s, '#3fe8ff');
       } else {
-        if (this.phaseT < 80) this.label(c, `ROUND ${this.round}`, cx, Y(100), 28 * s, '#ffd040');
-        else this.label(c, 'FIGHT!  開打！', cx, Y(100), 30 * s, '#ff5a3a');
+        if (this.phaseT < 80) this.label(c, `${t.round} ${this.round}`, cx, Y(100), 28 * s, '#ffd040');
+        else this.label(c, t.fight, cx, Y(100), 30 * s, '#ff5a3a');
       }
     } else if (this.phase === Phase.KO) {
       if (this.phaseT < 110) { const big = this.koText === 'K.O.' ? 46 : 30; this.label(c, this.koText, cx, Y(105), big * s, this.koText === 'K.O.' ? '#ff3a2a' : '#ffd040'); }
-      else { const w = this.roundWinner; this.label(c, w ? `${w.style.name} WINS  勝！` : 'DOUBLE KO / DRAW  平手', cx, Y(100), 22 * s, '#fff'); }
+      else { const w = this.roundWinner; this.label(c, w ? `${w.style.name} ${t.wins}` : t.draw, cx, Y(100), 22 * s, '#fff'); }
     } else if (this.phase === Phase.END) {
       c.fillStyle = 'rgba(0,0,0,0.53)'; c.fillRect(0, Y(70), this.W, 70 * s);
       this.label(c, this.endTitle, cx, Y(100), 26 * s, p1.wins > p2.wins ? '#ffd040' : '#ff5a3a');
       this.label(c, this.endSub, cx, Y(116), 8 * s, '#fff');
-      if (this.phaseT > 40 && Math.floor(this.frame / 30) % 2 === 0) this.label(c, '點擊返回選單  TAP TO CONTINUE', cx, Y(132), 7 * s, '#ddd');
+      if (this.phaseT > 40 && Math.floor(this.frame / 30) % 2 === 0) this.label(c, t.tapContinue, cx, Y(132), 7 * s, '#ddd');
     }
   }
   drawBar(c, f, x0, left) {

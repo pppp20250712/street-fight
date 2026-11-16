@@ -20,6 +20,23 @@
     position: fixed; z-index: 3; top: max(8px, env(safe-area-inset-top)); left: max(10px, env(safe-area-inset-left));
     display: flex; gap: 8px; align-items: center;
   }
+  .top-bar-right {
+    position: fixed; z-index: 10; top: max(8px, env(safe-area-inset-top)); right: max(10px, env(safe-area-inset-right));
+    display: flex; gap: 8px; align-items: center;
+  }
+  .lang-select-dropdown {
+    color: #ffd040; font: 800 13px/1 "Noto Sans TC", system-ui, sans-serif;
+    background: rgba(18, 11, 30, 0.9); border: 1.5px solid rgba(255, 208, 64, 0.65);
+    padding: 7px 12px; border-radius: 8px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    cursor: pointer; outline: none; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s;
+  }
+  .lang-select-dropdown:hover {
+    border-color: #ffd040; background: rgba(30, 18, 50, 0.95);
+  }
+  .lang-select-dropdown option {
+    background: #120b1e; color: #f3eefc; font-weight: 700;
+  }
   .nav-btn {
     color: #cbbfe0; font: 700 12px/1 "Noto Sans TC", sans-serif; text-decoration: none; background: rgba(0,0,0,.6);
     padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,.2); backdrop-filter: blur(4px);
@@ -39,8 +56,23 @@
 <canvas id="gl"></canvas>
 <canvas id="hud"></canvas>
 <div class="top-bar-nav">
-  <a class="nav-btn" href="../">← 說明 Docs</a>
-  <a class="nav-btn nav-btn-2d" href="../play2d/">🕹️ 切換 2D 街機版 (2D Arcade)</a>
+  <a id="navDocsBtn" class="nav-btn" href="../">← 說明 Docs</a>
+  <a id="nav2dBtn" class="nav-btn nav-btn-2d" href="../play2d/">🕹️ 切換 2D 街機版 (2D Arcade)</a>
+</div>
+<div class="top-bar-right">
+  <select id="langSelect3D" class="lang-select-dropdown" aria-label="語言切換 Language">
+    <option value="en">🇬🇧 English</option>
+    <option value="zh-Hant" selected>🇭🇰 繁體中文</option>
+    <option value="zh-Hans">🇨🇳 简体中文</option>
+    <option value="ja">🇯🇵 日本語</option>
+    <option value="ko">🇰🇷 한국어</option>
+    <option value="th">🇹🇭 ไทย</option>
+    <option value="vi">🇻🇳 Tiếng Việt</option>
+    <option value="id">🇮🇩 Bahasa Indonesia</option>
+    <option value="ms">🇲🇾 Bahasa Melayu</option>
+    <option value="fil">🇵🇭 Filipino</option>
+    <option value="hi">🇮🇳 हिन्दी</option>
+  </select>
 </div>
 <div id="err"><div><h1>無法啟動 3D 畫面 · 3D could not start</h1><p>這個瀏覽器不支援 WebGL2，請改用新版 Chrome、Edge、Safari 或 Firefox。<br>This browser does not support WebGL2 — please use a recent Chrome, Edge, Safari or Firefox.</p><p id="errmsg" style="margin-top:10px;font-size:12px;opacity:.7"></p></div></div>
 <script src="logic.js"></script>

@@ -636,15 +636,19 @@ class I18nManager {
         const select = document.createElement('select');
         select.className = 'lang-select-dropdown';
         select.style.cssText = `
-            background: #1e293b;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             color: #38bdf8;
-            border: 1px solid #38bdf8;
-            border-radius: 6px;
-            padding: 4px 8px;
-            font-size: 12px;
-            font-weight: 700;
+            border: 1.5px solid rgba(56, 189, 248, 0.7);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 800;
             cursor: pointer;
             outline: none;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
         `;
 
         Object.keys(I18N_DATA).forEach(code => {

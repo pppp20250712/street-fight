@@ -12,6 +12,11 @@
         <div id="fightCanvasWrapper">
             <canvas id="fightCanvas"></canvas>
 
+            <!-- Top-Right Language Setting Container -->
+            <div id="arcadeTopRightBar" style="position: absolute; top: max(12px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); z-index: 250; display: flex; align-items: center; gap: 8px;">
+                <div id="langSelectorBox"></div>
+            </div>
+
             <!-- IN-GAME FIGHT HUD -->
             <div id="fightHUD">
                 <!-- Top Health Bars & Timer -->
@@ -129,6 +134,10 @@
                         <span>🥋</span>
                         <span>道場練習模式 TRAINING</span>
                     </button>
+                    <a href="../play/" class="btn-fight-menu" style="text-decoration: none; background: #3b0764; border: 1px solid #ffd040; color: #ffd040;">
+                        <span>🌟</span>
+                        <span>3D 高畫質版 3D HD</span>
+                    </a>
                     <a href="../" class="btn-fight-menu" style="text-decoration: none; background: #0f172a; border: 1px solid #38bdf8; color: #38bdf8;">
                         <span>📖</span>
                         <span>說明網站 DOCS</span>
@@ -140,7 +149,6 @@
                         操作：WASD 移動/跳躍/蹲下 | J/K 拳 | U 踢 | I/O 必殺技 | Space 終極超必殺
                     </div>
                     <div style="display: flex; gap: 8px; align-items: center;">
-                        <div id="langSelectorBox"></div>
                         <button id="btnFightSound" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🔊</button>
                         <button id="btnFightMusic" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🎵</button>
                     </div>

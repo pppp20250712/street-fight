@@ -189,13 +189,16 @@ class FightGame {
 
         const hud = document.getElementById('fightHUD');
         const touchCtrls = document.getElementById('virtualControls');
+        const topLang = document.getElementById('arcadeTopRightBar');
 
         if (name === 'game') {
             hud.style.display = 'block';
             touchCtrls.style.display = 'flex';
+            if (topLang) topLang.style.display = 'none';
         } else {
             hud.style.display = 'none';
             touchCtrls.style.display = 'none';
+            if (topLang) topLang.style.display = (name === 'vsIntro') ? 'none' : 'flex';
         }
     }
 
