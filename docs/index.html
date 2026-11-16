@@ -403,8 +403,8 @@
                 <option value="hi">🇮🇳 हिन्दी</option>
             </select>
 
-            <a href="play/" class="btn-play-nav" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">🌟 3D版 PLAY</a>
-            <a href="play2d/" class="btn-play-nav">🥊 2D版 PLAY</a>
+            <a href="play/" class="btn-play-nav" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);" data-i18n="navBtn3d">🌟 3D版 PLAY</a>
+            <a href="play2d/" class="btn-play-nav" data-i18n="navBtn2d">🥊 2D版 PLAY</a>
         </nav>
     </header>
 
@@ -414,11 +414,11 @@
         <h1><span data-i18n="heroTitle">STREET FIGHT: HYPER CLASH</span><br><span style="font-size: 60%; color: #f87171;" data-i18n="heroSub">街頭對決 · 霸王再現</span></h1>
         <p data-i18n="heroDesc">基於精靈圖動態去背渲染技術打造的極限街機格鬥！支援單人街機 AI、雙人同屏對決、道場練習模式與 Android 原生沉浸式震動。</p>
         <div class="hero-actions">
-            <a href="play/" class="btn-cta-main" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);">
+            <a href="play/" class="btn-cta-main" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);" data-i18n="heroBtn3d">
                 <span>🌟</span>
                 <span>🎮 啟動 3D 高畫質版 PLAY 3D HD</span>
             </a>
-            <a href="play2d/" class="btn-cta-main" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">
+            <a href="play2d/" class="btn-cta-main" style="background: linear-gradient(135deg, #ef4444, #b91c1c);" data-i18n="heroBtn2d">
                 <span>🥊</span>
                 <span>🕹️ 啟動 2D 復古街機版 PLAY 2D ARCADE</span>
             </a>
@@ -432,28 +432,28 @@
     <!-- MAIN CONTENT -->
     <main class="container">
 
-        <!-- 3D VERSION SHOWCASE -->
+                <!-- 3D VERSION SHOWCASE -->
         <section id="version3d" style="margin-bottom: 60px;">
             <div class="section-title">
-                <h2>🌟 3D 高畫質版實機畫面 (STREET FIGHT 3D HD)</h2>
-                <p>純程式碼演算 3D 著色器模型、即時陰影、霓虹光影與 4x MSAA 抗鋸齒</p>
+                <h2 data-i18n="v3dHeading">🌟 3D 高畫質版實機畫面 (STREET FIGHT 3D HD)</h2>
+                <p data-i18n="v3dSub">純程式碼演算 3D 著色器模型、即時陰影、霓虹光影與 4x MSAA 抗鋸齒</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
                 <div style="border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); background: var(--card-bg);">
                     <img src="assets/img/3d-phoenix.jpg" alt="3D Phoenix Kick" style="width: 100%; height: auto; display: block;">
-                    <div style="padding: 14px; font-size: 14px; color: var(--text-muted);">
+                    <div style="padding: 14px; font-size: 14px; color: var(--text-muted);" data-i18n="v3dCap1">
                         ⚡ <strong>MEI (美玲) · 鳳凰連腳</strong>：3D 骨架動作變換與即時動態光影
                     </div>
                 </div>
                 <div style="border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); background: var(--card-bg);">
                     <img src="assets/img/3d-kiblast.jpg" alt="3D Ki Blast" style="width: 100%; height: auto; display: block;">
-                    <div style="padding: 14px; font-size: 14px; color: var(--text-muted);">
+                    <div style="padding: 14px; font-size: 14px; color: var(--text-muted);" data-i18n="v3dCap2">
                         🔥 <strong>RYO (龍) · 氣功彈</strong>：立體粒子軌跡、夕陽輪廓光與打擊停頓
                     </div>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 24px;">
-                <a href="play/" class="btn-cta-main" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);">
+                <a href="play/" class="btn-cta-main" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);" data-i18n="v3dBtn">
                     <span>🎮 進入 3D WebGL2 激鬥</span>
                 </a>
             </div>
@@ -513,48 +513,48 @@
                         <th data-i18n="thMobile">手機 / 觸控介面</th>
                     </tr>
                 </thead>
-                <tbody>
+                                <tbody>
                     <tr>
                         <td><strong data-i18n="rowMove">移動 / 跳躍 / 蹲下</strong></td>
-                        <td><span class="key-badge">W</span> <span class="key-badge">A</span> <span class="key-badge">S</span> <span class="key-badge">D</span> <span data-i18n="rowMoveP1">(向後走自動防禦)</span></td>
-                        <td>方向鍵 <span class="key-badge">↑</span> <span class="key-badge">↓</span> <span class="key-badge">←</span> <span class="key-badge">→</span></td>
-                        <td data-i18n="rowMoveMobile">左側街機 4 方向十字鍵</td>
+                        <td data-i18n="cellMoveP1"><span class="key-badge">W</span> <span class="key-badge">A</span> <span class="key-badge">S</span> <span class="key-badge">D</span> (向後走自動防禦)</td>
+                        <td data-i18n="cellMoveP2">方向鍵 <span class="key-badge">↑</span> <span class="key-badge">↓</span> <span class="key-badge">←</span> <span class="key-badge">→</span></td>
+                        <td data-i18n="cellMoveMobile">左側街機 4 方向十字鍵</td>
                     </tr>
                     <tr>
                         <td><strong data-i18n="rowLP">輕拳 (Light Punch)</strong></td>
                         <td><span class="key-badge">J</span></td>
-                        <td>數字鍵 <span class="key-badge">1</span></td>
-                        <td><span class="key-badge">LP</span> 按鈕</td>
+                        <td data-i18n="cellLpP2">數字鍵 <span class="key-badge">1</span></td>
+                        <td data-i18n="cellLpMobile"><span class="key-badge">LP</span> 按鈕</td>
                     </tr>
                     <tr>
                         <td><strong data-i18n="rowHP">重拳 (Heavy Punch)</strong></td>
                         <td><span class="key-badge">K</span></td>
-                        <td>數字鍵 <span class="key-badge">2</span></td>
-                        <td><span class="key-badge">HP</span> 按鈕</td>
+                        <td data-i18n="cellHpP2">數字鍵 <span class="key-badge">2</span></td>
+                        <td data-i18n="cellHpMobile"><span class="key-badge">HP</span> 按鈕</td>
                     </tr>
                     <tr>
                         <td><strong data-i18n="rowKick">踢擊 (Kick)</strong></td>
                         <td><span class="key-badge">U</span></td>
-                        <td>數字鍵 <span class="key-badge">4</span></td>
-                        <td><span class="key-badge">KICK</span> 按鈕</td>
+                        <td data-i18n="cellKickP2">數字鍵 <span class="key-badge">4</span></td>
+                        <td data-i18n="cellKickMobile"><span class="key-badge">KICK</span> 按鈕</td>
                     </tr>
                     <tr>
                         <td><strong data-i18n="rowSp1">必殺技 1 (Special 1)</strong></td>
                         <td><span class="key-badge">I</span></td>
-                        <td>數字鍵 <span class="key-badge">5</span></td>
-                        <td><span class="key-badge">SP1</span> 按鈕</td>
+                        <td data-i18n="cellSp1P2">數字鍵 <span class="key-badge">5</span></td>
+                        <td data-i18n="cellSp1Mobile"><span class="key-badge">SP1</span> 按鈕</td>
                     </tr>
                     <tr>
                         <td><strong data-i18n="rowSp2">必殺技 2 (Special 2)</strong></td>
                         <td><span class="key-badge">O</span></td>
-                        <td>數字鍵 <span class="key-badge">6</span></td>
-                        <td><span class="key-badge">SP2</span> 按鈕</td>
+                        <td data-i18n="cellSp2P2">數字鍵 <span class="key-badge">6</span></td>
+                        <td data-i18n="cellSp2Mobile"><span class="key-badge">SP2</span> 按鈕</td>
                     </tr>
                     <tr>
                         <td><strong data-i18n="rowSuper">超必殺奧義 (MAX SUPER)</strong></td>
-                        <td><span class="key-badge">Space</span> (空白鍵)</td>
-                        <td><span class="key-badge">Enter</span> 或 <span class="key-badge">0</span></td>
-                        <td><span class="key-badge">MAX</span> 能量滿格發動</td>
+                        <td data-i18n="cellSuperP1"><span class="key-badge">Space</span> (空白鍵)</td>
+                        <td data-i18n="cellSuperP2"><span class="key-badge">Enter</span> 或 <span class="key-badge">0</span></td>
+                        <td data-i18n="cellSuperMobile"><span class="key-badge">MAX</span> 能量滿格發動</td>
                     </tr>
                 </tbody>
             </table>
