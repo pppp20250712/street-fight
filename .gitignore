@@ -18,3 +18,7 @@ edge_temp/
 .DS_Store
 Thumbs.db
 
+# Native build
+/captures
+.externalNativeBuild
+.cxx

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#05060c">
+    <title>Street Fight: Hyper Clash | 街頭對決·霸王再現</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="fightApp">
+        <div id="fightCanvasWrapper">
+            <canvas id="fightCanvas"></canvas>
+
+            <!-- IN-GAME FIGHT HUD -->
+            <div id="fightHUD">
+                <!-- Top Health Bars & Timer -->
+                <div class="hud-top-match">
+                    <!-- Player 1 HP -->
+                    <div class="fighter-hud-col p1-side">
+                        <div class="fighter-name-row">
+                            <div class="hud-avatar-circle">
+                                <img id="p1HudAvatar" src="assets/portrait_jin.png" alt="P1">
+                            </div>
+                            <span id="p1NameTag">JIN (神拳·晉)</span>
+                            <span id="p1Rounds" class="rounds-won-icons">●</span>
+                        </div>
+                        <div class="hp-bar-track">
+                            <div id="p1HpLag" class="hp-bar-lag" style="width: 100%;"></div>
+                            <div id="p1HpFill" class="hp-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Center Timer -->
+                    <div class="match-timer-box">
+                        <span id="timerBox">99</span>
+                    </div>
+
+                    <!-- Player 2 HP -->
+                    <div class="fighter-hud-col p2-side">
+                        <div class="fighter-name-row" style="flex-direction: row-reverse;">
+                            <div class="hud-avatar-circle">
+                                <img id="p2HudAvatar" src="assets/portrait_lihua.png" alt="P2">
+                            </div>
+                            <span id="p2NameTag">LI-HUA (飛鳳·麗華)</span>
+                            <span id="p2Rounds" class="rounds-won-icons"></span>
+                        </div>
+                        <div class="hp-bar-track">
+                            <div id="p2HpLag" class="hp-bar-lag" style="width: 100%;"></div>
+                            <div id="p2HpFill" class="hp-bar-fill" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Super Combo Meter -->
+                <div class="hud-bottom-super">
+                    <div class="super-meter-box">
+                        <span class="super-label">P1 SUPER GAUGE 能量條</span>
+                        <div class="super-track">
+                            <div id="p1SuperFill" class="super-fill"></div>
+                        </div>
+                    </div>
+                    <div class="super-meter-box" style="align-items: flex-end;">
+                        <span class="super-label">P2 SUPER GAUGE 能量條</span>
+                        <div class="super-track" style="width: 100%;">
+                            <div id="p2SuperFill" class="super-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIRTUAL TOUCH CONTROLS (FOR MOBILE / TOUCHSCREENS) -->
+            <div id="virtualControls">
+                <!-- Left D-Pad -->
+                <div class="v-dpad">
+                    <button id="vbtn_up" class="v-btn-arrow v-up">▲</button>
+                    <button id="vbtn_left" class="v-btn-arrow v-left">◀</button>
+                    <button id="vbtn_right" class="v-btn-arrow v-right">▶</button>
+                    <button id="vbtn_down" class="v-btn-arrow v-down">▼</button>
+                </div>
+
+                <!-- Right 6-Action Buttons -->
+                <div class="v-actions">
+                    <button id="vbtn_lp" class="v-action-btn btn-lp">
+                        <span>LP</span>
+                        <span style="font-size: 8px;">輕拳</span>
+                    </button>
+                    <button id="vbtn_hp" class="v-action-btn btn-hp">
+                        <span>HP</span>
+                        <span style="font-size: 8px;">重拳</span>
+                    </button>
+                    <button id="vbtn_kick" class="v-action-btn btn-kick">
+                        <span>KICK</span>
+                        <span style="font-size: 8px;">踢擊</span>
+                    </button>
+                    <button id="vbtn_sp1" class="v-action-btn btn-sp1">
+                        <span>SP 1</span>
+                        <span style="font-size: 8px;">氣功/百裂</span>
+                    </button>
+                    <button id="vbtn_sp2" class="v-action-btn btn-sp2">
+                        <span>SP 2</span>
+                        <span style="font-size: 8px;">昇龍/旋風</span>
+                    </button>
+                    <button id="vbtn_super" class="v-action-btn btn-super">
+                        <span>MAX</span>
+                        <span style="font-size: 8px;">大絕招</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TITLE SCREEN -->
+            <div id="screen_title" class="fight-screen active">
+                <div class="title-hero">
+                    <div class="title-tagline">RETRO 2D ARCADE FIGHTING</div>
+                    <h1 class="title-main-logo">STREET FIGHT</h1>
+                    <div class="title-sub-logo">HYPER CLASH · 街頭對決</div>
+                </div>
+
+                <div class="title-menu-options">
+                    <button id="btnModeArcade" class="btn-fight-menu btn-arcade-mode">
+                        <span>🥊</span>
+                        <span>街機單人模式 ARCADE</span>
+                    </button>
+                    <button id="btnModeVersus" class="btn-fight-menu btn-versus-mode">
+                        <span>⚔️</span>
+                        <span>雙人對戰模式 VERSUS</span>
+                    </button>
+                    <button id="btnModeTraining" class="btn-fight-menu btn-training-mode">
+                        <span>🥋</span>
+                        <span>道場練習模式 TRAINING</span>
+                    </button>
+                    <a href="../" class="btn-fight-menu" style="text-decoration: none; background: #0f172a; border: 1px solid #38bdf8; color: #38bdf8;">
+                        <span>📖</span>
+                        <span>說明網站 DOCS</span>
+                    </a>
+                </div>
+
+                <div class="title-bottom-bar">
+                    <div style="font-size: 13px; color: #94a3b8;">
+                        操作：WASD 移動/跳躍/蹲下 | J/K 拳 | U 踢 | I/O 必殺技 | Space 終極超必殺
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button id="btnFightSound" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🔊</button>
+                        <button id="btnFightMusic" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🎵</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHARACTER SELECT SCREEN -->
+            <div id="screen_charSelect" class="fight-screen">
+                <div style="text-align: center; margin-top: 10px;">
+                    <h2 style="font-size: 30px; font-weight: 900; color: #fef08a; letter-spacing: 2px;">SELECT YOUR FIGHTER 格鬥家選擇</h2>
+                    <div style="display: flex; justify-content: center; gap: 24px; margin-top: 6px;">
+                        <span id="p1SelectLabel" style="color: #38bdf8; font-weight: 800;">P1: JIN</span>
+                        <span id="p2SelectLabel" style="color: #ef4444; font-weight: 800;">CPU: LI-HUA</span>
+                    </div>
+                </div>
+
+                <div class="char-select-grid">
+                    <!-- Character 1: Jin (Ryu Style) -->
+                    <div class="char-card selected" data-char="ryu">
+                        <div class="char-avatar-box">
+                            <img src="assets/portrait_jin.png" class="char-avatar-img" alt="Jin">
+                        </div>
+                        <h3>JIN (神拳·晉)</h3>
+                        <div class="char-style">極限流空手道 / 剛猛拳法</div>
+                        <div class="char-moves">
+                            <div>• 輕拳/重拳 (J / K)</div>
+                            <div>• 氣功波 HADOUKEN (I / SP1)</div>
+                            <div>• 昇龍拳 SHORYUKEN (O / SP2)</div>
+                            <div>• 真空氣功連打 SHINKU HADOUKEN (Space)</div>
+                        </div>
+                    </div>
+
+                    <!-- Character 2: Li-Hua (Chun-Li Style) -->
+                    <div class="char-card" data-char="chunli">
+                        <div class="char-avatar-box">
+                            <img src="assets/portrait_lihua.png" class="char-avatar-img" alt="Li-Hua">
+                        </div>
+                        <h3>LI-HUA (飛鳳·麗華)</h3>
+                        <div class="char-style">少林腿法 / 迅捷格鬥術</div>
+                        <div class="char-moves">
+                            <div>• 連環重拳/踢擊 (K / U)</div>
+                            <div>• 百裂腳 LIGHTNING KICKS (I / SP1)</div>
+                            <div>• 旋風飛腿 WHIRLWIND (O / SP2)</div>
+                            <div>• 千裂烈風霸 SENRETSUKYAKU (Space)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 10px;">
+                    <button id="btnStartMatch" class="btn-fight-menu btn-arcade-mode" style="margin: 0 auto; min-width: 260px;">
+                        <span>🔥</span>
+                        <span>進入對決 BATTLE START</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- VS MATCH INTRO SCREEN -->
+            <div id="screen_vsIntro" class="fight-screen" style="background: radial-gradient(circle, #1e1b4b 0%, #030712 100%);">
+                <div class="vs-container">
+                    <div class="vs-fighter vs-left">
+                        <img id="vsP1Img" src="assets/portrait_jin.png" alt="P1">
+                        <h2 id="vsP1Name">JIN (神拳·晉)</h2>
+                    </div>
+                    <div class="vs-crest">VS</div>
+                    <div class="vs-fighter vs-right">
+                        <img id="vsP2Img" src="assets/portrait_lihua.png" alt="P2">
+                        <h2 id="vsP2Name">LI-HUA (飛鳳·麗華)</h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATCH RESULT MODAL -->
+            <div id="screen_matchResult" class="fight-screen" style="background: rgba(0,0,0,0.85); justify-content: center;">
+                <div class="result-dialog">
+                    <div class="winner-portrait-wrap">
+                        <img id="winnerPortraitImg" src="assets/portrait_jin.png" alt="Winner">
+                    </div>
+                    <h2 id="winnerText">JIN 獲勝 VICTORY!</h2>
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        <button id="btnRematch" class="btn-fight-menu btn-arcade-mode">
+                            <span>🔄</span>
+                            <span>重新對決 REMATCH</span>
+                        </button>
+                        <button id="btnQuitToTitle" class="btn-fight-menu btn-training-mode">
+                            <span>🏠</span>
+                            <span>返回主選單 RETURN</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading overlay -->
+            <div id="loadingOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 200; display: flex; justify-content: center; align-items: center; color: #fef08a; font-weight: 900; font-size: 20px;">
+                載入精靈圖形與音效中 LOADING FIGHT DATA...
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="js/audio.js"></script>
+    <script src="js/sprites.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/fighter.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

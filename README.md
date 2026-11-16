@@ -25,7 +25,7 @@
 
 ## 🎮 遊戲模式 (Game Modes)
 
-1. **街機闖關模式 (ARCADE MODE)**：
+1. **街機闘關模式 (ARCADE MODE)**：
    - 挑戰由智慧 AI 驅動的格鬥對手，包含智能立回走位、跳躍對空昇龍迎擊、防禦反擊與終極必殺技！
 2. **雙人對決模式 (VERSUS MODE - 2P LOCAL)**：
    - 單台電腦/設備支援兩位玩家同屏格鬥對決！
@@ -72,7 +72,17 @@ node server.js
 
 ## 📱 Android 原生專案結構 (Android Studio Ready)
 
-位於 `streetfighter/android/` 目錄中，具備完整的 Android Studio Gradle 專案：
+位於 `android/` 目錄中，具備完整的 Android Studio Gradle 專案：
+- **Application ID**: `com.hkaiSolveAcadcmy.vibeCoding.patrickpak`
 - `AndroidManifest.xml`：橫螢幕鎖定 (`sensorLandscape`)、硬體加速、全螢幕沉浸模式。
 - `MainActivity.java`：內建高速硬體加速 WebView 與 Android 原生打擊震動橋接 (`AndroidApp.vibrate`)。
 - `assets/www/`：已完整打包 HTML、CSS、JS 與精靈圖資源，可直接在 Android Studio 中點選 **Run** 或執行 `./gradlew assembleRelease` 產出 APK。
+
+---
+
+## 📂 專案結構 (Project Structure)
+
+- `index.html` / `css/` / `js/` / `assets/` — 2D 網頁版遊戲原始碼
+- `play/` — 瀏覽器可玩版本 (自含式)
+- `docs/` — GitHub Pages 網站 (說明文件 + 瀏覽器試玩)
+- `android/` — Android Studio Gradle 專案
