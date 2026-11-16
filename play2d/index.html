@@ -12,9 +12,11 @@
         <div id="fightCanvasWrapper">
             <canvas id="fightCanvas"></canvas>
 
-            <!-- Top-Right Language Setting Container -->
+            <!-- Top-Right Game Settings (Language, Sound, Music) -->
             <div id="arcadeTopRightBar" style="position: absolute; top: max(12px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); z-index: 250; display: flex; align-items: center; gap: 8px;">
                 <div id="langSelectorBox"></div>
+                <button id="btnFightSound" class="btn-setting-icon" title="音效 Sound FX" style="padding: 6px 11px; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.7); border-radius: 8px; color: #fff; cursor: pointer; font-size: 14px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,0.5); transition: all 0.2s;">🔊</button>
+                <button id="btnFightMusic" class="btn-setting-icon" title="音樂 Music BGM" style="padding: 6px 11px; background: rgba(15, 23, 42, 0.9); border: 1.5px solid rgba(56, 189, 248, 0.7); border-radius: 8px; color: #fff; cursor: pointer; font-size: 14px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 14px rgba(0,0,0,0.5); transition: all 0.2s;">🎵</button>
             </div>
 
             <!-- IN-GAME FIGHT HUD -->
@@ -144,13 +146,9 @@
                     </a>
                 </div>
 
-                <div class="title-bottom-bar">
-                    <div style="font-size: 13px; color: #94a3b8;">
+                <div class="title-bottom-bar" style="justify-content: center;">
+                    <div id="controlsBarText" style="font-size: 13px; color: #94a3b8; text-align: center;">
                         操作：WASD 移動/跳躍/蹲下 | J/K 拳 | U 踢 | I/O 必殺技 | Space 終極超必殺
-                    </div>
-                    <div style="display: flex; gap: 8px; align-items: center;">
-                        <button id="btnFightSound" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🔊</button>
-                        <button id="btnFightMusic" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🎵</button>
                     </div>
                 </div>
             </div>

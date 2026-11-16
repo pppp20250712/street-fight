@@ -387,7 +387,12 @@ class AI {
 
 /** Retro sound effects synthesized with Web Audio (same recipes as Sfx.kt). */
 class Sfx {
-  constructor() { this.ctx = null; this.buf = {}; this.rate = 22050; }
+  constructor() { this.ctx = null; this.buf = {}; this.rate = 22050; this.muted = false; }
+  toggle() {
+    this.muted = !this.muted;
+    if (this.master) this.master.gain.value = this.muted ? 0 : 0.8;
+    return !this.muted;
+  }
   unlock() {
     if (this.ctx) { if (this.ctx.state === 'suspended') this.ctx.resume(); return; }
     try {
@@ -409,10 +414,11 @@ class Sfx {
       this.buf.select = tone(0.09, 990, 25);
       const notes = [523, 659, 784, 1046], each = n(0.08);
       this.buf.fight = mk(each * notes.length + n(0.2), d => { for (let i = 0; i < d.length; i++) { const k = Math.min(Math.floor(i / each), notes.length - 1); const t = i / R, local = (i - k * each) / R; d[i] = (Math.sin(2 * PI * notes[k] * t) > 0 ? 1 : -1) * 0.22 * Math.exp(-local * (k === notes.length - 1 ? 6 : 12)); } });
-      this.master = this.ctx.createGain(); this.master.gain.value = 0.8; this.master.connect(this.ctx.destination);
+      this.master = this.ctx.createGain(); this.master.gain.value = this.muted ? 0 : 0.8; this.master.connect(this.ctx.destination);
     } catch (e) { this.ctx = null; }
   }
   play(name, vol = 1, speed = 1) {
+    if (this.muted) return;
     const c = this.ctx, b = this.buf[name];
     if (!c || !b || c.state !== 'running') return;
     const s = c.createBufferSource(); s.buffer = b; s.playbackRate.value = clamp(speed, 0.5, 2);

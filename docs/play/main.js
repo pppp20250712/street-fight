@@ -353,6 +353,15 @@ class Game {
       langSel.addEventListener('change', (e) => this.setLanguage(e.target.value));
     }
 
+    const sndBtn = document.getElementById('btnSound3D');
+    if (sndBtn) {
+      sndBtn.addEventListener('click', () => {
+        this.sfx.unlock();
+        const on = this.sfx.toggle();
+        sndBtn.textContent = on ? '🔊' : '🔇';
+      });
+    }
+
     this.bindInput();
     this.resize(); window.addEventListener('resize', () => this.resize());
     requestAnimationFrame(t => this.loop(t));

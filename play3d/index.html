@@ -37,6 +37,16 @@
   .lang-select-dropdown option {
     background: #120b1e; color: #f3eefc; font-weight: 700;
   }
+  .setting-btn-3d {
+    color: #ffd040; font: 700 13px/1 "Noto Sans TC", system-ui, sans-serif;
+    background: rgba(18, 11, 30, 0.9); border: 1.5px solid rgba(255, 208, 64, 0.65);
+    padding: 7px 11px; border-radius: 8px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    cursor: pointer; outline: none; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s;
+  }
+  .setting-btn-3d:hover {
+    border-color: #ffd040; background: rgba(30, 18, 50, 0.95);
+  }
   .nav-btn {
     color: #cbbfe0; font: 700 12px/1 "Noto Sans TC", sans-serif; text-decoration: none; background: rgba(0,0,0,.6);
     padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,.2); backdrop-filter: blur(4px);
@@ -73,6 +83,7 @@
     <option value="fil">🇵🇭 Filipino</option>
     <option value="hi">🇮🇳 हिन्दी</option>
   </select>
+  <button id="btnSound3D" class="setting-btn-3d" title="音效 Sound FX">🔊</button>
 </div>
 <div id="err"><div><h1>無法啟動 3D 畫面 · 3D could not start</h1><p>這個瀏覽器不支援 WebGL2，請改用新版 Chrome、Edge、Safari 或 Firefox。<br>This browser does not support WebGL2 — please use a recent Chrome, Edge, Safari or Firefox.</p><p id="errmsg" style="margin-top:10px;font-size:12px;opacity:.7"></p></div></div>
 <script src="logic.js"></script>
