@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
     let reqPath = decodeURIComponent(req.url.split('?')[0]);
     if (reqPath === '/' || reqPath === '') reqPath = '/index.html';
     if (reqPath === '/play' || reqPath === '/play/') reqPath = '/play/index.html';
-    if (reqPath === '/play3d' || reqPath === '/play3d/') reqPath = '/play3d/index.html';
+    if (reqPath === '/play3d' || reqPath === '/play3d/') { res.writeHead(301, { Location: '/play/' }); res.end(); return; }
     if (reqPath === '/play2d' || reqPath === '/play2d/') reqPath = '/play2d/index.html';
 
     const safePath = path.normalize(path.join(BASE_DIR, reqPath));
