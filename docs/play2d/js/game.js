@@ -228,6 +228,7 @@ class FightGame {
         const p2Prefix = (this.gameMode === 'VERSUS') ? (window.i18n ? window.i18n.t('vsP2Select') : 'P2: ') : (window.i18n ? window.i18n.t('cpuSelect') : 'CPU: ');
         document.getElementById('p1SelectLabel').textContent = `${p1Prefix}${p1Name}`;
         document.getElementById('p2SelectLabel').textContent = `${p2Prefix}${p2Name}`;
+        if (window.i18n) window.i18n.applyTranslations();
     }
 
     startMatch() {
@@ -258,6 +259,7 @@ class FightGame {
         document.getElementById('vsP2Img').src = this.player2Char === 'ryu' ? 'assets/portrait_jin.png' : 'assets/portrait_lihua.png';
         document.getElementById('vsP1Name').textContent = p1DisplayName;
         document.getElementById('vsP2Name').textContent = p2DisplayName;
+        if (window.i18n) window.i18n.applyTranslations();
         this.showScreen('vsIntro');
         window.fightAudio.speak(`${this.p1.charId === 'ryu' ? 'Jin' : 'Li Hua'} VERSUS ${this.p2.charId === 'ryu' ? 'Jin' : 'Li Hua'}`);
 

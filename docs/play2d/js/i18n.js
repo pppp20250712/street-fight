@@ -57,7 +57,16 @@ const I18N_DATA = {
         sp2LabelJin: 'SHORYUKEN',
         sp1LabelLi: 'RAPID KICK',
         sp2LabelLi: 'WHIRLWIND',
-        btnMax: 'MAX'
+        btnMax: 'MAX',
+        btn3D: '🌟 3D HD VERSION',
+        btnLp: 'LP',
+        btnHp: 'HP',
+        btnKick: 'KICK',
+        btnSuper: 'MAX SUPER',
+        btnSp1Default: 'HADOU/KICK',
+        btnSp2Default: 'SHORYU/SPIN',
+        soundTitle: 'Sound Effects SFX',
+        musicTitle: 'Music BGM',
     },
     'zh-Hant': {
         name: '繁體中文',
@@ -101,7 +110,16 @@ const I18N_DATA = {
         sp2LabelJin: '昇龍拳',
         sp1LabelLi: '百裂腳',
         sp2LabelLi: '旋風飛腿',
-        btnMax: '大絕招'
+        btnMax: '大絕招',
+        btn3D: '🌟 3D 高畫質版 3D HD',
+        btnLp: '輕拳',
+        btnHp: '重拳',
+        btnKick: '踢擊',
+        btnSuper: '大絕招',
+        btnSp1Default: '氣功/百裂',
+        btnSp2Default: '昇龍/旋風',
+        soundTitle: '音效開關 SFX',
+        musicTitle: '音樂開關 BGM',
     },
     'zh-Hans': {
         name: '简体中文',
@@ -145,7 +163,16 @@ const I18N_DATA = {
         sp2LabelJin: '升龙拳',
         sp1LabelLi: '百裂脚',
         sp2LabelLi: '旋风飞腿',
-        btnMax: '大绝招'
+        btnMax: '大绝招',
+        btn3D: '🌟 3D 高画质版 3D HD',
+        btnLp: '轻拳',
+        btnHp: '重拳',
+        btnKick: '踢击',
+        btnSuper: '超必杀',
+        btnSp1Default: '气功/百裂',
+        btnSp2Default: '升龙/旋风',
+        soundTitle: '音效开关 SFX',
+        musicTitle: '音乐开关 BGM',
     },
     'ja': {
         name: '日本語',
@@ -189,7 +216,16 @@ const I18N_DATA = {
         sp2LabelJin: '昇龍拳',
         sp1LabelLi: '百裂脚',
         sp2LabelLi: '旋風脚',
-        btnMax: '超奥義'
+        btnMax: '超奥義',
+        btn3D: '🌟 3D HD モード',
+        btnLp: '弱P',
+        btnHp: '強P',
+        btnKick: 'キック',
+        btnSuper: '超必殺',
+        btnSp1Default: '波動/百裂',
+        btnSp2Default: '昇竜/旋風',
+        soundTitle: '効果音 SFX',
+        musicTitle: '音楽 BGM',
     },
     'ko': {
         name: '한국어',
@@ -233,7 +269,16 @@ const I18N_DATA = {
         sp2LabelJin: '승룡권',
         sp1LabelLi: '백열각',
         sp2LabelLi: '선풍각',
-        btnMax: '초필살'
+        btnMax: '초필살',
+        btn3D: '🌟 3D HD 모드',
+        btnLp: '약P',
+        btnHp: '강P',
+        btnKick: '킥',
+        btnSuper: '초필살',
+        btnSp1Default: '파동/백열',
+        btnSp2Default: '승룡/선풍',
+        soundTitle: '효과음 SFX',
+        musicTitle: '배경음악 BGM',
     },
     'th': {
         name: 'ไทย',
@@ -277,7 +322,16 @@ const I18N_DATA = {
         sp2LabelJin: 'หมัดมังกร',
         sp1LabelLi: 'เตะรัว',
         sp2LabelLi: 'เตะหมุน',
-        btnMax: 'อัลติเมท'
+        btnMax: 'อัลติเมท',
+        btn3D: '🌟 โหมด 3D HD',
+        btnLp: 'หมัดเบา',
+        btnHp: 'หมัดหนัก',
+        btnKick: 'เตะ',
+        btnSuper: 'ไม้ตายสุดยอด',
+        btnSp1Default: 'พลังคลื่น/ร้อยเตะ',
+        btnSp2Default: 'หมัดมังกร/พายุหมุน',
+        soundTitle: 'เอฟเฟกต์เสียง SFX',
+        musicTitle: 'ดนตรี BGM',
     },
     'vi': {
         name: 'Tiếng Việt',
@@ -321,7 +375,16 @@ const I18N_DATA = {
         sp2LabelJin: 'THĂNG LONG',
         sp1LabelLi: 'BÁCH LIỆT',
         sp2LabelLi: 'TOÀN PHONG',
-        btnMax: 'TẤT SÁT'
+        btnMax: 'TẤT SÁT',
+        btn3D: '🌟 Bản 3D HD',
+        btnLp: 'Đấm nhẹ',
+        btnHp: 'Đấm mạnh',
+        btnKick: 'Đá',
+        btnSuper: 'Đại tuyệt kỹ',
+        btnSp1Default: 'Chưởng/Bách liệt',
+        btnSp2Default: 'Thăng long/Toái phong',
+        soundTitle: 'Âm thanh SFX',
+        musicTitle: 'Nhạc nền BGM',
     },
     'id': {
         name: 'Bahasa Indonesia',
@@ -365,7 +428,16 @@ const I18N_DATA = {
         sp2LabelJin: 'SHORYUKEN',
         sp1LabelLi: 'TENDANG KILAT',
         sp2LabelLi: 'TENDANG PUTAR',
-        btnMax: 'PAMUNGKAS'
+        btnMax: 'PAMUNGKAS',
+        btn3D: '🌟 Mode 3D HD',
+        btnLp: 'Pukul 1',
+        btnHp: 'Pukul 2',
+        btnKick: 'Tendang',
+        btnSuper: 'Jurus Super',
+        btnSp1Default: 'Hadou/Kilat',
+        btnSp2Default: 'Shoryu/Pusaran',
+        soundTitle: 'Efek Suara SFX',
+        musicTitle: 'Musik Latar BGM',
     },
     'ms': {
         name: 'Bahasa Melayu',
@@ -409,7 +481,16 @@ const I18N_DATA = {
         sp2LabelJin: 'SHORYUKEN',
         sp1LabelLi: 'TENDANG KILAT',
         sp2LabelLi: 'TENDANG PUSARAN',
-        btnMax: 'ULTIMATE'
+        btnMax: 'ULTIMATE',
+        btn3D: '🌟 Mod 3D HD',
+        btnLp: 'Tumbuk 1',
+        btnHp: 'Tumbuk 2',
+        btnKick: 'Tendang',
+        btnSuper: 'Gerakan Super',
+        btnSp1Default: 'Hadou/Kilat',
+        btnSp2Default: 'Shoryu/Pusaran',
+        soundTitle: 'Kesan Bunyi SFX',
+        musicTitle: 'Muzik BGM',
     },
     'fil': {
         name: 'Filipino',
@@ -453,7 +534,16 @@ const I18N_DATA = {
         sp2LabelJin: 'SHORYUKEN',
         sp1LabelLi: 'KIDLAT SIPA',
         sp2LabelLi: 'BUHAWI SIPA',
-        btnMax: 'ULTIMATE'
+        btnMax: 'ULTIMATE',
+        btn3D: '🌟 Bersyong 3D HD',
+        btnLp: 'Suntok 1',
+        btnHp: 'Suntok 2',
+        btnKick: 'Sipa',
+        btnSuper: 'Super MAX',
+        btnSp1Default: 'Hadou/Sipa',
+        btnSp2Default: 'Shoryu/Ipu-ipo',
+        soundTitle: 'Sound FX',
+        musicTitle: 'Musika BGM',
     },
     'hi': {
         name: 'हिन्दी',
@@ -497,7 +587,16 @@ const I18N_DATA = {
         sp2LabelJin: 'शोरियूकेन',
         sp1LabelLi: 'तीव्र लातें',
         sp2LabelLi: 'चक्रवात लात',
-        btnMax: 'महाप्रहार'
+        btnMax: 'महाप्रहार',
+        btn3D: '🌟 3D HD संस्करण',
+        btnLp: 'हल्का पंच',
+        btnHp: 'भारी पंच',
+        btnKick: 'किक',
+        btnSuper: 'सुपर मैक्स',
+        btnSp1Default: 'हादो/लात',
+        btnSp2Default: 'ड्रैगन/बवंडर',
+        soundTitle: 'ध्वनि प्रभाव SFX',
+        musicTitle: 'संगीत BGM',
     }
 };
 
@@ -542,7 +641,7 @@ class I18nManager {
         this.listeners.push(cb);
     }
 
-    applyTranslations() {
+        applyTranslations() {
         const d = I18N_DATA[this.currentLang] || I18N_DATA['en'];
 
         // Title Screen
@@ -555,6 +654,7 @@ class I18nManager {
         const titleSub = document.querySelector('.title-sub-logo');
         if (titleSub) titleSub.textContent = d.titleSub;
 
+        // Title Menu Buttons
         const btnArcade = document.getElementById('btnModeArcade');
         if (btnArcade) btnArcade.innerHTML = `<span>🥊</span><span>${d.btnArcade.replace('🥊 ', '')}</span>`;
 
@@ -564,11 +664,21 @@ class I18nManager {
         const btnTraining = document.getElementById('btnModeTraining');
         if (btnTraining) btnTraining.innerHTML = `<span>🥋</span><span>${d.btnTraining.replace('🥋 ', '')}</span>`;
 
-        const btnDocs = document.querySelector('.title-menu-options a[href="../"], .title-menu-options a[href="./"]');
+        const btn3d = document.getElementById('btnLink3D') || document.querySelector('.title-menu-options a[href="../play/"], .title-menu-options a[href="./play/"]');
+        if (btn3d && d.btn3D) btn3d.innerHTML = `<span>🌟</span><span>${d.btn3D.replace('🌟 ', '')}</span>`;
+
+        const btnDocs = document.getElementById('btnLinkDocs') || document.querySelector('.title-menu-options a[href="../"], .title-menu-options a[href="./"]');
         if (btnDocs) btnDocs.innerHTML = `<span>📖</span><span>${d.btnDocs.replace('📖 ', '')}</span>`;
 
-        const controlsBar = document.querySelector('.title-bottom-bar > div:first-child');
+        const controlsBar = document.getElementById('controlsBarText') || document.querySelector('.title-bottom-bar > div:first-child');
         if (controlsBar) controlsBar.textContent = d.controlsBar;
+
+        // Top-Right Settings Buttons (Tooltips / title)
+        const btnSound = document.getElementById('btnFightSound');
+        if (btnSound && d.soundTitle) btnSound.title = d.soundTitle;
+
+        const btnMusic = document.getElementById('btnFightMusic');
+        if (btnMusic && d.musicTitle) btnMusic.title = d.musicTitle;
 
         // Character Select Screen
         const charTitle = document.querySelector('#screen_charSelect h2');
@@ -592,6 +702,19 @@ class I18nManager {
             if (style) style.textContent = d.lihuaStyle;
             const moves = cardLi.querySelector('.char-moves');
             if (moves) moves.innerHTML = d.lihuaMoves.map(m => `<div>${m}</div>`).join('');
+        }
+
+        const p1Sel = document.getElementById('p1SelectLabel');
+        if (p1Sel) {
+            const p1Name = (window.game && window.game.player1Char === 'chunli') ? d.lihuaName : d.jinName;
+            p1Sel.textContent = `${d.p1Select}${p1Name}`;
+        }
+        const p2Sel = document.getElementById('p2SelectLabel');
+        if (p2Sel) {
+            const isVersus = window.game && window.game.gameMode === 'VERSUS';
+            const prefix = isVersus ? d.vsP2Select : d.cpuSelect;
+            const p2Name = (window.game && window.game.player2Char === 'ryu') ? d.jinName : d.lihuaName;
+            p2Sel.textContent = `${prefix}${p2Name}`;
         }
 
         const btnStart = document.getElementById('btnStartMatch');
@@ -618,13 +741,27 @@ class I18nManager {
         const btnQuit = document.getElementById('btnQuitToTitle');
         if (btnQuit) btnQuit.innerHTML = `<span>🏠</span><span>${d.returnMenu.replace('🏠 ', '')}</span>`;
 
-        // Virtual mobile button labels
+        // Virtual mobile action buttons
+        const vLp = document.querySelector('#vbtn_lp span:last-child');
+        if (vLp && d.btnLp) vLp.textContent = d.btnLp;
+
+        const vHp = document.querySelector('#vbtn_hp span:last-child');
+        if (vHp && d.btnHp) vHp.textContent = d.btnHp;
+
+        const vKick = document.querySelector('#vbtn_kick span:last-child');
+        if (vKick && d.btnKick) vKick.textContent = d.btnKick;
+
+        const vSuper = document.querySelector('#vbtn_super span:last-child');
+        if (vSuper && (d.btnSuper || d.btnMax)) vSuper.textContent = d.btnSuper || d.btnMax;
+
         const vSp1Sub = document.querySelector('#vbtn_sp1 span:last-child');
         const vSp2Sub = document.querySelector('#vbtn_sp2 span:last-child');
-        if (vSp1Sub && vSp2Sub && window.game) {
-            const isJin = window.game.player1Char === 'ryu';
-            vSp1Sub.textContent = isJin ? d.sp1LabelJin : d.sp1LabelLi;
-            vSp2Sub.textContent = isJin ? d.sp2LabelJin : d.sp2LabelLi;
+        const isJin = !window.game || (window.game.player1Char === 'ryu');
+        if (vSp1Sub) {
+            vSp1Sub.textContent = window.game ? (isJin ? d.sp1LabelJin : d.sp1LabelLi) : (d.btnSp1Default || `${d.sp1LabelJin}/${d.sp1LabelLi}`);
+        }
+        if (vSp2Sub) {
+            vSp2Sub.textContent = window.game ? (isJin ? d.sp2LabelJin : d.sp2LabelLi) : (d.btnSp2Default || `${d.sp2LabelJin}/${d.sp2LabelLi}`);
         }
     }
 
