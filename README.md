@@ -86,3 +86,13 @@ node server.js
 - `play/` — 瀏覽器可玩版本 (自含式)
 - `docs/` — GitHub Pages 網站 (說明文件 + 瀏覽器試玩)
 - `android/` — Android Studio Gradle 專案
+- `security_check.py` — 自動化安全性與零登入審查腳本
+
+---
+
+## 🛡️ 安全性與隱私保障 (Security & Privacy Audit)
+
+本專案經過嚴格安全性稽核，保證：
+- 🔒 **無須登入 (Zero-Login)**：網頁端與 Android 原生端完全無須任何帳號、密碼或註冊機制，開啟即可直接遊玩。
+- 🚫 **零憑證與密碼 (Zero Credentials / Passwords)**：全專案原始碼絕無包含任何帳號 ID、密碼、資料庫連線、API Token 或私鑰。
+- ⚡ **自動化安全審查 (Automated Security CI)**：專案內建 `security_check.py` 並配置 GitHub Actions CI 工作流程，每次推送均自動掃描，確保 100% 隱私與安全。
