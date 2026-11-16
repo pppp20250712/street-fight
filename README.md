@@ -17,7 +17,7 @@
 
 ### 🎮 線上直接玩 · Instant Play
 
-| 模式 | 連結 Link | 特色 Description |
+| 模式 Mode | 連結 Link | 特色 Description |
 | :--- | :--- | :--- |
 | 🌟 **3D 高畫質版 (3D HD)** | [▶️ **Play 3D HD**](https://pppp20250712.github.io/street-fight/play/) | WebGL2 即時 3D 模型渲染、霓虹光影與打擊特效 |
 | 🥊 **2D 復古街機版 (2D Arcade)** | [▶️ **Play 2D Arcade**](https://pppp20250712.github.io/street-fight/play2d/) | 經典 2D 雙人立回對決、精靈圖動作、道場練習 |
@@ -32,17 +32,16 @@
 ### ✨ 核心亮點 · Highlights
 
 - **雙版本引擎**：自研 WebGL2 3D 高畫質版與經典 2D 復古街機版，一鍵無縫切換。
-- **三種遊戲模式**：
-  - 🥊 **街機單人 (Arcade)**：迎戰智慧 AI 對手，支援跳躍迎擊與立回防守。
-  - ⚔️ **雙人對決 (Versus)**：單機同螢幕雙人即時對打。
-  - 🥋 **道場練習 (Training)**：無限時間、血量自動回復、超必殺計量表隨時施放。
+- **三種遊戲模式**：街機單人 AI (Arcade)、雙人同屏對決 (Versus) 與無限血量道場練習 (Training)。
 - **11 種多國語言**：右上角即時切換 English、🇹🇼/🇭🇰 TW/HK 繁體中文、🇨🇳 简体中文、🇯🇵 日本語、🇰🇷 한국어、🇹🇭 ไทย、🇻🇳 Tiếng Việt、🇮🇩 Bahasa Indonesia、🇲🇾 Bahasa Melayu、🇵🇭 Filipino、🇮🇳 हिन्दी。
 - **手機 & Android 原生支援**：完整虛擬街機搖桿按鍵與 Android 原生震動回饋 (`com.hkaiSolveAcadcmy.vibeCoding.patrickpak`)。
 - **100% 隱私與安全**：零登入 (Zero-Login)、零密碼憑證、純前端運算，確保安全無虞。
 
 ---
 
-### 🕹️ 操作方式 · Quick Controls
+<details>
+<summary><b>🕹️ 點擊展開：操作方式與出招表 · Quick Controls (預設折疊)</b></summary>
+<br/>
 
 | 動作 Action | P1 鍵盤 Keyboard | 手機觸控 Touch |
 | :--- | :--- | :--- |
@@ -55,14 +54,38 @@
 
 > 雙人模式 Player 2 可使用小鍵盤數字鍵操作 (`方向鍵` 移動、`1/2` 拳、`4` 踢、`5/6` 必殺、`Enter` 超必殺)。
 
----
+</details>
 
-### 📱 Android 專案 · Android App
+<br/>
+
+<details>
+<summary><b>📁 點擊展開：極簡目錄架構 · Project Structure (預設折疊)</b></summary>
+<br/>
+
+```text
+📁 .github     # CI 自動化安全檢測工作流
+📁 android     # 完整 Android Studio 原生專案 (com.hkaiSolveAcadcmy.vibeCoding.patrickpak)
+📁 assets      # 遊戲圖形素材、精靈圖與說明腳本
+📁 docs        # GitHub Pages 官方網站與試玩部署
+📁 web         # 網頁遊戲雙引擎原始碼 (web/play/ 3D HD 與 web/play2d/ 2D Arcade)
+```
+
+</details>
+
+<br/>
+
+<details>
+<summary><b>📱 點擊展開：Android 專案編譯指南 · Android Studio Guide (預設折疊)</b></summary>
+<br/>
 
 專案內建完整的 Android Studio Gradle 專案（位於 `/android` 目錄）：
 - **App ID**: `com.hkaiSolveAcadcmy.vibeCoding.patrickpak`
 - **架構**: 原生全螢幕沉浸式硬體加速 WebView + 觸覺震動橋接
 - **編譯**: 可直接使用 Android Studio 開啟執行，或以 `./gradlew assembleRelease` 輸出 APK。
+
+</details>
+
+<br/>
 
 ---
 
