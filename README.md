@@ -33,7 +33,7 @@
 
 - **雙版本引擎**：自研 WebGL2 3D 高畫質版與經典 2D 復古街機版，一鍵無縫切換。
 - **三種遊戲模式**：街機單人 AI (Arcade)、雙人同屏對決 (Versus) 與無限血量道場練習 (Training)。
-- **11 種多國語言**：右上角即時切換 English、🇹🇼/🇭🇰 TW/HK 繁體中文、🇨🇳 简体中文、🇯🇵 日本語、🇰🇷 한국어、🇹🇭 ไทย、🇻🇳 Tiếng Việt、🇮🇩 Bahasa Indonesia、🇲🇾 Bahasa Melayu、🇵🇭 Filipino、🇮🇳 हिन्दी。
+- **11 種多國語言**：右上角即時切換 English、🇹🇼/🇭🇰 繁體中文、🇨🇳 简体中文、🇯🇵 日本語、🇰🇷 한국어、🇹🇭 ไทย、🇻🇳 Tiếng Việt、🇮🇩 Bahasa Indonesia、🇲🇾 Bahasa Melayu、🇵🇭 Filipino、🇮🇳 हिन्दी。
 - **手機 & Android 原生支援**：完整虛擬街機搖桿按鍵與 Android 原生震動回饋 (`com.hkaiSolveAcadcmy.vibeCoding.patrickpak`)。
 - **100% 隱私與安全**：零登入 (Zero-Login)、零密碼憑證、純前端運算，確保安全無虞。
 

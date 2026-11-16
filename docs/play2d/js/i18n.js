@@ -60,7 +60,7 @@ const I18N_DATA = {
         btnMax: 'MAX'
     },
     'zh-Hant': {
-        name: 'TW/HK 繁體中文',
+        name: '繁體中文',
         flag: '🇹🇼/🇭🇰',
         tagline: '經典 2D 街機格鬥再現',
         titleMain: '街頭對決',
