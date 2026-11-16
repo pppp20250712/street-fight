@@ -31,7 +31,7 @@ const I18N_3D = {
     draw: 'DOUBLE KO / DRAW',
     tapContinue: 'TAP TO CONTINUE',
     navDocs: '← Game Docs',
-    nav2d: '🕹️ 2D Arcade Mode'
+    nav2d: '🕹️ 2D Arcade Mode',
     soundTitle: 'Sound FX (SFX)',
   },
   'zh-Hant': {
@@ -60,7 +60,7 @@ const I18N_3D = {
     draw: '雙方平手 DRAW',
     tapContinue: '點擊返回選單  TAP TO CONTINUE',
     navDocs: '← 說明 Docs',
-    nav2d: '🕹️ 切換 2D 街機版 (2D Arcade)'
+    nav2d: '🕹️ 切換 2D 街機版 (2D Arcade)',
     soundTitle: '音效開關 SFX',
   },
   'zh-Hans': {
@@ -89,7 +89,7 @@ const I18N_3D = {
     draw: '平手 DRAW',
     tapContinue: '点击返回主菜单  TAP TO CONTINUE',
     navDocs: '← 说明 Docs',
-    nav2d: '🕹️ 切换 2D 街机版 (2D Arcade)'
+    nav2d: '🕹️ 切换 2D 街机版 (2D Arcade)',
     soundTitle: '音效开关 SFX',
   },
   'ja': {
@@ -118,7 +118,7 @@ const I18N_3D = {
     draw: '引き分け DRAW',
     tapContinue: 'タップして続ける  TAP TO CONTINUE',
     navDocs: '← 説明 Docs',
-    nav2d: '🕹️ 2D アーケード版へ'
+    nav2d: '🕹️ 2D アーケード版へ',
     soundTitle: '効果音 SFX',
   },
   'ko': {
@@ -147,7 +147,7 @@ const I18N_3D = {
     draw: '무승부 DRAW',
     tapContinue: '계속하려면 탭하세요',
     navDocs: '← 게임 설명 Docs',
-    nav2d: '🕹️ 2D 아케이드 버전'
+    nav2d: '🕹️ 2D 아케이드 버전',
     soundTitle: '효과음 SFX',
   },
   'th': {
@@ -176,7 +176,7 @@ const I18N_3D = {
     draw: 'เสมอ DRAW',
     tapContinue: 'แตะเพื่อดำเนินการต่อ',
     navDocs: '← คู่มือ Docs',
-    nav2d: '🕹️ สลับไป 2D อาร์เคด'
+    nav2d: '🕹️ สลับไป 2D อาร์เคด',
     soundTitle: 'เอฟเฟกต์เสียง SFX',
   },
   'vi': {
@@ -205,7 +205,7 @@ const I18N_3D = {
     draw: 'HÒA DRAW',
     tapContinue: 'CHẠM ĐỂ TIẾP TỤC',
     navDocs: '← Hướng dẫn Docs',
-    nav2d: '🕹️ Chuyển sang bản 2D'
+    nav2d: '🕹️ Chuyển sang bản 2D',
     soundTitle: 'Âm thanh SFX',
   },
   'id': {
@@ -234,7 +234,7 @@ const I18N_3D = {
     draw: 'SERI DRAW',
     tapContinue: 'SENTUH UNTUK MELANJUTKAN',
     navDocs: '← Panduan Docs',
-    nav2d: '🕹️ Beralih ke 2D Arcade'
+    nav2d: '🕹️ Beralih ke 2D Arcade',
     soundTitle: 'Efek Suara SFX',
   },
   'ms': {
@@ -263,7 +263,7 @@ const I18N_3D = {
     draw: 'SERI DRAW',
     tapContinue: 'SENTUH UNTUK TERUSKAN',
     navDocs: '← Panduan Docs',
-    nav2d: '🕹️ Tukar ke 2D Arked'
+    nav2d: '🕹️ Tukar ke 2D Arked',
     soundTitle: 'Kesan Bunyi SFX',
   },
   'fil': {
@@ -292,7 +292,7 @@ const I18N_3D = {
     draw: 'PATAS DRAW',
     tapContinue: 'I-TAP PARA MAGPATULOY',
     navDocs: '← Gabay Docs',
-    nav2d: '🕹️ Lumipat sa 2D Arcade'
+    nav2d: '🕹️ Lumipat sa 2D Arcade',
     soundTitle: 'Sound FX',
   },
   'hi': {
@@ -321,7 +321,7 @@ const I18N_3D = {
     draw: 'बराबरी DRAW',
     tapContinue: 'जारी रखने के लिए टैप करें',
     navDocs: '← निर्देश Docs',
-    nav2d: '🕹️ 2D आर्केड मोड'
+    nav2d: '🕹️ 2D आर्केड मोड',
     soundTitle: 'ध्वनि प्रभाव SFX',
   }
 };
