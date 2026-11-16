@@ -60,8 +60,8 @@ const I18N_DATA = {
         btnMax: 'MAX'
     },
     'zh-Hant': {
-        name: '繁體中文',
-        flag: '🇭🇰',
+        name: 'TW/HK 繁體中文',
+        flag: '🇹🇼/🇭🇰',
         tagline: '經典 2D 街機格鬥再現',
         titleMain: '街頭對決',
         titleSub: '霸王再現 · HYPER CLASH',
