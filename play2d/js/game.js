@@ -231,8 +231,10 @@ class FightGame {
         this.p1 = new Fighter(this.player1Char, 280, false);
         this.p2 = new Fighter(this.player2Char, 680, true);
 
-        if (this.gameMode === 'ARCADE' || this.gameMode === 'TRAINING') {
-            this.ai = new FighterAI(this.p2, this.p1, this.gameMode === 'TRAINING' ? 'easy' : 'normal');
+        if (this.gameMode === 'ARCADE') {
+            this.ai = new FighterAI(this.p2, this.p1, 'normal');
+        } else if (this.gameMode === 'TRAINING') {
+            this.ai = new FighterAI(this.p2, this.p1, 'training');
         } else {
             this.ai = null;
         }
@@ -286,7 +288,7 @@ class FightGame {
         window.fxManager.clear();
         this.showScreen('game');
 
-        const roundText = roundNumber === 3 ? 'FINAL ROUND' : `ROUND ${roundNumber}`;
+        const roundText = this.gameMode === 'TRAINING' ? 'TRAINING DOJO' : (roundNumber === 3 ? 'FINAL ROUND' : `ROUND ${roundNumber}`);
         this.roundIntroText = roundText;
         window.fightAudio.speak(`${roundText}... FIGHT!`);
         window.fightAudio.startBGM();
@@ -348,7 +350,11 @@ class FightGame {
         document.getElementById('p2Rounds').textContent = '●'.repeat(this.p2.roundsWon);
 
         // Timer
-        document.getElementById('timerBox').textContent = Math.ceil(this.roundTimer).toString();
+        if (this.gameMode === 'TRAINING') {
+            document.getElementById('timerBox').textContent = '∞';
+        } else {
+            document.getElementById('timerBox').textContent = Math.ceil(this.roundTimer).toString();
+        }
     }
 
     loop(timestamp) {
@@ -374,13 +380,23 @@ class FightGame {
 
         if (this.state === 'FIGHTING') {
             // Round Timer countdown
-            this.roundTimer -= dt;
-            if (this.roundTimer <= 0) {
-                this.roundTimer = 0;
-                // Time Over decision
-                const winner = this.p1.hp > this.p2.hp ? 'p1' : (this.p2.hp > this.p1.hp ? 'p2' : 'draw');
-                this.onRoundEnd(winner);
-                return;
+            if (this.gameMode === 'TRAINING') {
+                this.roundTimer = 99;
+                this.p1.superGauge = 100; // Infinite Super gauge in training
+                if (this.p1.hp < this.p1.maxHp) this.p1.hp = this.p1.maxHp;
+                // Dummy smoothly recovers HP
+                if (this.p2.hp < 160) {
+                    this.p2.hp = Math.min(this.p2.maxHp, this.p2.hp + 200 * dt);
+                }
+            } else {
+                this.roundTimer -= dt;
+                if (this.roundTimer <= 0) {
+                    this.roundTimer = 0;
+                    // Time Over decision
+                    const winner = this.p1.hp > this.p2.hp ? 'p1' : (this.p2.hp > this.p1.hp ? 'p2' : 'draw');
+                    this.onRoundEnd(winner);
+                    return;
+                }
             }
 
             // Player 1 Input Handling
@@ -432,10 +448,19 @@ class FightGame {
             }
 
             // Check KO
-            if (this.p1.hp <= 0 && this.state === 'FIGHTING') {
-                this.onRoundEnd('p2');
-            } else if (this.p2.hp <= 0 && this.state === 'FIGHTING') {
-                this.onRoundEnd('p1');
+            if (this.gameMode === 'TRAINING') {
+                if (this.p2.hp <= 0) {
+                    this.p2.hp = this.p2.maxHp;
+                    this.p2.displayHp = this.p2.maxHp;
+                    this.p2.state = 'IDLE';
+                    window.fxManager.addHitSparks(this.p2.x, this.p2.y - 60, '#38bdf8', 15);
+                }
+            } else {
+                if (this.p1.hp <= 0 && this.state === 'FIGHTING') {
+                    this.onRoundEnd('p2');
+                } else if (this.p2.hp <= 0 && this.state === 'FIGHTING') {
+                    this.onRoundEnd('p1');
+                }
             }
 
             this.updateHUD();

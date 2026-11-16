@@ -13,6 +13,17 @@ class FighterAI {
     update(dt) {
         if (this.fighter.state === 'KO' || this.opponent.state === 'KO') return;
 
+        // 0. Training Dummy Mode - Stands as combat dummy for move practice
+        if (this.difficulty === 'training') {
+            this.fighter.isBlocking = false;
+            this.fighter.facing = this.opponent.x > this.fighter.x ? 1 : -1;
+            if (this.fighter.state !== 'HIT' && this.fighter.isGrounded) {
+                this.fighter.state = 'IDLE';
+                this.fighter.vx = 0;
+            }
+            return;
+        }
+
         this.decisionTimer += dt;
         if (this.decisionTimer < this.decisionInterval) return;
         this.decisionTimer = 0;

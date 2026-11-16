@@ -22,7 +22,7 @@ class Game {
     this.joyX = 0; this.joyY = 0; this.joyR = 1; this.knobX = 0; this.knobY = 0;
     this.btnX = [0, 0, 0]; this.btnY = [0, 0, 0]; this.btnR = 1;
     this.btnMain = ['拳', '腳', '必殺']; this.btnSub = ['PUNCH', 'KICK', 'SPECIAL']; this.btnColor = ['#ff8a2a', '#3a9bff', '#c04aff'];
-    this.diffNames = ['簡單 EASY', '普通 NORMAL', '困難 HARD'];
+    this.diffNames = ['簡單 EASY', '普通 NORMAL', '困難 HARD', '🥋 練習 TRAINING'];
     this.joyId = -1; this.btnId = [-1, -1, -1];
     this.kLeft = false; this.kRight = false; this.kUp = false; this.kDown = false;
     this.latchP = false; this.latchK = false; this.latchS = false;
@@ -68,7 +68,7 @@ class Game {
     if (this.tapped) {
       if (inRect(this.cardA, this.tapX, this.tapY)) { this.selected = 0; this.startMatch(0); }
       else if (inRect(this.cardB, this.tapX, this.tapY)) { this.selected = 1; this.startMatch(1); }
-      else if (inRect(this.diffBtn, this.tapX, this.tapY)) { this.difficulty = (this.difficulty + 1) % 3; this.sfx.play('select'); }
+      else if (inRect(this.diffBtn, this.tapX, this.tapY)) { this.difficulty = (this.difficulty + 1) % 4; this.sfx.play('select'); }
     } else if (this.keyConfirm) this.startMatch(this.selected);
   }
   startMatch(i) {
@@ -99,12 +99,24 @@ class Game {
         if (this.phaseT >= 110) { this.phase = Phase.PLAY; this.phaseT = 0; p1.setState(St.IDLE); p2.setState(St.IDLE); }
         break;
       case Phase.PLAY: {
-        if (this.timer > 0) this.timer--;
-        const ain = this.ai.think(p2, p1, this.projs);
+        const isTraining = this.difficulty === 3;
+        if (!isTraining && this.timer > 0) this.timer--;
+        const ain = isTraining ? this.empty : this.ai.think(p2, p1, this.projs);
         p1.update(this.p1in, p2, this); p2.update(ain, p1, this);
         this.separate(); this.checkHit(p1, p2); this.checkHit(p2, p1); this.updateProjs();
         if (this.comboT > 0) this.comboT--;
-        if (p1.hp <= 0 || p2.hp <= 0) this.endRound(true); else if (this.timer <= 0) this.endRound(false);
+
+        if (isTraining) {
+          // Training dummy automatically regenerates health
+          if (p2.hp < 130) p2.hp = Math.min(p2.maxHp, p2.hp + 1.2);
+          if (p1.hp < p1.maxHp) p1.hp = p1.maxHp;
+          if (p2.hp <= 0) {
+            p2.hp = p2.maxHp;
+            p2.setState(St.IDLE);
+          }
+        } else {
+          if (p1.hp <= 0 || p2.hp <= 0) this.endRound(true); else if (this.timer <= 0) this.endRound(false);
+        }
         break;
       }
       case Phase.KO: {
@@ -356,20 +368,26 @@ class Game {
     this.drawBar(c, p1, 14, true); this.drawBar(c, p2, 214, false);
     this.label(c, `${p1.style.name} ${p1.style.cn}`, X(14), Y(31), 9 * s, '#fff', 'left');
     this.label(c, `${p2.style.name} ${p2.style.cn}`, X(370), Y(31), 9 * s, '#fff', 'right');
+    const isTraining = this.difficulty === 3;
     this.label(c, 'YOU', X(14), Y(41), 6 * s, '#7cff7c', 'left');
-    this.label(c, 'CPU', X(370), Y(41), 6 * s, '#ff7c7c', 'right');
+    this.label(c, isTraining ? 'DUMMY' : 'CPU', X(370), Y(41), 6 * s, isTraining ? '#3fe8ff' : '#ff7c7c', 'right');
     for (let i = 0; i < 2; i++) {
       c.fillStyle = p1.wins > i ? '#ffd040' : 'rgba(0,0,0,0.4)'; c.beginPath(); c.arc(X(166 - i * 9), Y(27), 3 * s, 0, 7); c.fill();
       c.fillStyle = p2.wins > i ? '#ffd040' : 'rgba(0,0,0,0.4)'; c.beginPath(); c.arc(X(218 + i * 9), Y(27), 3 * s, 0, 7); c.fill();
     }
     c.fillStyle = 'rgba(0,0,0,0.8)'; c.beginPath(); c.roundRect(X(178), Y(5), 28 * s, 19 * s, 3 * s); c.fill();
-    const secs = Math.floor((this.timer + 59) / 60);
-    this.label(c, String(secs), X(192), Y(21), 16 * s, secs <= 10 ? '#ff5a3a' : '#fff');
+    const secs = isTraining ? '∞' : String(Math.floor((this.timer + 59) / 60));
+    this.label(c, secs, X(192), Y(21), 16 * s, isTraining ? '#3fe8ff' : (parseInt(secs, 10) <= 10 ? '#ff5a3a' : '#fff'));
     if (this.comboT > 0) this.label(c, this.comboText, this.comboLeft ? X(20) : X(364), Y(70), 12 * s, '#ffd040', this.comboLeft ? 'left' : 'right');
     const cx = this.W / 2;
     if (this.phase === Phase.INTRO) {
-      if (this.phaseT < 80) this.label(c, `ROUND ${this.round}`, cx, Y(100), 28 * s, '#ffd040');
-      else this.label(c, 'FIGHT!  開打！', cx, Y(100), 30 * s, '#ff5a3a');
+      if (isTraining) {
+        if (this.phaseT < 80) this.label(c, 'TRAINING DOJO  道場練習', cx, Y(100), 24 * s, '#ffd040');
+        else this.label(c, 'PRACTICE!  自由練習！', cx, Y(100), 28 * s, '#3fe8ff');
+      } else {
+        if (this.phaseT < 80) this.label(c, `ROUND ${this.round}`, cx, Y(100), 28 * s, '#ffd040');
+        else this.label(c, 'FIGHT!  開打！', cx, Y(100), 30 * s, '#ff5a3a');
+      }
     } else if (this.phase === Phase.KO) {
       if (this.phaseT < 110) { const big = this.koText === 'K.O.' ? 46 : 30; this.label(c, this.koText, cx, Y(105), big * s, this.koText === 'K.O.' ? '#ff3a2a' : '#ffd040'); }
       else { const w = this.roundWinner; this.label(c, w ? `${w.style.name} WINS  勝！` : 'DOUBLE KO / DRAW  平手', cx, Y(100), 22 * s, '#fff'); }
