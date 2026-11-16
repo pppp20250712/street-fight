@@ -8,9 +8,11 @@
 
 - 📖 **說明網站 Docs**: [https://pppp20250712.github.io/street-fight/](https://pppp20250712.github.io/street-fight/)
 
-- 🌟 **3D 高畫質版試玩 Play 3D HD**: [https://pppp20250712.github.io/street-fight/play/](https://pppp20250712.github.io/street-fight/play/) (WebGL2 3D 著色器模型、即時陰影、霓虹光影與 4x MSAA)
+- 🌟 **3D 高畫質版試玩 Play 3D HD**: [https://pppp20250712.github.io/street-fight/play/](https://pppp20250712.github.io/street-fight/play/)
+- (WebGL2 3D 著色器模型、即時陰影、霓虹光影與 4x MSAA)
 
-- 🥊 **2D 復古街機版試玩 Play 2D Arcade**: [https://pppp20250712.github.io/street-fight/play2d/](https://pppp20250712.github.io/street-fight/play2d/) (經典街機雙人與神拳·晉/飛鳳·麗華精靈圖對決)
+- 🥊 **2D 復古街機版試玩 Play 2D Arcade**: [https://pppp20250712.github.io/street-fight/play2d/](https://pppp20250712.github.io/street-fight/play2d/)
+- (經典街機雙人與神拳·晉/飛鳳·麗華精靈圖對決)
 
 ---
 
