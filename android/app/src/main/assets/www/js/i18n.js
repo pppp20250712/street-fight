@@ -1,0 +1,440 @@
+/**
+ * Street Fight: Hyper Clash - i18n Localization Engine
+ * Languages supported:
+ * 1. en: English
+ * 2. zh-Hant: 繁體中文 (Traditional Chinese)
+ * 3. zh-Hans: 简体中文 (Simplified Chinese)
+ * 4. ja: 日本語 (Japanese)
+ * 5. ko: 한국어 (Korean)
+ * 6. th: ไทย (Thai)
+ */
+
+const I18N_DATA = {
+    'en': {
+        name: 'English',
+        flag: '🇬🇧',
+        tagline: 'RETRO 2D ARCADE FIGHTING',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'HYPER CLASH',
+        btnArcade: '🥊 ARCADE MODE',
+        btnVersus: '⚔️ 2P VERSUS MODE',
+        btnTraining: '🥋 TRAINING DOJO',
+        btnDocs: '📖 GAME MANUAL / DOCS',
+        controlsBar: 'Controls: WASD Move/Jump/Crouch | J/K Punch | U Kick | I/O Special | Space Super MAX',
+        charSelectTitle: 'SELECT YOUR FIGHTER',
+        jinName: 'JIN (God Hand)',
+        jinStyle: 'Kyokushin Karate / Ki Strike',
+        jinMoves: [
+            '• Light / Heavy Punch (J / K)',
+            '• HADOUKEN Ki Blast (I / SP1)',
+            '• SHORYUKEN Dragon Uppercut (O / SP2)',
+            '• SHINKU HADOUKEN Super (Space)'
+        ],
+        lihuaName: 'LI-HUA (Flying Phoenix)',
+        lihuaStyle: 'Shaolin Kicks / Agile Kempo',
+        lihuaMoves: [
+            '• Combo Punch / Kick (K / U)',
+            '• LIGHTNING KICKS Rapid Kick (I / SP1)',
+            '• WHIRLWIND Spin Kick (O / SP2)',
+            '• SENRETSUKYAKU Super (Space)'
+        ],
+        btnBattleStart: '🔥 BATTLE START',
+        p1Select: 'P1: ',
+        cpuSelect: 'CPU: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 SUPER GAUGE',
+        loading: 'LOADING FIGHT DATA & SOUNDS...',
+        rematch: '🔄 REMATCH',
+        returnMenu: '🏠 MAIN MENU',
+        winnerSuffix: ' WINS VICTORY!',
+        drawText: 'DRAW GAME',
+        sp1LabelJin: 'HADOUKEN',
+        sp2LabelJin: 'SHORYUKEN',
+        sp1LabelLi: 'RAPID KICK',
+        sp2LabelLi: 'WHIRLWIND',
+        btnMax: 'MAX'
+    },
+    'zh-Hant': {
+        name: '繁體中文',
+        flag: '🇭🇰',
+        tagline: '經典 2D 街機格鬥再現',
+        titleMain: '街頭對決',
+        titleSub: '霸王再現 · HYPER CLASH',
+        btnArcade: '🥊 街機單人模式 ARCADE',
+        btnVersus: '⚔️ 雙人對戰模式 VERSUS',
+        btnTraining: '🥋 道場練習模式 TRAINING',
+        btnDocs: '📖 說明網站 DOCS',
+        controlsBar: '操作：WASD 移動/跳躍/蹲下 | J/K 拳 | U 踢 | I/O 必殺技 | Space 終極超必殺',
+        charSelectTitle: '格鬥家選擇 SELECT FIGHTER',
+        jinName: 'JIN (神拳·晉)',
+        jinStyle: '極限流空手道 / 剛猛拳法',
+        jinMoves: [
+            '• 輕拳/重拳 (J / K)',
+            '• 氣功波 HADOUKEN (I / SP1)',
+            '• 昇龍拳 SHORYUKEN (O / SP2)',
+            '• 真空氣功連打 SHINKU HADOUKEN (Space)'
+        ],
+        lihuaName: 'LI-HUA (飛鳳·麗華)',
+        lihuaStyle: '少林腿法 / 迅捷格鬥術',
+        lihuaMoves: [
+            '• 連環重拳/踢擊 (K / U)',
+            '• 百裂腳 LIGHTNING KICKS (I / SP1)',
+            '• 旋風飛腿 WHIRLWIND (O / SP2)',
+            '• 千裂烈風霸 SENRETSUKYAKU (Space)'
+        ],
+        btnBattleStart: '🔥 進入對決 BATTLE START',
+        p1Select: 'P1: ',
+        cpuSelect: '電腦: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 SUPER GAUGE 能量條',
+        loading: '載入精靈圖形與音效中 LOADING FIGHT DATA...',
+        rematch: '🔄 重新對決 REMATCH',
+        returnMenu: '🏠 返回主選單 RETURN',
+        winnerSuffix: ' 獲勝 VICTORY!',
+        drawText: '平手 DRAW GAME',
+        sp1LabelJin: '波動拳',
+        sp2LabelJin: '昇龍拳',
+        sp1LabelLi: '百裂腳',
+        sp2LabelLi: '旋風飛腿',
+        btnMax: '大絕招'
+    },
+    'zh-Hans': {
+        name: '简体中文',
+        flag: '🇨🇳',
+        tagline: '经典 2D 街机格斗重现',
+        titleMain: '街头对决',
+        titleSub: '霸王再现 · HYPER CLASH',
+        btnArcade: '🥊 街机单人模式 ARCADE',
+        btnVersus: '⚔️ 双人对战模式 VERSUS',
+        btnTraining: '🥋 道场练习模式 TRAINING',
+        btnDocs: '📖 说明网站 DOCS',
+        controlsBar: '操作：WASD 移动/跳跃/蹲下 | J/K 拳 | U 踢 | I/O 必杀技 | Space 终极超必杀',
+        charSelectTitle: '格斗家选择 SELECT FIGHTER',
+        jinName: 'JIN (神拳·晋)',
+        jinStyle: '极限流空手道 / 刚猛拳法',
+        jinMoves: [
+            '• 轻拳/重拳 (J / K)',
+            '• 气功波 HADOUKEN (I / SP1)',
+            '• 升龙拳 SHORYUKEN (O / SP2)',
+            '• 真空气功连打 SHINKU HADOUKEN (Space)'
+        ],
+        lihuaName: 'LI-HUA (飞凤·丽华)',
+        lihuaStyle: '少林腿法 / 迅捷格斗术',
+        lihuaMoves: [
+            '• 连环重拳/踢击 (K / U)',
+            '• 百裂脚 LIGHTNING KICKS (I / SP1)',
+            '• 旋风飞腿 WHIRLWIND (O / SP2)',
+            '• 千裂烈风霸 SENRETSUKYAKU (Space)'
+        ],
+        btnBattleStart: '🔥 进入对决 BATTLE START',
+        p1Select: 'P1: ',
+        cpuSelect: '电脑: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 SUPER GAUGE 能量条',
+        loading: '载入精灵图形与音效中 LOADING FIGHT DATA...',
+        rematch: '🔄 重新对决 REMATCH',
+        returnMenu: '🏠 返回主菜单 RETURN',
+        winnerSuffix: ' 获胜 VICTORY!',
+        drawText: '平局 DRAW GAME',
+        sp1LabelJin: '波动拳',
+        sp2LabelJin: '升龙拳',
+        sp1LabelLi: '百裂脚',
+        sp2LabelLi: '旋风飞腿',
+        btnMax: '大绝招'
+    },
+    'ja': {
+        name: '日本語',
+        flag: '🇯🇵',
+        tagline: 'レトロ 2D アーケード対戦格闘',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'ハイパークラッシュ · 激闘',
+        btnArcade: '🥊 アーケードモード ARCADE',
+        btnVersus: '⚔️ 2人対戦モード VERSUS',
+        btnTraining: '🥋 道場トレーニング TRAINING',
+        btnDocs: '📖 マニュアル / 公式解説 DOCS',
+        controlsBar: '操作：WASD 移動/ジャンプ/しゃがみ | J/K パンチ | U キック | I/O 必殺技 | Space 超必殺奥義',
+        charSelectTitle: 'ファイター選択 SELECT FIGHTER',
+        jinName: 'JIN（神拳・ジン）',
+        jinStyle: '極限流空手 / 剛拳',
+        jinMoves: [
+            '• 弱/強パンチ (J / K)',
+            '• 波動拳 HADOUKEN (I / SP1)',
+            '• 昇龍拳 SHORYUKEN (O / SP2)',
+            '• 真空波動拳 SHINKU HADOUKEN (Space)'
+        ],
+        lihuaName: 'LI-HUA（飛鳳・麗華）',
+        lihuaStyle: '少林百烈脚 / 俊敏拳法',
+        lihuaMoves: [
+            '• 連打パンチ/キック (K / U)',
+            '• 百裂脚 LIGHTNING KICKS (I / SP1)',
+            '• 旋風飛腿 WHIRLWIND (O / SP2)',
+            '• 千裂烈風覇 SENRETSUKYAKU (Space)'
+        ],
+        btnBattleStart: '🔥 対戦開始 BATTLE START',
+        p1Select: 'P1: ',
+        cpuSelect: 'CPU: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 SUPER ゲージ',
+        loading: 'キャラ画像・サウンド読込中 LOADING...',
+        rematch: '🔄 再戦 REMATCH',
+        returnMenu: '🏠 タイトルへ戻る MENU',
+        winnerSuffix: ' の勝利 VICTORY!',
+        drawText: '引き分け DRAW',
+        sp1LabelJin: '波動拳',
+        sp2LabelJin: '昇龍拳',
+        sp1LabelLi: '百裂脚',
+        sp2LabelLi: '旋風脚',
+        btnMax: '超奥義'
+    },
+    'ko': {
+        name: '한국어',
+        flag: '🇰🇷',
+        tagline: '레트로 2D 아케이드 격투 액션',
+        titleMain: 'STREET FIGHT',
+        titleSub: '하이퍼 클래시 · 격투의 패왕',
+        btnArcade: '🥊 아케이드 싱글 모드 ARCADE',
+        btnVersus: '⚔️ 2인 대전 모드 VERSUS',
+        btnTraining: '🥋 도장 연습 모드 TRAINING',
+        btnDocs: '📖 매뉴얼 / 가이드 DOCS',
+        controlsBar: '조작: WASD 이동/점프/앉기 | J/K 펀치 | U 킥 | I/O 필살기 | Space 초필살기',
+        charSelectTitle: '파이터 선택 SELECT FIGHTER',
+        jinName: 'JIN (신권·진)',
+        jinStyle: '극한류 가라테 / 강맹 권법',
+        jinMoves: [
+            '• 라이트 / 헤비 펀치 (J / K)',
+            '• 파동권 HADOUKEN (I / SP1)',
+            '• 승룡권 SHORYUKEN (O / SP2)',
+            '• 진공파동권 SHINKU HADOUKEN (Space)'
+        ],
+        lihuaName: 'LI-HUA (비봉·여화)',
+        lihuaStyle: '소림 각법 / 질풍 권법',
+        lihuaMoves: [
+            '• 연속 펀치/킥 (K / U)',
+            '• 백열각 LIGHTNING KICKS (I / SP1)',
+            '• 선풍비퇴 WHIRLWIND (O / SP2)',
+            '• 천열열풍패 SENRETSUKYAKU (Space)'
+        ],
+        btnBattleStart: '🔥 대전 시작 BATTLE START',
+        p1Select: 'P1: ',
+        cpuSelect: '컴퓨터: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 SUPER 게이지',
+        loading: '스프라이트 및 사운드 로딩 중...',
+        rematch: '🔄 재대결 REMATCH',
+        returnMenu: '🏠 메인 메뉴로 RETURN',
+        winnerSuffix: ' 승리 VICTORY!',
+        drawText: '무승부 DRAW',
+        sp1LabelJin: '파동권',
+        sp2LabelJin: '승룡권',
+        sp1LabelLi: '백열각',
+        sp2LabelLi: '선풍각',
+        btnMax: '초필살'
+    },
+    'th': {
+        name: 'ไทย',
+        flag: '🇹🇭',
+        tagline: 'เกมต่อสู้อาร์เคด 2D สุดคลาสสิก',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'ไฮเปอร์แคลช · ศึกจ้าวนักสู้',
+        btnArcade: '🥊 โหมดอาร์เคดคนเดียว ARCADE',
+        btnVersus: '⚔️ โหมดต่อสู้ 2 คน VERSUS',
+        btnTraining: '🥋 โหมดฝึกซ้อมในโดโจ TRAINING',
+        btnDocs: '📖 คู่มือเกม & เอกสาร DOCS',
+        controlsBar: 'การควบคุม: WASD เดิน/กระโดด/หมอบ | J/K ชก | U เตะ | I/O ท่าไม้ตาย | Space อัลติเมท',
+        charSelectTitle: 'เลือกนักสู้ SELECT FIGHTER',
+        jinName: 'JIN (หมัดเทพ จิน)',
+        jinStyle: 'คาราเต้สายพลัง / หมัดพลังคลื่น',
+        jinMoves: [
+            '• ชกเบา / ชกหนัก (J / K)',
+            '• พลังคลื่น HADOUKEN (I / SP1)',
+            '• หมัดมังกรผงาด SHORYUKEN (O / SP2)',
+            '• คลื่นสุญญากาศ SHINKU HADOUKEN (Space)'
+        ],
+        lihuaName: 'LI-HUA (หงส์เหิน ลี่ฮัว)',
+        lihuaStyle: 'เพลงเตะเส้าหลิน / กังฟูความเร็วสูง',
+        lihuaMoves: [
+            '• ชกต่อเนื่อง/ลูกเตะหนัก (K / U)',
+            '• เพลงเตะรัวร้อยเท้า LIGHTNING KICKS (I / SP1)',
+            '• เตะกงจักรวายุ WHIRLWIND (O / SP2)',
+            '• เพลงเตะวายุสังหาร SENRETSUKYAKU (Space)'
+        ],
+        btnBattleStart: '🔥 เริ่มการต่อสู้ BATTLE START',
+        p1Select: 'P1: ',
+        cpuSelect: 'คอม: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 เกจพลังอัลติเมท',
+        loading: 'กำลังโหลดข้อมูลและเสียง...',
+        rematch: '🔄 สู้ใหม่อีกครั้ง REMATCH',
+        returnMenu: '🏠 กลับสู่เมนูหลัก RETURN',
+        winnerSuffix: ' ชนะการต่อสู้ VICTORY!',
+        drawText: 'เสมอ DRAW GAME',
+        sp1LabelJin: 'คลื่นพลัง',
+        sp2LabelJin: 'หมัดมังกร',
+        sp1LabelLi: 'เตะรัว',
+        sp2LabelLi: 'เตะหมุน',
+        btnMax: 'อัลติเมท'
+    }
+};
+
+class I18nManager {
+    constructor() {
+        this.currentLang = this.detectLanguage();
+        this.listeners = [];
+    }
+
+    detectLanguage() {
+        const saved = localStorage.getItem('sf_hyper_lang');
+        if (saved && I18N_DATA[saved]) return saved;
+
+        const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (navLang.startsWith('zh-hk') || navLang.startsWith('zh-tw') || navLang.startsWith('zh-hant')) return 'zh-Hant';
+        if (navLang.startsWith('zh')) return 'zh-Hans';
+        if (navLang.startsWith('ja')) return 'ja';
+        if (navLang.startsWith('ko')) return 'ko';
+        if (navLang.startsWith('th')) return 'th';
+        return 'en';
+    }
+
+    setLanguage(lang) {
+        if (!I18N_DATA[lang]) return;
+        this.currentLang = lang;
+        localStorage.setItem('sf_hyper_lang', lang);
+        this.applyTranslations();
+        this.listeners.forEach(cb => cb(lang));
+    }
+
+    t(key) {
+        const langData = I18N_DATA[this.currentLang] || I18N_DATA['en'];
+        return langData[key] || I18N_DATA['en'][key] || key;
+    }
+
+    onLanguageChange(cb) {
+        this.listeners.push(cb);
+    }
+
+    applyTranslations() {
+        const d = I18N_DATA[this.currentLang] || I18N_DATA['en'];
+
+        // Title Screen
+        const tagline = document.querySelector('.title-tagline');
+        if (tagline) tagline.textContent = d.tagline;
+
+        const titleMain = document.querySelector('.title-main-logo');
+        if (titleMain) titleMain.textContent = d.titleMain;
+
+        const titleSub = document.querySelector('.title-sub-logo');
+        if (titleSub) titleSub.textContent = d.titleSub;
+
+        const btnArcade = document.getElementById('btnModeArcade');
+        if (btnArcade) btnArcade.innerHTML = `<span>🥊</span><span>${d.btnArcade.replace('🥊 ', '')}</span>`;
+
+        const btnVersus = document.getElementById('btnModeVersus');
+        if (btnVersus) btnVersus.innerHTML = `<span>⚔️</span><span>${d.btnVersus.replace('⚔️ ', '')}</span>`;
+
+        const btnTraining = document.getElementById('btnModeTraining');
+        if (btnTraining) btnTraining.innerHTML = `<span>🥋</span><span>${d.btnTraining.replace('🥋 ', '')}</span>`;
+
+        const btnDocs = document.querySelector('.title-menu-options a[href="../"], .title-menu-options a[href="./"]');
+        if (btnDocs) btnDocs.innerHTML = `<span>📖</span><span>${d.btnDocs.replace('📖 ', '')}</span>`;
+
+        const controlsBar = document.querySelector('.title-bottom-bar > div:first-child');
+        if (controlsBar) controlsBar.textContent = d.controlsBar;
+
+        // Character Select Screen
+        const charTitle = document.querySelector('#screen_charSelect h2');
+        if (charTitle) charTitle.textContent = d.charSelectTitle;
+
+        const cardJin = document.querySelector('.char-card[data-char="ryu"]');
+        if (cardJin) {
+            const h3 = cardJin.querySelector('h3');
+            if (h3) h3.textContent = d.jinName;
+            const style = cardJin.querySelector('.char-style');
+            if (style) style.textContent = d.jinStyle;
+            const moves = cardJin.querySelector('.char-moves');
+            if (moves) moves.innerHTML = d.jinMoves.map(m => `<div>${m}</div>`).join('');
+        }
+
+        const cardLi = document.querySelector('.char-card[data-char="chunli"]');
+        if (cardLi) {
+            const h3 = cardLi.querySelector('h3');
+            if (h3) h3.textContent = d.lihuaName;
+            const style = cardLi.querySelector('.char-style');
+            if (style) style.textContent = d.lihuaStyle;
+            const moves = cardLi.querySelector('.char-moves');
+            if (moves) moves.innerHTML = d.lihuaMoves.map(m => `<div>${m}</div>`).join('');
+        }
+
+        const btnStart = document.getElementById('btnStartMatch');
+        if (btnStart) btnStart.innerHTML = `<span>🔥</span><span>${d.btnBattleStart.replace('🔥 ', '')}</span>`;
+
+        // HUD Labels
+        const superLabel = document.querySelector('.super-label');
+        if (superLabel) superLabel.textContent = d.superGauge;
+
+        const p1NameTag = document.getElementById('p1NameTag');
+        if (p1NameTag && window.game) {
+            p1NameTag.textContent = window.game.player1Char === 'ryu' ? d.jinName : d.lihuaName;
+        }
+
+        const p2NameTag = document.getElementById('p2NameTag');
+        if (p2NameTag && window.game) {
+            p2NameTag.textContent = window.game.player2Char === 'ryu' ? d.jinName : d.lihuaName;
+        }
+
+        // Result Modal
+        const btnRematch = document.getElementById('btnRematch');
+        if (btnRematch) btnRematch.innerHTML = `<span>🔄</span><span>${d.rematch.replace('🔄 ', '')}</span>`;
+
+        const btnQuit = document.getElementById('btnQuitToTitle');
+        if (btnQuit) btnQuit.innerHTML = `<span>🏠</span><span>${d.returnMenu.replace('🏠 ', '')}</span>`;
+
+        // Virtual mobile button labels
+        const vSp1Sub = document.querySelector('#vbtn_sp1 span:last-child');
+        const vSp2Sub = document.querySelector('#vbtn_sp2 span:last-child');
+        if (vSp1Sub && vSp2Sub && window.game) {
+            const isJin = window.game.player1Char === 'ryu';
+            vSp1Sub.textContent = isJin ? d.sp1LabelJin : d.sp1LabelLi;
+            vSp2Sub.textContent = isJin ? d.sp2LabelJin : d.sp2LabelLi;
+        }
+    }
+
+    renderLanguageSelector(containerId) {
+        let container = document.getElementById(containerId);
+        if (!container) return;
+
+        const select = document.createElement('select');
+        select.className = 'lang-select-dropdown';
+        select.style.cssText = `
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid #38bdf8;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+        `;
+
+        Object.keys(I18N_DATA).forEach(code => {
+            const opt = document.createElement('option');
+            opt.value = code;
+            opt.textContent = `${I18N_DATA[code].flag} ${I18N_DATA[code].name}`;
+            if (code === this.currentLang) opt.selected = true;
+            select.appendChild(opt);
+        });
+
+        select.addEventListener('change', (e) => {
+            this.setLanguage(e.target.value);
+        });
+
+        this.onLanguageChange((newLang) => {
+            select.value = newLang;
+        });
+
+        container.appendChild(select);
+    }
+}
+
+window.i18n = new I18nManager();
+

@@ -61,7 +61,7 @@
 
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             align-items: center;
         }
 
@@ -75,6 +75,18 @@
 
         .nav-links a:hover {
             color: #fff;
+        }
+
+        .lang-picker {
+            background: #1e293b;
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
         }
 
         .btn-play-nav {
@@ -115,9 +127,9 @@
         }
 
         .hero h1 {
-            font-size: clamp(36px, 6vw, 64px);
+            font-size: clamp(34px, 5.5vw, 60px);
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.15;
             letter-spacing: 2px;
             text-transform: uppercase;
             background: linear-gradient(180deg, #ffffff 20%, #fef08a 60%, #f97316 100%);
@@ -373,24 +385,34 @@
             <span>🥊</span> STREET FIGHT: HYPER CLASH
         </a>
         <nav class="nav-links">
-            <a href="#fighters">格鬥家</a>
-            <a href="#controls">招式按鍵</a>
-            <a href="#android">Android App</a>
-            <a href="play/" class="btn-play-nav">🎮 瀏覽器試玩 PLAY</a>
+            <a href="#fighters" data-i18n="navFighters">格鬥家</a>
+            <a href="#controls" data-i18n="navControls">招式按鍵</a>
+            <a href="#android" data-i18n="navAndroid">Android App</a>
+            
+            <select id="docsLangSelect" class="lang-picker" onchange="setDocsLanguage(this.value)">
+                <option value="en">🇬🇧 English</option>
+                <option value="zh-Hant" selected>🇭🇰 繁體中文</option>
+                <option value="zh-Hans">🇨🇳 简体中文</option>
+                <option value="ja">🇯🇵 日本語</option>
+                <option value="ko">🇰🇷 한국어</option>
+                <option value="th">🇹🇭 ไทย</option>
+            </select>
+
+            <a href="play/" class="btn-play-nav" data-i18n="btnPlayNav">🎮 瀏覽器試玩 PLAY</a>
         </nav>
     </header>
 
     <!-- HERO HEADER -->
     <section class="hero">
-        <div class="hero-badge">RETRO 2D ARCADE FIGHTING ENGINE</div>
-        <h1>STREET FIGHT: HYPER CLASH<br><span style="font-size: 60%; color: #f87171;">街頭對決 · 霸王再現</span></h1>
-        <p>基於精靈圖動態去背渲染技術打造的極限街機格鬥！支援單人街機 AI、雙人同屏對決、道場練習模式與 Android 原生沉浸式震動。</p>
+        <div class="hero-badge" data-i18n="badge">RETRO 2D ARCADE FIGHTING ENGINE</div>
+        <h1><span data-i18n="heroTitle">STREET FIGHT: HYPER CLASH</span><br><span style="font-size: 60%; color: #f87171;" data-i18n="heroSub">街頭對決 · 霸王再現</span></h1>
+        <p data-i18n="heroDesc">基於精靈圖動態去背渲染技術打造的極限街機格鬥！支援單人街機 AI、雙人同屏對決、道場練習模式與 Android 原生沉浸式震動。</p>
         <div class="hero-actions">
-            <a href="play/" class="btn-cta-main">
+            <a href="play/" class="btn-cta-main" data-i18n="btnHeroPlay">
                 <span>🔥</span>
                 <span>立即進入遊戲 PLAY IN BROWSER</span>
             </a>
-            <a href="#controls" class="btn-cta-sub">
+            <a href="#controls" class="btn-cta-sub" data-i18n="btnHeroManual">
                 <span>📖</span>
                 <span>查閱招式表 & 操作指南</span>
             </a>
@@ -403,36 +425,36 @@
         <!-- FIGHTERS SECTION -->
         <section id="fighters" style="margin-bottom: 60px;">
             <div class="section-title">
-                <h2>格鬥家陣容 (FIGHTERS)</h2>
-                <p>每位角色擁有專屬動作幀數、獨立打擊判定與全螢幕超必殺技</p>
+                <h2 data-i18n="fightersHeading">格鬥家陣容 (FIGHTERS)</h2>
+                <p data-i18n="fightersSub">每位角色擁有專屬動作幀數、獨立打擊判定與全螢幕超必殺技</p>
             </div>
 
             <div class="fighters-grid">
                 <!-- JIN -->
                 <div class="fighter-card jin">
                     <img src="assets/portrait_jin.png" alt="Jin Avatar" class="fighter-avatar">
-                    <div class="fighter-name">JIN (神拳·晉)</div>
-                    <div class="fighter-tag">極限流剛猛空手道 / 氣功大師</div>
+                    <div class="fighter-name" data-i18n="jinTitle">JIN (神拳·晉)</div>
+                    <div class="fighter-tag" data-i18n="jinTag">極限流剛猛空手道 / 氣功大師</div>
                     <div class="moves-box">
-                        <div><strong>輕拳 / 重拳：</strong> <span class="key-badge">J</span> / <span class="key-badge">K</span> 快攻突刺</div>
-                        <div><strong>踢擊：</strong> <span class="key-badge">U</span> 遠程截擊</div>
-                        <div><strong>必殺技 1 (HADOUKEN)：</strong> <span class="key-badge">I</span> 波動氣功</div>
-                        <div><strong>必殺技 2 (SHORYUKEN)：</strong> <span class="key-badge">O</span> 霸王昇龍拳</div>
-                        <div><strong>終極超必殺：</strong> <span class="key-badge">Space</span> 真空波動拳連打</div>
+                        <div><strong data-i18n="jinPunches">輕拳 / 重拳：</strong> <span class="key-badge">J</span> / <span class="key-badge">K</span> <span data-i18n="jinPunchesDesc">快攻突刺</span></div>
+                        <div><strong data-i18n="jinKick">踢擊：</strong> <span class="key-badge">U</span> <span data-i18n="jinKickDesc">遠程截擊</span></div>
+                        <div><strong data-i18n="jinSp1">必殺技 1 (HADOUKEN)：</strong> <span class="key-badge">I</span> <span data-i18n="jinSp1Desc">波動氣功</span></div>
+                        <div><strong data-i18n="jinSp2">必殺技 2 (SHORYUKEN)：</strong> <span class="key-badge">O</span> <span data-i18n="jinSp2Desc">霸王昇龍拳</span></div>
+                        <div><strong data-i18n="jinSuper">終極超必殺：</strong> <span class="key-badge">Space</span> <span data-i18n="jinSuperDesc">真空波動拳連打</span></div>
                     </div>
                 </div>
 
                 <!-- LI-HUA -->
                 <div class="fighter-card lihua">
                     <img src="assets/portrait_lihua.png" alt="Li-Hua Avatar" class="fighter-avatar">
-                    <div class="fighter-name">LI-HUA (飛鳳·麗華)</div>
-                    <div class="fighter-tag">少林百裂腿法 / 迅捷格鬥宗師</div>
+                    <div class="fighter-name" data-i18n="liTitle">LI-HUA (飛鳳·麗華)</div>
+                    <div class="fighter-tag" data-i18n="liTag">少林百裂腿法 / 迅捷格鬥宗師</div>
                     <div class="moves-box">
-                        <div><strong>輕拳 / 重拳：</strong> <span class="key-badge">J</span> / <span class="key-badge">K</span> 快速牽制</div>
-                        <div><strong>連環踢：</strong> <span class="key-badge">U</span> 剛猛強踢</div>
-                        <div><strong>必殺技 1 (LIGHTNING KICKS)：</strong> <span class="key-badge">I</span> 百裂穿雲腳</div>
-                        <div><strong>必殺技 2 (WHIRLWIND)：</strong> <span class="key-badge">O</span> 旋風無影腿</div>
-                        <div><strong>終極超必殺：</strong> <span class="key-badge">Space</span> 千裂烈風霸奧義</div>
+                        <div><strong data-i18n="liPunches">輕拳 / 重拳：</strong> <span class="key-badge">J</span> / <span class="key-badge">K</span> <span data-i18n="liPunchesDesc">快速牽制</span></div>
+                        <div><strong data-i18n="liKick">連環踢：</strong> <span class="key-badge">U</span> <span data-i18n="liKickDesc">剛猛強踢</span></div>
+                        <div><strong data-i18n="liSp1">必殺技 1 (LIGHTNING KICKS)：</strong> <span class="key-badge">I</span> <span data-i18n="liSp1Desc">百裂穿雲腳</span></div>
+                        <div><strong data-i18n="liSp2">必殺技 2 (WHIRLWIND)：</strong> <span class="key-badge">O</span> <span data-i18n="liSp2Desc">旋風無影腿</span></div>
+                        <div><strong data-i18n="liSuper">終極超必殺：</strong> <span class="key-badge">Space</span> <span data-i18n="liSuperDesc">千裂烈風霸奧義</span></div>
                     </div>
                 </div>
             </div>
@@ -441,58 +463,58 @@
         <!-- CONTROLS SECTION -->
         <section id="controls" style="margin-bottom: 60px;">
             <div class="section-title">
-                <h2>操作指南 (CONTROLS GUIDE)</h2>
-                <p>支援電腦鍵盤單人/雙人操作、手機與平板觸控十字鍵</p>
+                <h2 data-i18n="controlsHeading">操作指南 (CONTROLS GUIDE)</h2>
+                <p data-i18n="controlsSub">支援電腦鍵盤單人/雙人操作、手機與平板觸控十字鍵</p>
             </div>
 
             <table class="controls-table">
                 <thead>
                     <tr>
-                        <th>動作類型</th>
-                        <th>Player 1 (電腦鍵盤)</th>
-                        <th>Player 2 (雙人模式小鍵盤)</th>
-                        <th>手機 / 觸控介面</th>
+                        <th data-i18n="thAction">動作類型</th>
+                        <th data-i18n="thP1">Player 1 (電腦鍵盤)</th>
+                        <th data-i18n="thP2">Player 2 (雙人模式小鍵盤)</th>
+                        <th data-i18n="thMobile">手機 / 觸控介面</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>移動 / 跳躍 / 蹲下</strong></td>
-                        <td><span class="key-badge">W</span> <span class="key-badge">A</span> <span class="key-badge">S</span> <span class="key-badge">D</span> (向後走自動防禦)</td>
+                        <td><strong data-i18n="rowMove">移動 / 跳躍 / 蹲下</strong></td>
+                        <td><span class="key-badge">W</span> <span class="key-badge">A</span> <span class="key-badge">S</span> <span class="key-badge">D</span> <span data-i18n="rowMoveP1">(向後走自動防禦)</span></td>
                         <td>方向鍵 <span class="key-badge">↑</span> <span class="key-badge">↓</span> <span class="key-badge">←</span> <span class="key-badge">→</span></td>
-                        <td>左側街機 4 方向十字鍵</td>
+                        <td data-i18n="rowMoveMobile">左側街機 4 方向十字鍵</td>
                     </tr>
                     <tr>
-                        <td><strong>輕拳 (Light Punch)</strong></td>
+                        <td><strong data-i18n="rowLP">輕拳 (Light Punch)</strong></td>
                         <td><span class="key-badge">J</span></td>
                         <td>數字鍵 <span class="key-badge">1</span></td>
                         <td><span class="key-badge">LP</span> 按鈕</td>
                     </tr>
                     <tr>
-                        <td><strong>重拳 (Heavy Punch)</strong></td>
+                        <td><strong data-i18n="rowHP">重拳 (Heavy Punch)</strong></td>
                         <td><span class="key-badge">K</span></td>
                         <td>數字鍵 <span class="key-badge">2</span></td>
                         <td><span class="key-badge">HP</span> 按鈕</td>
                     </tr>
                     <tr>
-                        <td><strong>踢擊 (Kick)</strong></td>
+                        <td><strong data-i18n="rowKick">踢擊 (Kick)</strong></td>
                         <td><span class="key-badge">U</span></td>
                         <td>數字鍵 <span class="key-badge">4</span></td>
                         <td><span class="key-badge">KICK</span> 按鈕</td>
                     </tr>
                     <tr>
-                        <td><strong>必殺技 1 (Special 1)</strong></td>
-                        <td><span class="key-badge">I</span> (波動拳 / 百裂腳)</td>
+                        <td><strong data-i18n="rowSp1">必殺技 1 (Special 1)</strong></td>
+                        <td><span class="key-badge">I</span></td>
                         <td>數字鍵 <span class="key-badge">5</span></td>
                         <td><span class="key-badge">SP1</span> 按鈕</td>
                     </tr>
                     <tr>
-                        <td><strong>必殺技 2 (Special 2)</strong></td>
-                        <td><span class="key-badge">O</span> (昇龍拳 / 旋風飛腿)</td>
+                        <td><strong data-i18n="rowSp2">必殺技 2 (Special 2)</strong></td>
+                        <td><span class="key-badge">O</span></td>
                         <td>數字鍵 <span class="key-badge">6</span></td>
                         <td><span class="key-badge">SP2</span> 按鈕</td>
                     </tr>
                     <tr>
-                        <td><strong>超必殺奧義 (MAX SUPER)</strong></td>
+                        <td><strong data-i18n="rowSuper">超必殺奧義 (MAX SUPER)</strong></td>
                         <td><span class="key-badge">Space</span> (空白鍵)</td>
                         <td><span class="key-badge">Enter</span> 或 <span class="key-badge">0</span></td>
                         <td><span class="key-badge">MAX</span> 能量滿格發動</td>
@@ -504,31 +526,31 @@
         <!-- ANDROID APP SECTION -->
         <section id="android">
             <div class="section-title">
-                <h2>ANDROID 原生專案資訊</h2>
-                <p>具備完整 Gradle 建置配置與高畫質專屬圖示</p>
+                <h2 data-i18n="androidHeading">ANDROID 原生專案資訊</h2>
+                <p data-i18n="androidSub">具備完整 Gradle 建置配置與高畫質專屬圖示</p>
             </div>
 
             <div class="info-grid">
                 <div class="info-card">
-                    <h3>📦 Application ID & Package</h3>
+                    <h3 data-i18n="appIdTitle">📦 Application ID & Package</h3>
                     <p style="font-family: monospace; font-size: 15px; color: #fef08a; word-break: break-all; margin-top: 8px;">
                         com.hkaiSolveAcadcmy.vibeCoding.patrickpak
                     </p>
                     <p style="color: var(--text-muted); font-size: 13px; margin-top: 8px;">
-                        已於 <code>app/build.gradle</code> 與 <code>MainActivity.java</code> 完成設定。
+                        app/build.gradle & MainActivity.java
                     </p>
                 </div>
 
                 <div class="info-card">
-                    <h3>🖼️ 應用程式專屬圖示 (App Icon)</h3>
-                    <p style="color: #cbd5e1; font-size: 14px; margin-top: 6px;">
+                    <h3 data-i18n="appIconTitle">🖼️ 應用程式專屬圖示 (App Icon)</h3>
+                    <p data-i18n="appIconDesc" style="color: #cbd5e1; font-size: 14px; margin-top: 6px;">
                         配備烈焰與蒼藍雷芒的「格鬥戰拳」圖示，已完整生成適配全系列 Android 機型 (mdpi 至 xxxhdpi 及 Android 8.0+ Adaptive Icons)。
                     </p>
                 </div>
 
                 <div class="info-card">
-                    <h3>📳 原生硬體橋接 (Haptics)</h3>
-                    <p style="color: #cbd5e1; font-size: 14px; margin-top: 6px;">
+                    <h3 data-i18n="hapticTitle">📳 原生硬體橋接 (Haptics)</h3>
+                    <p data-i18n="hapticDesc" style="color: #cbd5e1; font-size: 14px; margin-top: 6px;">
                         內建 JavaScript Interface，打擊擊中、重擊反彈與超必殺釋放均觸發 Android 原生毫秒級震動反饋。
                     </p>
                 </div>
@@ -539,12 +561,13 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2026 <strong>Street Fight: Hyper Clash</strong>. 街頭對決·霸王再現.</p>
+        <p data-i18n="footerText">© 2026 <strong>Street Fight: Hyper Clash</strong>. 街頭對決·霸王再現.</p>
         <p style="margin-top: 8px;">
-            <a href="play/">🎮 進入瀏覽器遊玩</a> · 
-            <a href="https://github.com/pppp20250712/street-fight" target="_blank">🐙 GitHub 專案倉庫</a>
+            <a href="play/" data-i18n="footerPlay">🎮 進入瀏覽器遊玩</a> · 
+            <a href="https://github.com/pppp20250712/street-fight" target="_blank" data-i18n="footerGithub">🐙 GitHub 專案倉庫</a>
         </p>
     </footer>
 
+    <script src="js/docs_i18n.js"></script>
 </body>
 </html>

@@ -139,7 +139,8 @@
                     <div style="font-size: 13px; color: #94a3b8;">
                         操作：WASD 移動/跳躍/蹲下 | J/K 拳 | U 踢 | I/O 必殺技 | Space 終極超必殺
                     </div>
-                    <div style="display: flex; gap: 8px;">
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <div id="langSelectorBox"></div>
                         <button id="btnFightSound" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🔊</button>
                         <button id="btnFightMusic" style="padding: 6px 12px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #fff; cursor: pointer;">🎵</button>
                     </div>
@@ -240,11 +241,20 @@
     </div>
 
     <!-- SCRIPTS -->
+    <script src="js/i18n.js"></script>
     <script src="js/audio.js"></script>
     <script src="js/sprites.js"></script>
     <script src="js/particles.js"></script>
     <script src="js/fighter.js"></script>
     <script src="js/ai.js"></script>
     <script src="js/game.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.i18n) {
+                window.i18n.renderLanguageSelector('langSelectorBox');
+                window.i18n.applyTranslations();
+            }
+        });
+    </script>
 </body>
 </html>

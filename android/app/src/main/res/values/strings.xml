@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Street Fight: Hyper Clash</string>
+    <string name="fighter_jin">JIN</string>
+    <string name="fighter_lihua">LI-HUA</string>
 </resources>

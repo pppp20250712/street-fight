@@ -219,10 +219,12 @@ class FightGame {
             }
         });
 
-        const p1Name = this.player1Char === 'ryu' ? 'JIN (神拳·晉)' : 'LI-HUA (飛鳳·麗華)';
-        const p2Name = this.player2Char === 'ryu' ? 'JIN (神拳·晉)' : 'LI-HUA (飛鳳·麗華)';
-        document.getElementById('p1SelectLabel').textContent = `P1: ${p1Name}`;
-        document.getElementById('p2SelectLabel').textContent = `CPU / P2: ${p2Name}`;
+        const p1Name = this.player1Char === 'ryu' ? (window.i18n ? window.i18n.t('jinName') : 'JIN') : (window.i18n ? window.i18n.t('lihuaName') : 'LI-HUA');
+        const p2Name = this.player2Char === 'ryu' ? (window.i18n ? window.i18n.t('jinName') : 'JIN') : (window.i18n ? window.i18n.t('lihuaName') : 'LI-HUA');
+        const p1Prefix = window.i18n ? window.i18n.t('p1Select') : 'P1: ';
+        const p2Prefix = (this.gameMode === 'VERSUS') ? (window.i18n ? window.i18n.t('vsP2Select') : 'P2: ') : (window.i18n ? window.i18n.t('cpuSelect') : 'CPU: ');
+        document.getElementById('p1SelectLabel').textContent = `${p1Prefix}${p1Name}`;
+        document.getElementById('p2SelectLabel').textContent = `${p2Prefix}${p2Name}`;
     }
 
     startMatch() {
@@ -239,16 +241,18 @@ class FightGame {
         this.p1.roundsWon = 0;
         this.p2.roundsWon = 0;
 
-        document.getElementById('p1NameTag').textContent = this.p1.name;
-        document.getElementById('p2NameTag').textContent = this.p2.name;
+        const p1DisplayName = this.p1.charId === 'ryu' ? (window.i18n ? window.i18n.t('jinName') : this.p1.name) : (window.i18n ? window.i18n.t('lihuaName') : this.p1.name);
+        const p2DisplayName = this.p2.charId === 'ryu' ? (window.i18n ? window.i18n.t('jinName') : this.p2.name) : (window.i18n ? window.i18n.t('lihuaName') : this.p2.name);
+        document.getElementById('p1NameTag').textContent = p1DisplayName;
+        document.getElementById('p2NameTag').textContent = p2DisplayName;
         document.getElementById('p1HudAvatar').src = this.player1Char === 'ryu' ? 'assets/portrait_jin.png' : 'assets/portrait_lihua.png';
         document.getElementById('p2HudAvatar').src = this.player2Char === 'ryu' ? 'assets/portrait_jin.png' : 'assets/portrait_lihua.png';
 
         // Show VS Match Screen
         document.getElementById('vsP1Img').src = this.player1Char === 'ryu' ? 'assets/portrait_jin.png' : 'assets/portrait_lihua.png';
         document.getElementById('vsP2Img').src = this.player2Char === 'ryu' ? 'assets/portrait_jin.png' : 'assets/portrait_lihua.png';
-        document.getElementById('vsP1Name').textContent = this.p1.name;
-        document.getElementById('vsP2Name').textContent = this.p2.name;
+        document.getElementById('vsP1Name').textContent = p1DisplayName;
+        document.getElementById('vsP2Name').textContent = p2DisplayName;
         this.showScreen('vsIntro');
         window.fightAudio.speak(`${this.p1.charId === 'ryu' ? 'Jin' : 'Li Hua'} VERSUS ${this.p2.charId === 'ryu' ? 'Jin' : 'Li Hua'}`);
 
@@ -307,7 +311,9 @@ class FightGame {
                 this.state = 'MATCH_OVER';
                 const matchWinner = this.p1.roundsWon >= 2 ? this.p1 : this.p2;
                 window.fightAudio.speak(`${matchWinner.name} WINS!`);
-                document.getElementById('winnerText').textContent = `${matchWinner.name} 獲勝 VICTORY!`;
+                const charName = matchWinner.charId === 'ryu' ? (window.i18n ? window.i18n.t('jinName') : 'JIN') : (window.i18n ? window.i18n.t('lihuaName') : 'LI-HUA');
+                const suffix = window.i18n ? window.i18n.t('winnerSuffix') : ' 獲勝 VICTORY!';
+                document.getElementById('winnerText').textContent = charName + suffix;
                 document.getElementById('winnerPortraitImg').src = matchWinner.charId === 'ryu' ? 'assets/portrait_jin.png' : 'assets/portrait_lihua.png';
                 document.getElementById('screen_matchResult').classList.add('active');
                 window.fightAudio.stopBGM();
