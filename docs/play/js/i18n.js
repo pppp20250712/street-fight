@@ -1,12 +1,17 @@
 /**
  * Street Fight: Hyper Clash - i18n Localization Engine
- * Languages supported:
+ * English + 10 Asian Languages:
  * 1. en: English
  * 2. zh-Hant: 繁體中文 (Traditional Chinese)
  * 3. zh-Hans: 简体中文 (Simplified Chinese)
  * 4. ja: 日本語 (Japanese)
  * 5. ko: 한국어 (Korean)
  * 6. th: ไทย (Thai)
+ * 7. vi: Tiếng Việt (Vietnamese)
+ * 8. id: Bahasa Indonesia (Indonesian)
+ * 9. ms: Bahasa Melayu (Malay)
+ * 10. fil: Filipino / Tagalog (Philippines)
+ * 11. hi: हिन्दी (Hindi)
  */
 
 const I18N_DATA = {
@@ -163,7 +168,7 @@ const I18N_DATA = {
             '• 真空波動拳 SHINKU HADOUKEN (Space)'
         ],
         lihuaName: 'LI-HUA（飛鳳・麗華）',
-        lihuaStyle: '少林百烈脚 / 俊敏拳法',
+        lihuaStyle: '少林百裂脚 / 俊敏拳法',
         lihuaMoves: [
             '• 連打パンチ/キック (K / U)',
             '• 百裂脚 LIGHTNING KICKS (I / SP1)',
@@ -236,10 +241,10 @@ const I18N_DATA = {
         tagline: 'เกมต่อสู้อาร์เคด 2D สุดคลาสสิก',
         titleMain: 'STREET FIGHT',
         titleSub: 'ไฮเปอร์แคลช · ศึกจ้าวนักสู้',
-        btnArcade: '🥊 โหมดอาร์เคดคนเดียว ARCADE',
+        btnArcade: '🥊 โหมดอาร์เคด ARCADE',
         btnVersus: '⚔️ โหมดต่อสู้ 2 คน VERSUS',
-        btnTraining: '🥋 โหมดฝึกซ้อมในโดโจ TRAINING',
-        btnDocs: '📖 คู่มือเกม & เอกสาร DOCS',
+        btnTraining: '🥋 โหมดฝึกซ้อม TRAINING',
+        btnDocs: '📖 คู่มือเกม DOCS',
         controlsBar: 'การควบคุม: WASD เดิน/กระโดด/หมอบ | J/K ชก | U เตะ | I/O ท่าไม้ตาย | Space อัลติเมท',
         charSelectTitle: 'เลือกนักสู้ SELECT FIGHTER',
         jinName: 'JIN (หมัดเทพ จิน)',
@@ -265,7 +270,7 @@ const I18N_DATA = {
         superGauge: 'P1 เกจพลังอัลติเมท',
         loading: 'กำลังโหลดข้อมูลและเสียง...',
         rematch: '🔄 สู้ใหม่อีกครั้ง REMATCH',
-        returnMenu: '🏠 กลับสู่เมนูหลัก RETURN',
+        returnMenu: '🏠 เมนูหลัก RETURN',
         winnerSuffix: ' ชนะการต่อสู้ VICTORY!',
         drawText: 'เสมอ DRAW GAME',
         sp1LabelJin: 'คลื่นพลัง',
@@ -273,6 +278,226 @@ const I18N_DATA = {
         sp1LabelLi: 'เตะรัว',
         sp2LabelLi: 'เตะหมุน',
         btnMax: 'อัลติเมท'
+    },
+    'vi': {
+        name: 'Tiếng Việt',
+        flag: '🇻🇳',
+        tagline: 'GAME ĐỐI KHÁNG ARCADE 2D KINH ĐIỂN',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'HYPER CLASH · ĐẠI CHIẾN',
+        btnArcade: '🥊 CHẾ ĐỘ ARCADE ĐƠN',
+        btnVersus: '⚔️ ĐỐI ĐẦU 2 NGƯỜI VERSUS',
+        btnTraining: '🥋 LUYỆN TẬP VÕ ĐƯỜNG',
+        btnDocs: '📖 HƯỚNG DẪN & TÀI LIỆU',
+        controlsBar: 'Điều khiển: WASD Di chuyển/Nhảy/Ngồi | J/K Đấm | U Đá | I/O Tuyệt chiêu | Space Siêu tất sát MAX',
+        charSelectTitle: 'CHỌN ĐẤU SĨ CỦA BẠN',
+        jinName: 'JIN (Thần Quyền Jin)',
+        jinStyle: 'Karate Cực Hạn / Quyền Lực Khí Công',
+        jinMoves: [
+            '• Đấm nhanh / Đấm mạnh (J / K)',
+            '• Hỏa Cầu Khí HADOUKEN (I / SP1)',
+            '• Thăng Long Quyền SHORYUKEN (O / SP2)',
+            '• Chân Không Khí Công Ba SHINKU (Space)'
+        ],
+        lihuaName: 'LI-HUA (Phi Phượng Lệ Hoa)',
+        lihuaStyle: 'Cước Pháp Thiếu Lâm / Nhanh Nhẹn',
+        lihuaMoves: [
+            '• Đấm liên hoàn / Đá mạnh (K / U)',
+            '• Bách Liệt Cước LIGHTNING KICKS (I / SP1)',
+            '• Toàn Phong Phi Cước WHIRLWIND (O / SP2)',
+            '• Thiên Liệt Liệt Phong Bá (Space)'
+        ],
+        btnBattleStart: '🔥 BẮT ĐẦU TRẬN ĐẤU',
+        p1Select: 'P1: ',
+        cpuSelect: 'MÁY: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 THANH NĂNG LƯỢNG SIÊU CẤP',
+        loading: 'ĐANG TẢI DỮ LIỆU ĐẤU SĨ...',
+        rematch: '🔄 ĐẤU LẠI REMATCH',
+        returnMenu: '🏠 MENU CHÍNH RETURN',
+        winnerSuffix: ' CHIẾN THẮNG VICTORY!',
+        drawText: 'HÒA DRAW GAME',
+        sp1LabelJin: 'KHÍ CÔNG',
+        sp2LabelJin: 'THĂNG LONG',
+        sp1LabelLi: 'BÁCH LIỆT',
+        sp2LabelLi: 'TOÀN PHONG',
+        btnMax: 'TẤT SÁT'
+    },
+    'id': {
+        name: 'Bahasa Indonesia',
+        flag: '🇮🇩',
+        tagline: 'GAME PERTARUNGAN ARCADE 2D RETRO',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'HYPER CLASH · PERTARUNGAN PENDEKAR',
+        btnArcade: '🥊 MODE ARCADE TUNGGAL',
+        btnVersus: '⚔️ MODE TANDING 2P VERSUS',
+        btnTraining: '🥋 LATIHAN DOJO',
+        btnDocs: '📖 BUKU PANDUAN & DOCS',
+        controlsBar: 'Kontrol: WASD Gerak/Lompat/Jongkok | J/K Pukul | U Tendang | I/O Jurus Spesial | Spasi Jurus Pamungkas MAX',
+        charSelectTitle: 'PILIH PENDEKAR ANDA',
+        jinName: 'JIN (Tangan Dewa Jin)',
+        jinStyle: 'Karate Kyokushin / Pukulan Hawa Murni',
+        jinMoves: [
+            '• Pukulan Cepat / Keras (J / K)',
+            '• Bola Energi HADOUKEN (I / SP1)',
+            '• Pukulan Naga Naik SHORYUKEN (O / SP2)',
+            '• Shinku Hadouken Pamungkas (Spasi)'
+        ],
+        lihuaName: 'LI-HUA (Phoenix Terbang)',
+        lihuaStyle: 'Tendangan Shaolin / Gerak Cepat',
+        lihuaMoves: [
+            '• Kombo Pukulan / Tendangan (K / U)',
+            '• Tendangan Kilat LIGHTNING KICKS (I / SP1)',
+            '• Tendangan Putar Badai WHIRLWIND (O / SP2)',
+            '• Senretsukyaku Badai Pamungkas (Spasi)'
+        ],
+        btnBattleStart: '🔥 MULAI PERTARUNGAN',
+        p1Select: 'P1: ',
+        cpuSelect: 'KOMPUTER: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 BAR ENERGI SUPER',
+        loading: 'MEMUAT DATA & SUARA GAME...',
+        rematch: '🔄 TANDING ULANG REMATCH',
+        returnMenu: '🏠 MENU UTAMA RETURN',
+        winnerSuffix: ' MENANG VICTORY!',
+        drawText: 'SERI DRAW GAME',
+        sp1LabelJin: 'HADOUKEN',
+        sp2LabelJin: 'SHORYUKEN',
+        sp1LabelLi: 'TENDANG KILAT',
+        sp2LabelLi: 'TENDANG PUTAR',
+        btnMax: 'PAMUNGKAS'
+    },
+    'ms': {
+        name: 'Bahasa Melayu',
+        flag: '🇲🇾',
+        tagline: 'PERMAINAN PERTEMPURAN ARKED 2D KLASIK',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'HYPER CLASH · PERTEMPURAN JAGUH',
+        btnArcade: '🥊 MOD ARKED SOLO',
+        btnVersus: '⚔️ MOD LAWAN 2P VERSUS',
+        btnTraining: '🥋 LATIHAN DOJO',
+        btnDocs: '📖 MANUAL & PANDUAN',
+        controlsBar: 'Kawalan: WASD Gerak/Lompat/Cangkung | J/K Tumbuk | U Tendang | I/O Gerakan Khas | Space Super MAX',
+        charSelectTitle: 'PILIH PENDEKAR ANDA',
+        jinName: 'JIN (Tangan Dewa Jin)',
+        jinStyle: 'Karate Kyokushin / Kuasa Tenaga Chi',
+        jinMoves: [
+            '• Tumbukan Pantas / Kuat (J / K)',
+            '• Bebola Tenaga HADOUKEN (I / SP1)',
+            '• Tumbukan Naga Terbang SHORYUKEN (O / SP2)',
+            '• Shinku Hadouken Pukulan Akhir (Space)'
+        ],
+        lihuaName: 'LI-HUA (Burung Phoenix Terbang)',
+        lihuaStyle: 'Tendangan Shaolin / Seni Tangkas',
+        lihuaMoves: [
+            '• Kombo Tumbukan / Tendang (K / U)',
+            '• Tendangan Kilat LIGHTNING KICKS (I / SP1)',
+            '• Tendangan Pusaran Ribut WHIRLWIND (O / SP2)',
+            '• Senretsukyaku Badai Pukulan Akhir (Space)'
+        ],
+        btnBattleStart: '🔥 MULA PERLAWANAN',
+        p1Select: 'P1: ',
+        cpuSelect: 'KOMPUTER: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 TOLOK TENAGA SUPER',
+        loading: 'MEMUAT DATA PERLAWANAN...',
+        rematch: '🔄 LAWAN SEMULA',
+        returnMenu: '🏠 MENU UTAMA',
+        winnerSuffix: ' MENANG VICTORY!',
+        drawText: 'SERI DRAW GAME',
+        sp1LabelJin: 'HADOUKEN',
+        sp2LabelJin: 'SHORYUKEN',
+        sp1LabelLi: 'TENDANG KILAT',
+        sp2LabelLi: 'TENDANG PUSARAN',
+        btnMax: 'ULTIMATE'
+    },
+    'fil': {
+        name: 'Filipino',
+        flag: '🇵🇭',
+        tagline: 'KLASIKONG 2D ARCADE LABANAN',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'HYPER CLASH · DIGMAAN NG KAMPEON',
+        btnArcade: '🥊 ARCADE MODE',
+        btnVersus: '⚔️ 2P LABANAN MODE',
+        btnTraining: '🥋 DOJO PAGSASANAY',
+        btnDocs: '📖 GABAY SA LARO & DOCS',
+        controlsBar: 'Kontrol: WASD Galaw/Talon/Yuko | J/K Suntok | U Sipa | I/O Espesyal | Space Super MAX',
+        charSelectTitle: 'PUMILI NG IYONG MANDIRIGMA',
+        jinName: 'JIN (Kamay ng Diyos Jin)',
+        jinStyle: 'Kyokushin Karate / Ki Puwersa',
+        jinMoves: [
+            '• Mabilis / Malakas na Suntok (J / K)',
+            '• Bola ng Enerhiya HADOUKEN (I / SP1)',
+            '• Pataas na Suntok ng Dragon SHORYUKEN (O / SP2)',
+            '• Shinku Hadouken Super Atake (Space)'
+        ],
+        lihuaName: 'LI-HUA (Lumilipad na Phoenix)',
+        lihuaStyle: 'Shaolin Sipa / Maliksi na Kempo',
+        lihuaMoves: [
+            '• Kombo Suntok / Sipa (K / U)',
+            '• Kidlat na Sipa LIGHTNING KICKS (I / SP1)',
+            '• Buhawi na Sipa WHIRLWIND (O / SP2)',
+            '• Senretsukyaku Bagyo Super Atake (Space)'
+        ],
+        btnBattleStart: '🔥 SIMULAN ANG LABAN',
+        p1Select: 'P1: ',
+        cpuSelect: 'CPU: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 SUPER GAUGE ENERHIYA',
+        loading: 'NILO-LOAD ANG DATA NG LARO...',
+        rematch: '🔄 MULING LUMABAN',
+        returnMenu: '🏠 PANGUNAHING MENU',
+        winnerSuffix: ' ANG NANALO!',
+        drawText: 'PATAS DRAW GAME',
+        sp1LabelJin: 'HADOUKEN',
+        sp2LabelJin: 'SHORYUKEN',
+        sp1LabelLi: 'KIDLAT SIPA',
+        sp2LabelLi: 'BUHAWI SIPA',
+        btnMax: 'ULTIMATE'
+    },
+    'hi': {
+        name: 'हिन्दी',
+        flag: '🇮🇳',
+        tagline: 'रेट्रो 2D आर्केड फाइटिंग गेम',
+        titleMain: 'STREET FIGHT',
+        titleSub: 'हाइपर क्लैश · महासंग्राम',
+        btnArcade: '🥊 आर्केड मोड ARCADE',
+        btnVersus: '⚔️ 2 खिलाड़ी मुकाबला VERSUS',
+        btnTraining: '🥋 डोजो अभ्यास TRAINING',
+        btnDocs: '📖 खेल नियमावली व गाइड',
+        controlsBar: 'नियंत्रण: WASD चाल/कूद/बैठना | J/K मुक्का | U लात | I/O विशेष चाल | Space अंतिम महावार MAX',
+        charSelectTitle: 'अपना योद्धा चुनें SELECT FIGHTER',
+        jinName: 'JIN (महाबली जिन)',
+        jinStyle: 'क्योकुशिन कराटे / आंतरिक ऊर्जा प्रहार',
+        jinMoves: [
+            '• तेज़ / भारी मुक्का (J / K)',
+            '• ऊर्जा गोला HADOUKEN (I / SP1)',
+            '• ड्रैगन अपरकट SHORYUKEN (O / SP2)',
+            '• शिंकू हादौकेन महाप्रहार (Space)'
+        ],
+        lihuaName: 'LI-HUA (उड़ती फीनिक्स ली-हुआ)',
+        lihuaStyle: 'शॉलीन तीव्र लात / फुर्तीली कुंग फू',
+        lihuaMoves: [
+            '• कॉम्बो मुक्का / लात (K / U)',
+            '• बिजली जैसी लातें LIGHTNING KICKS (I / SP1)',
+            '• चक्रवाती घूमती लात WHIRLWIND (O / SP2)',
+            '• सेनरेत्सुक्याकु महावार (Space)'
+        ],
+        btnBattleStart: '🔥 मुकाबला शुरू करें BATTLE START',
+        p1Select: 'P1: ',
+        cpuSelect: 'कंप्यूटर: ',
+        vsP2Select: 'P2: ',
+        superGauge: 'P1 सुपर गेज ऊर्जा',
+        loading: 'गेम डेटा व ध्वनि लोड हो रही है...',
+        rematch: '🔄 पुनः मुकाबला REMATCH',
+        returnMenu: '🏠 मुख्य मेनू RETURN',
+        winnerSuffix: ' विजयी हुआ VICTORY!',
+        drawText: 'मुकाबला बराबरी पर DRAW',
+        sp1LabelJin: 'हादौकेन',
+        sp2LabelJin: 'शोरियूकेन',
+        sp1LabelLi: 'तीव्र लातें',
+        sp2LabelLi: 'चक्रवात लात',
+        btnMax: 'महाप्रहार'
     }
 };
 
@@ -292,6 +517,11 @@ class I18nManager {
         if (navLang.startsWith('ja')) return 'ja';
         if (navLang.startsWith('ko')) return 'ko';
         if (navLang.startsWith('th')) return 'th';
+        if (navLang.startsWith('vi')) return 'vi';
+        if (navLang.startsWith('id')) return 'id';
+        if (navLang.startsWith('ms')) return 'ms';
+        if (navLang.startsWith('fil') || navLang.startsWith('tl')) return 'fil';
+        if (navLang.startsWith('hi')) return 'hi';
         return 'en';
     }
 
@@ -402,11 +632,12 @@ class I18nManager {
         let container = document.getElementById(containerId);
         if (!container) return;
 
+        container.innerHTML = '';
         const select = document.createElement('select');
         select.className = 'lang-select-dropdown';
         select.style.cssText = `
             background: #1e293b;
-            color: #f8fafc;
+            color: #38bdf8;
             border: 1px solid #38bdf8;
             border-radius: 6px;
             padding: 4px 8px;
@@ -437,4 +668,3 @@ class I18nManager {
 }
 
 window.i18n = new I18nManager();
-
