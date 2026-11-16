@@ -246,14 +246,30 @@
         }
 
         .fighter-avatar {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             border: 4px solid #334155;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             object-fit: cover;
+            object-position: top center;
             background: #020617;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fighter-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .fighter-avatar.full-body {
+            width: 180px;
+            height: 240px;
+            border-radius: 16px;
+            object-fit: contain;
+            object-position: center bottom;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(2, 6, 23, 0.9) 70%);
         }
 
         .fighter-card.jin .fighter-avatar {
@@ -264,6 +280,24 @@
         .fighter-card.lihua .fighter-avatar {
             border-color: #f43f5e;
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.3);
+        }
+
+        .avatar-toggle-hint {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            cursor: pointer;
+            user-select: none;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s;
+        }
+
+        .avatar-toggle-hint:hover {
+            color: #fef08a;
+            border-color: #fef08a;
         }
 
         .fighter-name {
@@ -469,7 +503,8 @@
             <div class="fighters-grid">
                 <!-- JIN -->
                 <div class="fighter-card jin">
-                    <img src="assets/portrait_jin.png" alt="Jin Avatar" class="fighter-avatar">
+                    <img src="assets/portrait_jin.png" alt="Jin Avatar" class="fighter-avatar" onclick="this.classList.toggle('full-body')">
+                    <div class="avatar-toggle-hint" onclick="this.previousElementSibling.classList.toggle('full-body')" data-i18n="avatarToggleHint">🔍 點擊切換 全身立繪 / 臉部特寫</div>
                     <div class="fighter-name" data-i18n="jinTitle">JIN (神拳·晉)</div>
                     <div class="fighter-tag" data-i18n="jinTag">極限流剛猛空手道 / 氣功大師</div>
                     <div class="moves-box">
@@ -483,7 +518,8 @@
 
                 <!-- LI-HUA -->
                 <div class="fighter-card lihua">
-                    <img src="assets/portrait_lihua.png" alt="Li-Hua Avatar" class="fighter-avatar">
+                    <img src="assets/portrait_lihua.png" alt="Li-Hua Avatar" class="fighter-avatar" onclick="this.classList.toggle('full-body')">
+                    <div class="avatar-toggle-hint" onclick="this.previousElementSibling.classList.toggle('full-body')" data-i18n="avatarToggleHint">🔍 點擊切換 全身立繪 / 臉部特寫</div>
                     <div class="fighter-name" data-i18n="liTitle">LI-HUA (飛鳳·麗華)</div>
                     <div class="fighter-tag" data-i18n="liTag">少林百裂腿法 / 迅捷格鬥宗師</div>
                     <div class="moves-box">
@@ -605,6 +641,6 @@
         </p>
     </footer>
 
-    <script src="js/docs_i18n.js?v=docs_20261117_02"></script>
+    <script src="js/docs_i18n.js?v=docs_20261117_03"></script>
 </body>
 </html>
