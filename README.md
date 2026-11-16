@@ -4,6 +4,13 @@
 
 ---
 
+## 🌐 線上體驗與官方網站 (Live Demo & Docs)
+
+- 📖 **說明網站 Docs**: [https://pppp20250712.github.io/street-fight/](https://pppp20250712.github.io/street-fight/)
+- 🎮 **瀏覽器試玩 Play in browser**: [https://pppp20250712.github.io/street-fight/play/](https://pppp20250712.github.io/street-fight/play/)
+
+---
+
 ## 📸 角色精靈圖整合 (Sprite Sheet Integration)
 
 本遊戲直接採用您上傳的兩張格鬥角色動作精靈圖表：
