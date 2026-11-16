@@ -403,7 +403,8 @@
                 <option value="hi">🇮🇳 हिन्दी</option>
             </select>
 
-            <a href="play/" class="btn-play-nav" data-i18n="btnPlayNav">🎮 瀏覽器試玩 PLAY</a>
+            <a href="play/" class="btn-play-nav" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">🌟 3D版 PLAY</a>
+            <a href="play2d/" class="btn-play-nav">🥊 2D版 PLAY</a>
         </nav>
     </header>
 
@@ -413,9 +414,13 @@
         <h1><span data-i18n="heroTitle">STREET FIGHT: HYPER CLASH</span><br><span style="font-size: 60%; color: #f87171;" data-i18n="heroSub">街頭對決 · 霸王再現</span></h1>
         <p data-i18n="heroDesc">基於精靈圖動態去背渲染技術打造的極限街機格鬥！支援單人街機 AI、雙人同屏對決、道場練習模式與 Android 原生沉浸式震動。</p>
         <div class="hero-actions">
-            <a href="play/" class="btn-cta-main" data-i18n="btnHeroPlay">
-                <span>🔥</span>
-                <span>立即進入遊戲 PLAY IN BROWSER</span>
+            <a href="play/" class="btn-cta-main" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);">
+                <span>🌟</span>
+                <span>🎮 啟動 3D 高畫質版 PLAY 3D HD</span>
+            </a>
+            <a href="play2d/" class="btn-cta-main" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">
+                <span>🥊</span>
+                <span>🕹️ 啟動 2D 復古街機版 PLAY 2D ARCADE</span>
             </a>
             <a href="#controls" class="btn-cta-sub" data-i18n="btnHeroManual">
                 <span>📖</span>
@@ -426,6 +431,33 @@
 
     <!-- MAIN CONTENT -->
     <main class="container">
+
+        <!-- 3D VERSION SHOWCASE -->
+        <section id="version3d" style="margin-bottom: 60px;">
+            <div class="section-title">
+                <h2>🌟 3D 高畫質版實機畫面 (STREET FIGHT 3D HD)</h2>
+                <p>純程式碼演算 3D 著色器模型、即時陰影、霓虹光影與 4x MSAA 抗鋸齒</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                <div style="border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); background: var(--card-bg);">
+                    <img src="img/3d-phoenix.jpg" alt="3D Phoenix Kick" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 14px; font-size: 14px; color: var(--text-muted);">
+                        ⚡ <strong>MEI (美玲) · 鳳凰連腳</strong>：3D 骨架動作變換與即時動態光影
+                    </div>
+                </div>
+                <div style="border-radius: 14px; overflow: hidden; border: 1px solid var(--border-color); background: var(--card-bg);">
+                    <img src="img/3d-kiblast.jpg" alt="3D Ki Blast" style="width: 100%; height: auto; display: block;">
+                    <div style="padding: 14px; font-size: 14px; color: var(--text-muted);">
+                        🔥 <strong>RYO (龍) · 氣功彈</strong>：立體粒子軌跡、夕陽輪廓光與打擊停頓
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 24px;">
+                <a href="play/" class="btn-cta-main" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);">
+                    <span>🎮 進入 3D WebGL2 激鬥</span>
+                </a>
+            </div>
+        </section>
 
         <!-- FIGHTERS SECTION -->
         <section id="fighters" style="margin-bottom: 60px;">
